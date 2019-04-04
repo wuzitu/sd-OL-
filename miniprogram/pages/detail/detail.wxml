@@ -1,0 +1,110 @@
+<view class="card">
+  <view>
+    <image class="image" mode="aspectFill" src="http://cdn.sdplayer.club/Avatar{{gundam.ID}}.png" />
+    <text class="time">{{ gundam.landType }} {{gundam.fightType}}</text>
+    <text class="">{{ gundam.ID }}</text>
+    <view class="title">{{gundam.Name || gundam.model}}/{{gundam.nameEN}}</view>
+    <view class='rank'>Rank：{{gundam.rank}} 评分：{{gundam.rating}}</view>
+  </view>
+
+</view>
+
+
+
+<van-panel title="武装一" desc="必杀：{{gundam.sp1}}" status="状态">
+  <van-row>
+    <van-col span="8">
+      <view class='weapon_img'>
+        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm1_1.img}}.png'></image>
+      </view>
+    </van-col>
+    <van-col span="8">
+      <view>{{gundam.arm1_1.name}}</view>
+    </van-col>
+    <van-col span="8">
+      <view wx:if="{{gundam.arm1_1.power}}">系数：{{gundam.arm1_1.power}}</view>
+    </van-col>
+  </van-row>
+  <van-row>
+    <van-col span="8">
+      <view class='weapon_img'>
+        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm1_2.img}}.png'></image>
+      </view>
+    </van-col>
+    <van-col span="8">
+      <view>{{gundam.arm1_2.name}}</view>
+    </van-col>
+    <van-col span="8">
+      <view wx:if="{{gundam.arm1_2.power}}">系数：{{gundam.arm1_2.power}}</view>
+    </van-col>
+  </van-row>
+  <van-row>
+    <van-col span="8">
+      <view class='weapon_img'>
+        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm1_3.img}}.png'></image>
+      </view>
+    </van-col>
+    <van-col span="8">
+      <view>{{gundam.arm1_3.name}}</view>
+    </van-col>
+    <van-col span="8">
+      <view wx:if="{{gundam.arm1_3.power}}">系数：{{gundam.arm1_3.power}}</view>
+    </van-col>
+  </van-row>
+
+</van-panel>
+<van-panel title="武装二" desc="必杀：{{gundam.sp1}}" status="状态" wx:if="{{gundam.sp2}}">
+  <van-row>
+    <van-col span="8">
+      <view class='weapon_img'>
+        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm2_1.img}}.png'></image>
+      </view>
+    </van-col>
+    <van-col span="8">
+      <view>{{gundam.arm2_1.name}}</view>
+    </van-col>
+    <van-col span="8">
+      <view wx:if="{{gundam.arm2_1.power}}">系数：{{gundam.arm2_1.power}}</view>
+    </van-col>
+  </van-row>
+  <van-row>
+    <van-col span="8">
+      <view class='weapon_img'>
+        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm2_2.img}}.png'></image>
+      </view>
+    </van-col>
+    <van-col span="8">
+      <view>{{gundam.arm2_2.name}}</view>
+    </van-col>
+    <van-col span="8">
+      <view wx:if="{{gundam.arm2_2.power}}">系数：{{gundam.arm2_2.power}}</view>
+    </van-col>
+  </van-row>
+  <van-row>
+    <van-col span="8">
+      <view class='weapon_img'>
+        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm2_3.img}}.png'></image>
+      </view>
+    </van-col>
+    <van-col span="8">
+      <view>{{gundam.arm2_3.name}}</view>
+    </van-col>
+    <van-col span="8">
+      <view wx:if="{{gundam.arm2_3.power}}">系数：{{gundam.arm2_3.power}}</view>
+    </van-col>
+  </van-row>
+
+</van-panel>
+
+
+<van-panel title="技能" status="">
+  <view wx:for="{{gundam.skill}}">
+    <view class='skill-img'>
+      <image src='http://cdn.sdplayer.club/skill4.png'></image>
+      <view>{{item.skill_name}}</view>
+    </view>
+    <view>
+      <view>{{item.skill_detail}}</view>
+    </view>
+  </view>
+</van-panel>

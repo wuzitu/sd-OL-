@@ -1,0 +1,44 @@
+/* miniprogram/pages/detail/detail.wxss */
+
+.card {
+  border: 2px solid #6cf;
+  border-radius: 5px;
+  background-color: #6cf;
+  box-shadow: 4px 1px 1px rgba(31, 31, 75, 0.774);
+  margin: 8px;
+  padding: 0 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card .image {
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+  /* background-color: #eeeeee; */
+}
+
+.time {
+  float: right;
+  margin-top: 170px;
+  color: #000;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  font-size: 12px;
+}
+
+.weapon_img image{
+  width: 93px;
+  height: 30px;
+  position: relative;
+}
+.skill-img image{
+  width: 30px;
+  height: 30px;
+  position: relative;
+}

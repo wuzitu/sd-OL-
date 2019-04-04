@@ -1,0 +1,32 @@
+<view class='Container'>
+  <view class='searchForm'>
+
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
+      <view slot="action" bind:tap="onSearch">搜索</view>
+    </van-search>
+  </view>
+
+  <!--滚动显示框  -->
+
+  <scroll-view class="index-bd" bindscrolltolower="loadNextPage" scroll-y="true" enable-back-to-top="true">
+    <!-- <view class="index-bd"> -->
+    <!--每一个卡片  -->
+    <view wx:for="{{gundamList}}" wx:key="ID">
+
+      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" thumb="http://cdn.sdplayer.club/Avatar{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
+        <view slot="tags">
+          <span class="van-tag van-tag--plain van-hairline--surround" style="color: blue">
+            Rank: {{item.rank}}
+          </span>
+        </view>
+      </van-card>
+    </view>
+
+    <!--每个卡片  -->
+    <van-row>
+      <i-load-more tip="{{loading.tip}}" loading="{{ loading.b }}" />
+    </van-row>
+
+  </scroll-view>
+  <!-- </view> -->
+</view>

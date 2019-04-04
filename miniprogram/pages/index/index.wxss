@@ -1,0 +1,14 @@
+/**index.wxss**/
+.index-bd {
+  position: absolute;
+  height: 89%;
+  overflow: scroll;
+}
+
+/*搜索框  */
+
+.searchForm {
+
+  height: 10%;
+
+}
