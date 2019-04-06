@@ -1,14 +1,15 @@
 <view class='Container'>
-  <view class='searchForm'>
 
+  <view class='searchForm'>
     <van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
-      <view slot="action" bind:tap="onSearch">搜索</view>
+      <view slot="action" bind:tap="showfilter">筛选</view>
     </van-search>
   </view>
 
   <!--滚动显示框  -->
 
   <scroll-view class="index-bd" bindscrolltolower="loadNextPage" scroll-y="true" enable-back-to-top="true">
+
     <!-- <view class="index-bd"> -->
     <!--每一个卡片  -->
     <view wx:for="{{gundamList}}" wx:key="ID">
@@ -24,9 +25,16 @@
 
     <!--每个卡片  -->
     <van-row>
-      <i-load-more tip="{{loading.tip}}" loading="{{ loading.b }}" />
+      <i-load-more tip="loading" loading="{{ loading.b }}" wx:if="{{ loading.b }}" />
+      <i-load-more tip="loading" loading="{{ !loading.b }}" wx:if="{{ !loading.b }}" />
     </van-row>
-
   </scroll-view>
   <!-- </view> -->
 </view>
+
+<!-- 筛选框弹出层 -->
+<van-popup show="{{ filterShow }}" position="right" bind:close="showfilter">
+  <van-checkbox value="{{ checked }}" bind:change="onChange">复选框</van-checkbox>
+  <van-checkbox value="{{ checked }}" bind:change="onChange">复选框</van-checkbox>
+  <van-checkbox value="{{ checked }}" bind:change="onChange">复选框</van-checkbox>
+</van-popup>

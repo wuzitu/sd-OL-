@@ -6,19 +6,20 @@ Page({
     scrollTop: 100,
     gundamList: [],
     totalCount: 100,
-    page: 1,
+    page: 0,
     isGet: false,
     loading: {
       b: true,
       tip: "loading"
-    }
+    },
+    filterShow: false
   },
   onLoad(options) {
     let _this = this;
 
     // 查询当前用户所有的 counters
     db.collection('sdplayer')
-      .skip(_this.data.page * 10).limit(10)
+      .skip(_this.data.page * 20).limit(20)
       .get({
         success: res => {
           _this.setData({
@@ -60,7 +61,7 @@ Page({
     })
 
     db.collection('sdplayer')
-      .skip(_this.data.page * 10).limit(10)
+      .skip(_this.data.page * 20).limit(20)
       .get({
         success: res => {
           _this.setData({
@@ -81,7 +82,7 @@ Page({
   },
 
   isloadEnd: function() {
-    if (this.data.gundamList.length >= this.data.totalCount) {
+    if (!this.data.gundamList.length || this.data.gundamList.length >= this.data.totalCount) {
       this.setData({
         loading: {
           loading: {
@@ -98,10 +99,88 @@ Page({
   },
 
   goDetail: function(e) {
-    let one = JSON.stringify(e.currentTarget.dataset.one)
+    // let one = JSON.stringify(e.currentTarget.dataset.one)
+    // wx.navigateTo({
+    //   url: `../detail/detail?gundam=${one}`
+    // })
+    let one = e.currentTarget.dataset.one
+    // wx.setStorageSync("oneGundam", one)
+    getApp().globalData.oneGundam = one;
     wx.navigateTo({
-      url: `../detail/detail?gundam=${one}`
+      url: `../detail/detail?gundam=${one.ID}`
+    })
+  },
+
+  onSearch: function(e) {
+      // 开始搜索
+      let text = e.detail
+      let _this = this
+      // 初始化
+      _this.setData({
+        gundamList: [],
+        loading: {
+          b: true,
+          tip: "loading"
+        },
+        page: 0
+      })
+      // 搜索名称，英文名称，id，tag
+      // if (/\s/.test(text)) {
+      //   // 带有空格的模糊搜索
+      //   text = text.split(/\s+/)
+      // }
+
+      var reg = db.RegExp({
+        regexp: text,
+        options: 'i',
+      })
+
+      // const _ = db.command
+      filter(_this, reg)
+        .skip(_this.data.page * 20).limit(20)
+        .get({
+          success: res => {
+            _this.setData({
+              gundamList: res.data,
+              isGet: false,
+              page: _this.data.page + 1
+            })
+            _this.isloadEnd()
+          },
+          fail: err => {
+            wx.showToast({
+              icon: 'none',
+              title: '查询记录失败'
+            })
+            _this.isloadEnd()
+          }
+        })
+    }
+
+
+    ,
+  showfilter: function(e) {
+    this.setData({
+      filterShow: !this.data.filterShow
     })
   }
-
 })
+
+
+function filter(_this, reg) {
+  const _ = db.command
+  return db.collection('sdplayer')
+    .where(_.or([{
+        Name: reg
+      },
+      {
+        model: reg
+      },
+      {
+        tags: reg
+      },
+      {
+        nameEN: reg
+      }
+    ]))
+}

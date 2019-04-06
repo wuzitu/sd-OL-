@@ -8,6 +8,9 @@
     "van-loading": "/lib/vant-weapp/loading/index",
     "van-row": "/lib/vant-weapp/row/index",
     "van-col": "/lib/vant-weapp/col/index",
-    "i-load-more": "/lib/vant-weapp/load-more/index"
+    "van-popup": "/lib/vant-weapp/popup/index",
+    "i-load-more": "/lib/vant-weapp/load-more/index",
+    "van-checkbox": "/lib/vant-weapp/checkbox/index",
+    "van-checkbox-group": "/lib/vant-weapp/checkbox-group/index"
   }
 }
