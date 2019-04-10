@@ -1,4 +1,5 @@
 /**index.wxss**/
+
 .index-bd {
   position: absolute;
   height: 89%;
@@ -8,7 +9,9 @@
 /*搜索框  */
 
 .searchForm {
-
   height: 10%;
+}
 
+.filter-picker {
+  padding: 10px 15px;
 }

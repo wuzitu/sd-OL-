@@ -12,14 +12,24 @@ Page({
       b: true,
       tip: "loading"
     },
-    filterShow: false
+    filterShow: false,
+    rankFilter: [],
+    Machine: [],
+    fightType: [],
+    special: [],
+    landType: [],
+    filterMachine: '',
+    filterfightType: '',
+    filterspecial: '',
+    filterlandType: '',
   },
   onLoad(options) {
     let _this = this;
-
+    initFilterData(_this);
     // 查询当前用户所有的 counters
     db.collection('sdplayer')
       .skip(_this.data.page * 20).limit(20)
+      .orderBy('birth_date', 'desc')
       .get({
         success: res => {
           _this.setData({
@@ -62,6 +72,7 @@ Page({
 
     db.collection('sdplayer')
       .skip(_this.data.page * 20).limit(20)
+      .orderBy('birth_date', 'desc')
       .get({
         success: res => {
           _this.setData({
@@ -163,6 +174,23 @@ Page({
     this.setData({
       filterShow: !this.data.filterShow
     })
+  },
+
+
+  onRankChange(event) {
+    this.setData({
+      rankFilter: event.detail
+    });
+    console.log(this.data.rankFilter)
+  },
+
+  bindPickerChange(e) {
+    let _this = this;
+    let id = e.target.id
+    let value = _this.data[id][e.detail.value];
+    let tmp = {}
+    tmp['filter' + id] = value
+    _this.setData(tmp)
   }
 })
 
@@ -183,4 +211,18 @@ function filter(_this, reg) {
         nameEN: reg
       }
     ]))
+}
+
+
+function initFilterData(_this) {
+  let g_data = getApp().globalData;
+  g_data.filterMap.Machine
+  _this.setData({
+    Machine: g_data.filterMap.Machine,
+    fightType: g_data.filterMap.fightType,
+    special: g_data.filterMap.special,
+    landType: g_data.filterMap.landType,
+    isfrom: g_data.filterMap.isfrom,
+    pilot: g_data.filterMap.pilot,
+  })
 }
