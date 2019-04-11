@@ -10,8 +10,40 @@
 
 .searchForm {
   height: 10%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .filter-picker {
   padding: 10px 15px;
+}
+
+.filter-button {
+  display: inline-block;
+}
+
+.searchVan {
+  display: inline-block;
+}
+
+.line_02 span {
+  position: relative;
+  top: -8px;
+  background: #fff;
+  padding: 0px 10px;
+}
+
+.line_02 {
+  width: 90%; /* 分隔线的长度 */
+  margin: auto;
+  height: 1px; /* 分隔线粗细 */
+  text-align: center;
+  font-size: 24rpx;
+  color: #aaa;
+  background: #ccc;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  line-height: 25px;
 }

@@ -1,10 +1,12 @@
 <view class='Container'>
 
   <view class='searchForm'>
-    <view bind:tap="showfilter">筛选</view>
-    <view>
-      <van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:search="onSearch">
-        <view slot="action" bind:tap="showfilter">搜索</view>
+    <view bind:tap="showfilter" class='filter-button'>
+      <van-button plain type="primary" size="mini" round>筛选</van-button>
+    </view>
+    <view class='searchVan'>
+      <van-search value="{{ value }}" placeholder="关键词搜索" use-action-slot bind:search="onSearch">
+        <view slot="action" bind:tap="onSearch">搜索</view>
       </van-search>
     </view>
   </view>
@@ -37,86 +39,114 @@
 
 <!-- 筛选框弹出层 -->
 <van-popup show="{{ filterShow }}" position="left" bind:close="showfilter" custom-style="width:68%; height:100%; font-size=10;">
-  <van-panel title="RANK">
-    <van-checkbox-group value="{{ rankFilter }}" bind:change="onChange">
-      <van-row>
-        <van-col span="6">
-          <van-checkbox name="S">S</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="A">A</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="B">B</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="C">C</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="SS">SS</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="AS">AS</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="BS">BS</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="CS">CS</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="SR">SR</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="AR">AR</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="BR">BR</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="CR">CR</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="SU" disabled='true'>SU</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="AU" disabled='true'>AU</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="BU">BU</van-checkbox>
-        </van-col>
-        <van-col span="6">
-          <van-checkbox name="CU">CU</van-checkbox>
-        </van-col>
-      </van-row>
-    </van-checkbox-group>
-  </van-panel>
+  <scroll-view class="index-bd" scroll-y="true" enable-back-to-top="true">
+    <view class="line_02">
+      <span>可以上下滑动</span>
+    </view>
 
-  <picker range="{{Machine}}" bindchange="bindPickerChange" id='Machine'>
-    <van-cell title="扭蛋机：" value="{{filterMachine || '请选择'}}" />
-  </picker>
-
-  <picker range="{{fightType}}" bindchange="bindPickerChange" id='fightType'>
-
-    <van-cell title="攻击距离：" value="{{filterfightType || '请选择'}}" />
-  </picker>
-  <picker range="{{landType}}" bindchange="bindPickerChange" id='landType'>
-
-    <van-cell title="作战地形：" value="{{filterlandType || '请选择'}}" />
-  </picker>
-  <picker range="{{special}}" bindchange="bindPickerChange" id='special'>
-
-    <van-cell title="类型：" value="{{filterspecial || '请选择'}}" />
-  </picker>
-  <picker range="{{isfrom}}" bindchange="bindPickerChange" id='isfrom'>
-
-    <van-cell title="出自：" value="{{filterisfrom || '请选择'}}" />
-  </picker>
-  <picker range="{{pilot}}" bindchange="bindPickerChange" id='pilot'>
-
-    <van-cell title="驾驶员：" value="{{pilot || '请选择'}}" />
-  </picker>
+    <van-panel title="RANK">
+      <van-checkbox-group value="{{ rankFilter }}" bind:change="onRankChange">
+        <van-row>
+          <van-col span="6">
+            <van-checkbox name="S">S</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="SS">SS</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="SR">SR</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="SU" disabled='true'>SU</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="A">A</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="AS">AS</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="AR">AR</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="AU" disabled='true'>AU</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="B">B</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="BS">BS</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="BR">BR</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="BU">BU</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="C">C</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="CS">CS</van-checkbox>
+          </van-col>
+          <van-col span="6">
+            <van-checkbox name="CR">CR</van-checkbox>
+          </van-col>
 
 
+
+          <van-col span="6">
+            <van-checkbox name="CU">CU</van-checkbox>
+          </van-col>
+        </van-row>
+      </van-checkbox-group>
+    </van-panel>
+    <picker range="{{Machine}}" bindchange="bindPickerChange" id='Machine'>
+      <van-cell title="扭蛋机：" value="{{filterMachine || '请选择'}}" />
+    </picker>
+
+    <picker range="{{fightType}}" bindchange="bindPickerChange" id='fightType'>
+
+      <van-cell title="攻击距离：" value="{{filterfightType || '请选择'}}" />
+    </picker>
+    <picker range="{{landType}}" bindchange="bindPickerChange" id='landType'>
+
+      <van-cell title="作战地形：" value="{{filterlandType || '请选择'}}" />
+    </picker>
+    <picker range="{{special}}" bindchange="bindPickerChange" id='special'>
+
+      <van-cell title="类型：" value="{{filterspecial || '请选择'}}" />
+    </picker>
+    <picker range="{{isfrom}}" bindchange="bindPickerChange" id='isfrom'>
+
+      <van-cell title="出自：" value="{{filterisfrom || '请选择'}}" />
+    </picker>
+    <picker range="{{pilot}}" bindchange="bindPickerChange" id='pilot'>
+
+      <van-cell title="驾驶员：" value="{{filterpilot || '请选择'}}" />
+    </picker>
+    <picker range="{{pilot}}" bindchange="bindPickerChange" id='pilot'>
+
+      <van-cell title="驾驶员：" value="{{filterpilot || '请选择'}}" />
+    </picker>
+    <picker range="{{pilot}}" bindchange="bindPickerChange" id='pilot'>
+
+      <van-cell title="驾驶员：" value="{{filterpilot || '请选择'}}" />
+    </picker>
+    <picker range="{{pilot}}" bindchange="bindPickerChange" id='pilot'>
+
+      <van-cell title="驾驶员：" value="{{filterpilot || '请选择'}}" />
+    </picker>
+
+    <view class="line_02">
+      <span>我是有底线的！</span>
+    </view>
+  </scroll-view>
+
+
+  <view wx:if="{{ filterShow }}" style='position: fixed; bottom:0;'>
+    <van-button type="info" size="small">清除</van-button>
+    <van-button type="primary" size="small">搜索</van-button>
+  </view>
 
 </van-popup>
