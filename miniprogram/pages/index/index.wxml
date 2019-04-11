@@ -23,14 +23,13 @@
         </view>
       </van-card>
     </view>
-
     <!--每个卡片  -->
-    <van-row>
-      <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
-      <view class="devide-line" wx:if="{{ !loading }}">
-        <span>没有更多数据啦</span>
-      </view>
-    </van-row>
+    <!-- 底部条 -->
+    <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
+    <view class="devide-line" wx:if="{{ !loading }}">
+      <span>没有更多数据啦</span>
+    </view>
+
   </scroll-view>
   <!-- </view> -->
 </view>

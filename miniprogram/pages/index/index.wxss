@@ -6,6 +6,9 @@
   overflow: scroll;
 }
 
+.index-bd .van-search{
+  padding: 5px 16px;
+}
 /*搜索框  */
 
 .searchForm {
