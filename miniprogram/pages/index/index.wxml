@@ -1,14 +1,10 @@
 <view class='Container'>
 
   <view class='searchForm'>
-    <view bind:tap="showfilter" class='filter-button'>
-      <van-button plain type="primary" size="mini" round>筛选</van-button>
-    </view>
-    <view class='searchVan'>
-      <van-search value="{{ value }}" placeholder="关键词搜索" use-action-slot bind:search="onSearch">
-        <view slot="action" bind:tap="onSearch">搜索</view>
-      </van-search>
-    </view>
+    <van-button plain type="primary" size="small" round class='filter-button' bind:tap="showfilter" style="width:20%">筛选</van-button>
+    <van-search value="{{ searchVal }}" placeholder="关键词搜索" use-action-slot="true" bind:search="onSearch" style="width:80%" bind:change="searchInput">
+      <view slot="action" bind:tap="onSearch">搜索</view>
+    </van-search>
   </view>
 
   <!--滚动显示框  -->
@@ -30,8 +26,10 @@
 
     <!--每个卡片  -->
     <van-row>
-      <i-load-more tip="loading" loading="{{ loading.b }}" wx:if="{{ loading.b }}" />
-      <i-load-more tip="loading" loading="{{ !loading.b }}" wx:if="{{ !loading.b }}" />
+      <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
+      <view class="devide-line" wx:if="{{ !loading }}">
+        <span>没有更多数据啦</span>
+      </view>
     </van-row>
   </scroll-view>
   <!-- </view> -->
@@ -40,7 +38,7 @@
 <!-- 筛选框弹出层 -->
 <van-popup show="{{ filterShow }}" position="left" bind:close="showfilter" custom-style="width:68%; height:100%; font-size=10;">
   <scroll-view class="index-bd" scroll-y="true" enable-back-to-top="true">
-    <view class="line_02">
+    <view class="devide-line">
       <span>可以上下滑动</span>
     </view>
 
@@ -125,28 +123,30 @@
 
       <van-cell title="驾驶员：" value="{{filterpilot || '请选择'}}" />
     </picker>
-    <picker range="{{pilot}}" bindchange="bindPickerChange" id='pilot'>
-
-      <van-cell title="驾驶员：" value="{{filterpilot || '请选择'}}" />
+    <picker range="{{force}}" bindchange="bindPickerChange" id='force'>
+      <van-cell title="势力：" value="{{filterforce || '请选择'}}" />
     </picker>
-    <picker range="{{pilot}}" bindchange="bindPickerChange" id='pilot'>
-
-      <van-cell title="驾驶员：" value="{{filterpilot || '请选择'}}" />
+    <picker range="{{weapon_e}}" bindchange="bindPickerChange" id='weapon_e'>
+      <van-cell title="武器效果：" value="{{filterweapon_e || '请选择'}}" />
     </picker>
-    <picker range="{{pilot}}" bindchange="bindPickerChange" id='pilot'>
-
-      <van-cell title="驾驶员：" value="{{filterpilot || '请选择'}}" />
+    <picker range="{{weapon_p}}" bindchange="bindPickerChange" id='weapon_p'>
+      <van-cell title="武器特性：" value="{{filterweapon_p || '请选择'}}" />
+    </picker>
+    <picker range="{{sortBy_cn}}" bindchange="bindPickerChange" id='sortBy_cn'>
+      <van-cell title="排序按照：" value="{{filtersortBy_cn || '请选择'}}" />
     </picker>
 
-    <view class="line_02">
+    <view class="devide-line">
       <span>我是有底线的！</span>
     </view>
   </scroll-view>
 
 
-  <view wx:if="{{ filterShow }}" style='position: fixed; bottom:0;'>
-    <van-button type="info" size="small">清除</van-button>
-    <van-button type="primary" size="small">搜索</van-button>
+  <view class='filter-btn-group'>
+    <van-button type="default" size="small" bindtap='showfilter' custom-class='filter_btn' style='width:30%'>
+      <van-icon name="arrow-left" /></van-button>
+    <van-button type="info" size="small" custom-class='filter_btn' bindtap='filterClear'>清除</van-button>
+    <van-button type="primary" size="small" custom-class='filter_btn' bindtap='onSearch'>搜索</van-button>
   </view>
 
 </van-popup>

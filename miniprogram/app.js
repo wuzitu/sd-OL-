@@ -13,6 +13,7 @@ App({
 
     this.globalData = {
       filterMap: {
+        Rank: ["S", "SS", "SR", "A", "AS", "AR", "B", "BS", "BR", "BU", "C", "CS", "CR", "CU"],
         special: ["变形", "修理", "大型", "狙击"],
         fightType: ["近距离", "中距离", "远距离"],
         landType: ["万能", "宇宙", "地面", "水下", "未知"],
@@ -525,7 +526,7 @@ App({
         weapon_e: ["减速", "眩晕", "抽气", "抽弹", "减装填"],
         weapon_p: ["跟踪", "硬直", "隐身", "倒地", "捕捉", "修理", "散射"],
         sortBy: ["birth_date", "fever", "rating"],
-        sortBy_cn: ["登场日期(默认)", "热度", "漫猫评分"]
+        sortBy_cn: ["自动(默认)", "登场日期", "热度", "漫猫评分"]
       }
     }
   }

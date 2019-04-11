@@ -2,7 +2,7 @@
 
 .index-bd {
   position: absolute;
-  height: 89%;
+  height: 90%;
   overflow: scroll;
 }
 
@@ -24,18 +24,14 @@
   display: inline-block;
 }
 
-.searchVan {
-  display: inline-block;
-}
-
-.line_02 span {
+.devide-line span {
   position: relative;
   top: -8px;
   background: #fff;
   padding: 0px 10px;
 }
 
-.line_02 {
+.devide-line {
   width: 90%; /* 分隔线的长度 */
   margin: auto;
   height: 1px; /* 分隔线粗细 */
@@ -46,4 +42,20 @@
   margin-top: 5px;
   margin-bottom: 15px;
   line-height: 25px;
+}
+
+.filter-btn-group {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* .filter-btn-group button {
+  width: 30%;
+  display: inline-block;
+  height: 30px;
+} */
+
+.filter_btn {
+  width: 30%;
 }
