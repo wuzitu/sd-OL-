@@ -177,7 +177,6 @@ Page({
       filterpilot: '',
       filterforce: '',
       filterweapon_e: '',
-      filterweapon_p: '',
       filtersortBy_cn: '自动(默认)',
     })
   },
@@ -220,13 +219,12 @@ function goFilter(_this) {
   let eqTmp = {
     Machine: _this.data.filterMachine && _this.data.filterMachine.length ? _this.data.filterMachine : null,
     fightType: _this.data.filterfightType || null,
-    special: _this.data.filterspecial || null,
+    modelType: _this.data.filterspecial || null,
     landType: _this.data.filterlandType || null,
     from: _this.data.filterisfrom || null,
     pilot: _this.data.filterpilot || null,
     force: _this.data.filterforce || null,
-    weapon_e: _this.data.filterweapon_e || null,
-    weapon_p: _this.data.filterweapon_p || null,
+    weapon_e: _this.data.filterweapon_e || null
   };
   for (const key in eqTmp) {
     if (eqTmp.hasOwnProperty(key)) {
@@ -237,7 +235,7 @@ function goFilter(_this) {
     }
   }
 
-  let collection = db.collection('sdplayer')
+  let collection = db.collection('SD_DB')
   // name
   if (nameReg) {
     collection = collection.where(_.or(orArr))
@@ -322,7 +320,6 @@ function initFilterData(_this) {
     pilot: g_data.filterMap.pilot,
     force: g_data.filterMap.force,
     weapon_e: g_data.filterMap.weapon_e,
-    weapon_p: g_data.filterMap.weapon_p,
     sortBy_cn: g_data.filterMap.sortBy_cn,
   })
 }
