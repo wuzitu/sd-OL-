@@ -2,98 +2,106 @@
   <view>
     <image class="image" mode="aspectFill" src="http://cdn.sdplayer.club/Avatar{{gundam.ID}}.png" />
     <text class="time">{{ gundam.landType }} {{gundam.fightType}}</text>
-    <text class="">{{ gundam.ID }}</text>
-    <view class="title">{{gundam.Name || gundam.model}}/{{gundam.nameEN}}</view>
+
+    <view class="title">{{gundam.Name || gundam.model}}</view>
     <view class='rank'>Rank：{{gundam.rank}} 评分：{{gundam.rating}}</view>
   </view>
 </view>
+<view>
+  {{gundam.nameEN}}</view>
+<view>
+  {{gundam.nameCN_G}}</view>
+<!-- <text class="">{{ gundam.ID }}</text> -->
 <van-panel title="武装一" status="必杀：{{spMap[gundam.sp1]}}" wx:if="{{gundam.sp1}}">
-  <van-row>
-    <van-col span="8">
-      <view class='weapon_img'>
-        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm1_1.img}}.png'></image>
-      </view>
-    </van-col>
-    <van-col span="8">
-      <view>{{gundam.arm1_1.name || "名称未知"}}</view>
-    </van-col>
-    <van-col span="8">
-      <view wx:if="{{gundam.arm1_1.power}}">系数：{{gundam.arm1_1.power}}</view>
-    </van-col>
-  </van-row>
-  <van-row>
-    <van-col span="8">
-      <view class='weapon_img'>
-        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm1_2.img}}.png'></image>
-      </view>
-    </van-col>
-    <van-col span="8">
-      <view>{{gundam.arm1_2.name || "名称未知"}}</view>
-    </van-col>
-    <van-col span="8">
-      <view wx:if="{{gundam.arm1_2.power}}">系数：{{gundam.arm1_2.power}}</view>
-    </van-col>
-  </van-row>
-  <van-row>
-    <van-col span="8">
-      <view class='weapon_img'>
-        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm1_3.img}}.png'></image>
-      </view>
-    </van-col>
-    <van-col span="8">
-      <view>{{gundam.arm1_3.name || "名称未知"}}</view>
-    </van-col>
-    <van-col span="8">
-      <view wx:if="{{gundam.arm1_3.power}}">系数：{{gundam.arm1_3.power}}</view>
-    </van-col>
-  </van-row>
+  <view wx:for="{{[1,2,3]}}" wx:for-item="x" wx:key="">
+    <van-row>
+      <van-col span="7">
+        <view class='weapon_img'>
+          <image src="http://cdn.sdplayer.club/weapon{{gundam['arm1_'+x].img}}.png"></image>
+        </view>
+      </van-col>
+      <van-col span="11">
+        <van-tag color="#0776A0" plain wx:if="{{gundam['arm1_'+x].pd}}">
+          {{gundam['arm1_'+x].pd}}
+        </van-tag>
+        <text>{{gundam['arm1_'+x].name || "名称:??"}}</text>
+      </van-col>
+      <!-- 武器特效 -->
+      <van-col span="6">
+
+        <van-tag color="#f2826a" plain wx:for="{{gundam['arm1_'+x].effact}}" wx:key="">
+          {{item}}
+        </van-tag>
+      </van-col>
+    </van-row>
+    <!-- 武器数据 -->
+    <van-row gutter="10" style="font-size:16px;">
+      <van-col span="9">
+        <view wx:if="{{gundam['arm1_'+x].power}}">系数：{{gundam['arm1_'+x].power ||"?"}}
+          <!-- 连发数量 -->
+          <text wx:if="{{gundam['arm1_'+x].biuNum}}">{{gundam['arm1_'+x].biuNum}}</text>
+        </view>
+      </van-col>
+      <van-col span="6">
+        <view wx:if="{{gundam['arm1_'+x].gongsu}}">攻速：{{gundam['arm1_'+x].gongsu ||"?"}}</view>
+      </van-col>
+      <van-col span="6">
+        <view wx:if="{{gundam['arm1_'+x].des}}">距离：{{gundam['arm1_'+x].des ||"?"}}</view>
+      </van-col>
+      <van-col span="3">
+        <view wx:if="{{gundam['arm1_'+x].ping}}">延迟：{{gundam['arm1_'+x].ping ||"?"}}</view>
+      </van-col>
+    </van-row>
+  </view>
 </van-panel>
-<van-panel title="武装二" status="必杀：{{spMap[gundam.sp1]}}" wx:if="{{gundam.sp2}}">
-  <van-row>
-    <van-col span="8">
-      <view class='weapon_img'>
-        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm2_1.img}}.png'></image>
-      </view>
-    </van-col>
-    <van-col span="8">
-      <view>{{gundam.arm2_1.name || "名称未知"}}</view>
-    </van-col>
-    <van-col span="8">
-      <view wx:if="{{gundam.arm2_1.power}}">系数：{{gundam.arm2_1.power}}</view>
-    </van-col>
-  </van-row>
-  <van-row>
-    <van-col span="8">
-      <view class='weapon_img'>
-        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm2_2.img}}.png'></image>
-      </view>
-    </van-col>
-    <van-col span="8">
-      <view>{{gundam.arm2_2.name || "名称未知"}}</view>
-    </van-col>
-    <van-col span="8">
-      <view wx:if="{{gundam.arm2_2.power}}">系数：{{gundam.arm2_2.power}}</view>
-    </van-col>
-  </van-row>
-  <van-row>
-    <van-col span="8">
-      <view class='weapon_img'>
-        <image src='http://cdn.sdplayer.club/weapon{{gundam.arm2_3.img}}.png'></image>
-      </view>
-    </van-col>
-    <van-col span="8">
-      <view>{{gundam.arm2_3.name || "名称未知"}}</view>
-    </van-col>
-    <van-col span="8">
-      <view wx:if="{{gundam.arm2_3.power}}">系数：{{gundam.arm2_3.power}}</view>
-    </van-col>
-  </van-row>
+<van-panel title="武装二" status="必杀：{{spMap[gundam.sp2]}}" wx:if="{{gundam.sp2}}">
+  <view wx:for="{{[1,2,3]}}" wx:for-item="x" wx:key="">
+    <van-row>
+      <van-col span="7">
+        <view class='weapon_img'>
+          <image src="http://cdn.sdplayer.club/weapon{{gundam['arm2_'+x].img}}.png"></image>
+        </view>
+      </van-col>
+      <van-col span="11">
+        <van-tag color="#0776A0" plain wx:if="{{gundam['arm2_'+x].pd}}">
+          {{gundam['arm2_'+x].pd}}
+        </van-tag>
+        <text>{{gundam['arm2_'+x].name || "名称:??"}}</text>
+      </van-col>
+      <!-- 武器特效 -->
+      <van-col span="6">
+
+        <van-tag color="#f2826a" plain wx:for="{{gundam['arm2_'+x].effact}}" wx:key="">
+          {{item}}
+        </van-tag>
+      </van-col>
+    </van-row>
+    <!-- 武器数据 -->
+    <van-row gutter="10" style="font-size:16px;">
+      <van-col span="9">
+        <view wx:if="{{gundam['arm2_'+x].power}}">系数：{{gundam['arm2_'+x].power ||"?"}}
+          <!-- 连发数量 -->
+          <text wx:if="{{gundam['arm2_'+x].biuNum}}">{{gundam['arm2_'+x].biuNum}}</text>
+        </view>
+      </van-col>
+      <van-col span="6">
+        <view wx:if="{{gundam['arm2_'+x].gongsu}}">攻速：{{gundam['arm2_'+x].gongsu ||"?"}}</view>
+      </van-col>
+      <van-col span="6">
+        <view wx:if="{{gundam['arm2_'+x].des}}">距离：{{gundam['arm2_'+x].des ||"?"}}</view>
+      </van-col>
+      <van-col span="3">
+        <view wx:if="{{gundam['arm2_'+x].ping}}">延迟：{{gundam['arm2_'+x].ping ||"?"}}</view>
+      </van-col>
+    </van-row>
+  </view>
 </van-panel>
+
 <van-panel title="技能" status="">
-  <view wx:for="{{gundam.skill}}">
+  <view wx:for="{{gundam.skill}}" wx:key="id">
     <view class='skill-img'>
       <image src='http://cdn.sdplayer.club/skill{{item.id}}.png'></image>
-      <view>{{item.skill_name}}</view>
+      <text>{{item.skill_name}}</text>
     </view>
     <view>
       <view>{{item.skill_detail}}</view>

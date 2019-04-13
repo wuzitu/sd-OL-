@@ -9,6 +9,7 @@
     "van-row": "/lib/vant-weapp/row/index",
     "van-col": "/lib/vant-weapp/col/index",
     "i-load-more": "/lib/vant-weapp/load-more/index",
-    "van-panel": "/lib/vant-weapp/panel/index"
+    "van-panel": "/lib/vant-weapp/panel/index",
+    "van-tag": "/lib/vant-weapp/tag/index"
   }
 }
