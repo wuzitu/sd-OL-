@@ -10,6 +10,8 @@
     "van-col": "/lib/vant-weapp/col/index",
     "i-load-more": "/lib/vant-weapp/load-more/index",
     "van-panel": "/lib/vant-weapp/panel/index",
-    "van-tag": "/lib/vant-weapp/tag/index"
+    "van-tag": "/lib/vant-weapp/tag/index",
+    "van-collapse": "/lib/vant-weapp/collapse/index",
+    "van-collapse-item": "/lib/vant-weapp/collapse-item/index"
   }
 }

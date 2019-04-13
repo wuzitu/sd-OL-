@@ -7,8 +7,9 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"nodeModules": true,
 		"autoAudits": false,
-		"nodeModules": true
+		"checkInvalidKey": true
 	},
 	"appid": "wx500669dcb1dad2d0",
 	"projectname": "sd-OL--master",

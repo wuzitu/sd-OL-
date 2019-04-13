@@ -22,10 +22,16 @@
         "text": "数据库"
       },
       {
-        "pagePath": "pages/user/index",
+        "pagePath": "pages/userConsole/userConsole",
         "iconPath": "static/icons/home.png",
         "selectedIconPath": "static/icons/home-selected.png",
         "text": "我"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-selected.png",
+        "text": "user"
       }
     ],
     "selectedColor": "#f59aaa",

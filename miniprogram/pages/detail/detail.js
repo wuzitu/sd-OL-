@@ -289,7 +289,8 @@ Page({
       "10": "乱舞型",
       "11": "全弹发射型",
       "12": "地图炮型"
-    }
+    },
+    activeNames: ['2']
   },
 
   /**
@@ -299,9 +300,11 @@ Page({
     // let tmp = JSON.parse(options.gundam)
     // let tmp = wx.getStorageSync("oneGundam")
     let tmp = getApp().globalData.oneGundam
-    this.setData({
-      gundam: tmp
-    })
+    if (tmp) {
+      this.setData({
+        gundam: tmp
+      })
+    }
   },
 
   /**
@@ -351,5 +354,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail
+    });
   }
 })
