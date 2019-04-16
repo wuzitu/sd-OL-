@@ -9,7 +9,7 @@ Page({
     loading: false
   },
 
-  onLoad: function() {
+  onLoad: function () {
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -41,7 +41,7 @@ Page({
     })
   },
 
-  onGetUserInfo: function(e) {
+  onGetUserInfo: function (e) {
     let _this = this;
 
     if (!this.logged && e.detail.userInfo) {
@@ -84,7 +84,9 @@ Page({
 
   // 捐助
   donate: () => {
-    
+    wx.previewImage({
+      urls: ['http://cdn.sdplayer.club/zanshang.jpg'],
+    });
   }
 
 })

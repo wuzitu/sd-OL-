@@ -163,7 +163,17 @@ Page({
     let tmp = {}
     tmp['filter' + id] = value
     _this.setData(tmp)
-  }
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return{
+      title: `SD敢达OL`,
+      imageUrl: 'https://go.sdplayer.club/img/logo/logo.png'
+    }
+  },
 })
 
 

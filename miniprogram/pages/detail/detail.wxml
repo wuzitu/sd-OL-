@@ -1,6 +1,6 @@
 <view class="card">
   <view>
-    <image class="image" mode="aspectFill" src="http://cdn.sdplayer.club/Avatar{{gundam.ID}}.png" />
+    <image class="image" mode="aspectFill" src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png" />
     <view class="title">{{gundam.Name || gundam.model}}</view>
     <view class='rank'>Rank：{{gundam.rank}} 评分：{{gundam.rating}}</view>
   </view>
@@ -12,7 +12,7 @@
     <van-row>
       <van-col span="7">
         <view class='weapon_img'>
-          <image src="http://cdn.sdplayer.club/weapon{{gundam['arm1_'+x].img}}.png"></image>
+          <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/{{gundam['arm1_'+x].img}}.png"></image>
         </view>
       </van-col>
       <van-col span="11">
@@ -52,7 +52,7 @@
   <van-row wx:if="{{gundam.shield1.life || gundam.shield1.def}}" gutter="20">
     <van-col span="7">
       <view class='weapon_img'>
-        <image src="http://cdn.sdplayer.club/weapon999.png"></image>
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png"></image>
       </view>
     </van-col>
     <van-col span="8">
@@ -69,7 +69,7 @@
     <van-row>
       <van-col span="7">
         <view class='weapon_img'>
-          <image src="http://cdn.sdplayer.club/weapon{{gundam['arm2_'+x].img}}.png"></image>
+          <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/{{gundam['arm2_'+x].img}}.png"></image>
         </view>
       </van-col>
       <van-col span="11">
@@ -109,7 +109,7 @@
   <van-row wx:if="{{gundam.shield2.life || gundam.shield2.def}}" gutter="20">
     <van-col span="7">
       <view class='weapon_img'>
-        <image src="http://cdn.sdplayer.club/weapon999.png"></image>
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png"></image>
       </view>
     </van-col>
     <van-col span="8">
@@ -124,7 +124,7 @@
 <van-panel title="技能" status="">
   <view wx:for="{{gundam.skill}}" wx:key="id" style="padding: 0 20px;">
     <view class='skill-img'>
-      <image src='http://cdn.sdplayer.club/skill{{item.id}}.png'></image>
+      <image src='cloud://online-07f32f.6f6e-online-07f32f/skill/{{item.id}}.png'></image>
       <text>{{item.skill_name}}</text>
     </view>
     <view>
@@ -151,6 +151,26 @@
     <view>图纸:{{gundam.map_sale}}</view>
   </view>
 </van-panel>
+<van-panel title="合成列表" status="点击查看等级" wx:if="{{gundam.makeNeed_CN.length || gundam.makeNeed.length}}">
+  <van-row>
+    <van-col span="4" wx:for="{{gundam.makeNeed_CN.length? gundam.makeNeed_CN : gundam.makeNeed}}" class="mk-card" wx:key="">
+      <view style="width:100%">
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'key'? 'as-key':''}}" bindtap="noticeSubGundam" data-one="{{item}}"></image>
+        <!-- <view class="mkcard-word">{{item.name}}：{{item.Level}}</view> -->
+      </view>
+    </van-col>
+  </van-row>
+</van-panel>
+<van-panel title="用于合成" status="点击查看等级" wx:if="{{gundam.toMake.length}}">
+  <van-row>
+    <van-col span="4" wx:for="{{gundam.toMake}}" class="mk-card" wx:key="">
+      <view style="width:100%">
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'as-ke'? 'as-key':''}}" bindtap="noticeSubGundam" data-one="{{item}}"></image>
+        <!-- <view class="mkcard-word">{{item.name}}：{{item.Level}}</view> -->
+      </view>
+    </van-col>
+  </van-row>
+</van-panel>
 <van-panel title="其他信息" status="">
   <view style="padding:0 20px">
     <view>势力：{{gundam.force}}</view>
@@ -169,7 +189,14 @@
   </van-collapse-item>
 </van-collapse> -->
 <van-cell title="讨论区" value="查看评论" is-link url="/pages/comment/comment" />
+<!-- 按钮区 -->
+<van-button type="info" open-type="share">分享机体</van-button>
+<navigator url="/pages/index/index" open-type="switchTab" hover-class="nav">
+  <van-button type="primary" style="right:0">回到首页</van-button>
+</navigator>
 <!-- 底线 -->
 <view class="devide-line" wx:if="{{ !loading }}">
   <span>~o( =∩ω∩= )m</span>
 </view>
+<!-- 顶部notify -->
+<van-notify id="van-notify" />

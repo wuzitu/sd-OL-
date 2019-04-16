@@ -2,18 +2,22 @@
 <view class="container">
   <!-- 用户 openid -->
   <view class="userinfo">
-    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></button>
+    <!-- <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></button> -->
+    <view class="userinfo-avatar" style="background-image: url({{avatarUrl}})">
+      <!-- <open-data type="userAvatarUrl" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></open-data> -->
+    </view>
     <view>
       <button class="userinfo-nickname" wx:if="{{!logged}}">请点击按钮登录</button>
-      <text wx:else>{{userInfo.nickName}}</text>
+      <!-- <text wx:else>{{userInfo.nickName}}</text> -->
+      <open-data type="userNickName" wx:else></open-data>
     </view>
   </view>
-
   <view class='login-btn' wx:if="{{!logged}}">
-    <van-button type="primary" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" size="large" loading="{{loading}}" loading-text="正在登录...">登录</van-button>
+    <van-button type="primary" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" size="large" loading="{{loading}}" loading-text="正在登录...">
+      登录
+    </van-button>
   </view>
 </view>
-
 <view class="devide-line">
   <text>感谢一路有你(≧ω≦)/</text>
   <view>反馈意见，请发至邮箱rabbit586@163.com</view>
@@ -21,6 +25,3 @@
   <view>SD玩家要塞</view>
   <view style="margin-top:100px" bindtap='donate'>赞助作者</view>
 </view>
-
-
-

@@ -12,7 +12,7 @@
     <!-- <view class="index-bd"> -->
     <!-- 每一个卡片 -->
     <view wx:for="{{gundamList}}" wx:key="ID">
-      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" thumb="http://cdn.sdplayer.club/Avatar{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
+      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" thumb="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
         <view slot="tags">
           <span class="van-tag van-tag--plain van-hairline--surround" style="color: blue">
             Rank: {{item.rank}}
@@ -135,6 +135,5 @@
     </van-button>
   </view>
 </van-popup>
-
 <!-- 顶部notify -->
 <van-notify id="van-notify" />

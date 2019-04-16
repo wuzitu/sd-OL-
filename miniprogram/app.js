@@ -35,7 +35,7 @@ App({
     } else {
       wx.cloud.init({
         traceUser: true,
-        env: 'sdplayer-6bad5c',
+        env: 'online-07f32f',
       })
     }
     // 定义全局变量

@@ -42,3 +42,29 @@
   height: 30px;
   position: relative;
 }
+
+/* .sub-img{
+  width: 60rpx;
+  height: 60rpx;
+  float: left;
+} */
+.as-key {
+  background: palevioletred;
+}
+.mk-card {
+  width: 80px;
+  height: 60px;
+  position: relative;
+  display:inline-block;
+}
+.mk-card image{
+  width: 60px;
+  height: 60px;
+}
+.mkcard-word {
+  font-size: 8px;
+}
+.nav{
+  display: inline-block;
+  float: right
+}

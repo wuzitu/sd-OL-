@@ -1,3 +1,5 @@
+import Notify from '../../lib/vant-weapp/notify/notify';
+const db = wx.cloud.database()
 // miniprogram/pages/detail/detail.js
 Page({
 
@@ -9,7 +11,7 @@ Page({
       "model": "高达",
       "rank": "B",
       "rating": 8,
-      "ID": "10001",
+      "ID": "1123581321",
       "landType": "万能",
       "fightType": "近距离",
       "skill": [{
@@ -299,6 +301,31 @@ Page({
   onLoad: function (options) {
     // let tmp = JSON.parse(options.gundam)
     // let tmp = wx.getStorageSync("oneGundam")
+    let _this = this;
+    // share情况下，读取数据库加载页面
+    if (options.shareID) {
+      wx.showLoading({
+        title: '加载中',
+      })
+      db.collection('SD_DB').where({
+          ID: options.shareID
+        })
+        .get({
+          success(res) {
+            if (res.data.length) {
+              _this.setData({
+                gundam: res.data[0]
+              })
+              wx.hideLoading()
+            } else {
+              handleErr('err')
+            }
+          }
+        })
+
+      return;
+    }
+
     let tmp = getApp().globalData.oneGundam
     if (tmp) {
       this.setData({
@@ -345,7 +372,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function (res) {
 
   },
 
@@ -353,12 +380,31 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: this.data.gundam.Name || this.data.gundam.model,
+      path: `/pages/detail/detail?shareID=${this.data.gundam.ID}`
+    }
   },
 
   onChange(event) {
     this.setData({
       activeNames: event.detail
     });
+  },
+  noticeSubGundam(e) {
+    let one = e.currentTarget.dataset.one
+    Notify({
+      text: `${one.name}：${one.Level}`,
+      duration: 1000,
+      selector: '#van-notify',
+      backgroundColor: '#1989fa'
+    });
   }
 })
+
+function handleErr(err) {
+  wx.showToast({
+    title: '抱歉，读取错误',
+    duration: 2000
+  })
+}
