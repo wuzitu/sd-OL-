@@ -14,6 +14,7 @@
     "van-checkbox-group": "/lib/vant-weapp/checkbox-group/index",
     "van-panel": "/lib/vant-weapp/panel/index",
     "van-icon": "/lib/vant-weapp/icon/index",
-    "van-picker": "/lib/vant-weapp/picker/index"
+    "van-picker": "/lib/vant-weapp/picker/index",
+    "van-notify": "/lib/vant-weapp/notify/index"
   }
 }

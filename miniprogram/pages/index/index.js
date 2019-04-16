@@ -1,5 +1,6 @@
 import utils from '../../utils/utils'
 import cfg from '../../utils/cfg'
+import Notify from '../../lib/vant-weapp/notify/notify';
 const db = wx.cloud.database()
 
 Page({
@@ -28,38 +29,6 @@ Page({
     let _this = this;
     initFilterData(_this);
     goFilter(_this);
-    // // 查询当前用户所有的 counters
-    // db.collection('sdplayer')
-    //   .skip(_this.data.page * 20).limit(20)
-    //   .orderBy('birth_date', 'desc')
-    //   .get({
-    //     success: res => {
-    //       _this.setData({
-    //         gundamList: res.data,
-    //         isGet: false,
-    //         page: _this.data.page + 1
-    //       })
-    //       isloadEnd()
-    //     },
-    //     fail: err => {
-    //       wx.showToast({
-    //         icon: 'none',
-    //         title: '查询记录失败'
-    //       })
-    //       console.error('[数据库] [查询记录] 失败：', err)
-    //     }
-    //   })
-    // // 先取出集合记录总数
-    // db.collection('sdplayer').count().then(res => {
-    //   let total = res.total
-    //   _this.setData({
-    //     totalCount: total
-    //   })
-    //   _this.isloadEnd()
-    // }).catch(err => {
-    //   _this.isloadEnd()
-    // })
-
   },
 
   loadNextPage: function() {
@@ -71,7 +40,7 @@ Page({
     _this.setData({
       isGet: true
     })
-    goFilter(_this)
+    goFilter(_this, 'isNextPage')
     // db.collection('sdplayer')
     //   .skip(_this.data.page * 20).limit(20)
     //   .orderBy('birth_date', 'desc')
@@ -198,11 +167,16 @@ Page({
 })
 
 
-function goFilter(_this) {
+function goFilter(_this, opt) {
   // 限制查询次数
   if (!utils.checkCount()) {
     wx.showToast({
-      title: '200Limit',
+      title: '超过200次的查询啦',
+    })
+    Notify('今天超过200次查询啦,明天再查吧！');
+    _this.setData({
+      loading: false,
+      isGet: false
     })
     return false
   }
@@ -283,17 +257,19 @@ function goFilter(_this) {
           .orderBy('fever', 'desc')
     }
   }
-
-  let countResult = collection.count().then(res => {
-    let total = res.total
-    _this.setData({
-      totalCount: total
+  // 计数
+  if (opt != 'isNestPage') {
+    collection.count().then(res => {
+      let total = res.total
+      _this.setData({
+        totalCount: total
+      })
+      _this.isloadEnd()
+    }).catch(err => {
+      _this.isloadEnd()
     })
-    _this.isloadEnd()
-  }).catch(err => {
-    _this.isloadEnd()
-  })
-  let total = countResult.total
+  }
+
   collection.skip(_this.data.page * 20).limit(20)
     .get({
       success: res => {

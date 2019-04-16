@@ -1,8 +1,8 @@
 import moment from '../lib/moment'
 
 const userDBconfig = {
-  ReadCount: 3,
-  WriteCount: 3
+  ReadCount: 200,
+  WriteCount: 200
 }
 let app = getApp();
 
@@ -42,10 +42,11 @@ const mkCount = (opt) => {
 }
 
 const checkCount = (opt) => {
-  if (moment().isAfter(moment(app.globalData.date), 'minute')) {
+  // 以“day”为单位进行判断。
+  if (moment().isAfter(moment(app.globalData.date), 'day')) {
     wx.setStorage({
       key: 'date',
-      data: _this.globalData.date
+      data: moment()
     })
     let tmp = {
       key: 'DBcount',
@@ -56,6 +57,7 @@ const checkCount = (opt) => {
     }
     wx.setStorage(tmp)
     app.globalData.DBcount = tmp.data
+    app.globalData.date = moment()
     return true
   }
   if (app.globalData.DBcount.ReadCount >= userDBconfig.ReadCount || app.globalData.DBcount.WriteCount >= userDBconfig.WriteCount) {

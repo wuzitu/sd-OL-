@@ -24,7 +24,7 @@
     <!-- 底部条 -->
     <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
     <view class="devide-line" wx:if="{{ !loading }}">
-      <span>没有更多数据啦</span>
+      <span>共找到{{totalCount}}条，没有更多数据啦</span>
     </view>
   </scroll-view>
   <!-- </view> -->
@@ -135,3 +135,6 @@
     </van-button>
   </view>
 </van-popup>
+
+<!-- 顶部notify -->
+<van-notify id="van-notify" />

@@ -2,7 +2,7 @@
 import moment from '/lib/moment'
 const initApp = (_this) => {
   const time = wx.getStorageSync('date');
-  if (time && moment().isAfter(moment(time), 'minute')) {
+  if (time && moment().isAfter(moment(time), 'day')) {
     _this.globalData.date = moment()
     wx.setStorage({
       key: 'date',

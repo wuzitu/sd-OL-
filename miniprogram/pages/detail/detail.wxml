@@ -1,13 +1,12 @@
 <view class="card">
   <view>
     <image class="image" mode="aspectFill" src="http://cdn.sdplayer.club/Avatar{{gundam.ID}}.png" />
-    <text class="time">{{ gundam.landType }} {{gundam.fightType}}</text>
     <view class="title">{{gundam.Name || gundam.model}}</view>
     <view class='rank'>Rank：{{gundam.rank}} 评分：{{gundam.rating}}</view>
   </view>
 </view>
-<text class="">ID：{{ gundam.ID }}</text>
-<view>{{gundam.nameEN}}</view>
+<!-- <text class="">ID：{{ gundam.ID }}</text>
+<view>英文名称：{{gundam.nameEN}}</view> -->
 <van-panel title="武装一" status="必杀：{{spMap[gundam.sp1]}}" wx:if="{{gundam.sp1}}">
   <view wx:for="{{[1,2,3]}}" wx:for-item="x" wx:key="">
     <van-row>
@@ -87,8 +86,8 @@
       </van-col>
     </van-row>
     <!-- 武器数据 -->
-    <van-row gutter="10" style="font-size:16px;">
-      <van-col span="9">
+    <van-row gutter="" style="font-size:16px;">
+      <van-col span="7">
         <view wx:if="{{gundam['arm2_'+x].power}}">
           系数：{{gundam['arm2_'+x].power ||"?"}}
           <!-- 连发数量 -->
@@ -101,7 +100,7 @@
       <van-col span="6">
         <view wx:if="{{gundam['arm2_'+x].des}}">距离：{{gundam['arm2_'+x].des ||"?"}}</view>
       </van-col>
-      <van-col span="3">
+      <van-col span="5">
         <view wx:if="{{gundam['arm2_'+x].ping}}">延迟：{{gundam['arm2_'+x].ping ||"?"}}</view>
       </van-col>
     </van-row>
@@ -143,7 +142,7 @@
     <van-col span="9">boost消耗:{{gundam.para.boost_usage}}</van-col>
   </view>
 </van-panel>
-<view span="9">变身:{{gundam.R}}</view>
+<!-- <view span="9">变身:{{gundam.R}}</view> -->
 <van-panel title="梦服情报" status="">
   <view style="padding:0 20px">
     <van-row>登场日期：{{gundam.birth_date}}</van-row>
@@ -162,15 +161,15 @@
     <view>{{gundam.story}}</view>
   </view>
 </van-panel>
-<van-collapse value="{{ activeNames }}" bind:change="onChange" accordion>
+<!-- <van-collapse value="{{ activeNames }}" bind:change="onChange" accordion>
   <van-collapse-item title="评论区demo1" name="1">
     <view style="padding:0 20px">
       <view>{{gundam.story}}</view>
     </view>
   </van-collapse-item>
-</van-collapse>
-<van-cell title="评论区demo2" value="查看评论" is-link url="/pages/comment/comment" />
+</van-collapse> -->
+<van-cell title="讨论区" value="查看评论" is-link url="/pages/comment/comment" />
 <!-- 底线 -->
 <view class="devide-line" wx:if="{{ !loading }}">
-  <span>我也是有底线的</span>
+  <span>~o( =∩ω∩= )m</span>
 </view>
