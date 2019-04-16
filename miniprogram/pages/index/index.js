@@ -1,3 +1,5 @@
+import utils from '../../utils/utils'
+import cfg from '../../utils/cfg'
 const db = wx.cloud.database()
 
 Page({
@@ -20,8 +22,7 @@ Page({
     filterspecial: '',
     filterlandType: '',
     searchVal: '',
-    filtersortBy_cn: '自动(默认)',
-    endLine: false
+    filtersortBy_cn: '自动(默认)'
   },
   onLoad(options) {
     let _this = this;
@@ -96,8 +97,7 @@ Page({
   isloadEnd: function() {
     if (this.data.gundamList.length >= this.data.totalCount) {
       this.setData({
-        loading: false,
-        endLine: true
+        loading: false
       })
       return true
     }
@@ -199,8 +199,15 @@ Page({
 
 
 function goFilter(_this) {
+  // 限制查询次数
+  if (!utils.checkCount()) {
+    wx.showToast({
+      title: '200Limit',
+    })
+    return false
+  }
+  // 定义DB
   const _ = db.command
-
   let nameReg = _this.data.searchReg || ''
   let orArr = [{
       Name: nameReg
@@ -296,6 +303,7 @@ function goFilter(_this) {
           page: _this.data.page + 1
         })
         _this.isloadEnd()
+        utils.mkCount('read')
       },
       fail: err => {
         wx.showToast({
@@ -303,23 +311,26 @@ function goFilter(_this) {
           title: '抱歉，查询记录失败'
         })
         _this.isloadEnd()
+        utils.mkCount('read')
       }
     })
+
+
+
 }
 
 
 function initFilterData(_this) {
-  let g_data = getApp().globalData;
-  g_data.filterMap.Machine
+  let f = cfg.filterMap
   _this.setData({
-    Machine: g_data.filterMap.Machine,
-    fightType: g_data.filterMap.fightType,
-    special: g_data.filterMap.special,
-    landType: g_data.filterMap.landType,
-    isfrom: g_data.filterMap.isfrom,
-    pilot: g_data.filterMap.pilot,
-    force: g_data.filterMap.force,
-    weapon_e: g_data.filterMap.weapon_e,
-    sortBy_cn: g_data.filterMap.sortBy_cn,
+    Machine: f.Machine,
+    fightType: f.fightType,
+    special: f.special,
+    landType: f.landType,
+    isfrom: f.isfrom,
+    pilot: f.pilot,
+    force: f.force,
+    weapon_e: f.weapon_e,
+    sortBy_cn: f.sortBy_cn,
   })
 }
