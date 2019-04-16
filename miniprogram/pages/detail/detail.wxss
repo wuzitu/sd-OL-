@@ -64,7 +64,3 @@
 .mkcard-word {
   font-size: 8px;
 }
-.nav{
-  display: inline-block;
-  float: right
-}
