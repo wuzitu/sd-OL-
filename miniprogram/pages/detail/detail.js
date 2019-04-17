@@ -9,19 +9,19 @@ Page({
   data: {
     gundam: {
       "model": "高达",
-      "rank": "B",
-      "rating": 8,
+      "rank": "",
+      "rating": 0,
       "ID": "1123581321",
       "landType": "万能",
       "fightType": "近距离",
       "skill": [{
         "skill_name": "防御力上升",
         "skill_detail": "防御力上升机体防御力上升/ 防御力提升约10% ",
-        "id": "4"
+        "id": "10"
       }, {
         "skill_name": "新人类的觉醒B",
         "skill_detail": "新人类的觉醒BHP50%以下时机动力上升+持续推进时间小幅上升+雷达显示敌军+锁敌距离增加/ 推进使用时间约50%上升 ",
-        "id": "55"
+        "id": "10"
       }, {
         "skill_name": "乱舞型必杀",
         "skill_detail": "乱舞型必杀向前推进一定距离后攻击一个敌人的近战型必杀/ 必杀伤害:5500 ",
@@ -33,150 +33,11 @@ Page({
       "feature": "特色:一台值得纪念的机体",
       "from": "机动战士高达",
       "pilot": "阿姆罗",
-      "makeNeed": [{
-        "role": "key",
-        "Level": "Lv.7",
-        "rank": "C",
-        "id": "13004",
-        "name": "吉姆II (提坦斯式样)"
-      }, {
-        "role": "mat",
-        "Level": "Lv.1",
-        "rank": "C",
-        "id": "11007",
-        "name": "魔蟹"
-      }, {
-        "role": "mat",
-        "Level": "Lv.1",
-        "rank": "C",
-        "id": "13003",
-        "name": "高扎古"
-      }, {
-        "role": "mat",
-        "Level": "Lv.1",
-        "rank": "C",
-        "id": "10005",
-        "name": "吉姆狙击特装型"
-      }, {
-        "role": "mat",
-        "Level": "Lv.1",
-        "rank": "C",
-        "id": "10008",
-        "name": "钢坦克"
-      }],
-      "toMake": [{
-        "role": "as-ke",
-        "Level": "Lv.7",
-        "rank": "BS",
-        "id": "10020",
-        "name": "高达(流星锤装备)"
-      }, {
-        "role": "as-ke",
-        "Level": "Lv.7",
-        "rank": "A",
-        "id": "10018",
-        "name": "高达试作3号机"
-      }, {
-        "role": "as-ke",
-        "Level": "Lv.7",
-        "rank": "BS",
-        "id": "20004",
-        "name": "灵格斯BWS"
-      }, {
-        "role": "as-ke",
-        "Level": "Lv.7",
-        "rank": "A",
-        "id": "15003",
-        "name": "强袭高达"
-      }, {
-        "role": "as-ke",
-        "Level": "Lv.7",
-        "rank": "A",
-        "id": "10014",
-        "name": "G-3高达"
-      }, {
-        "role": "as-ke",
-        "Level": "Lv.7",
-        "rank": "A",
-        "id": "10044",
-        "name": "V高达"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.6",
-        "rank": "BS",
-        "id": "22089",
-        "name": "O高达(实战型)"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.2",
-        "rank": "AS",
-        "id": "12022",
-        "name": "强化型ZZ高达"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.2",
-        "rank": "AS",
-        "id": "10048",
-        "name": "V-Dash高达"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.1",
-        "rank": "S",
-        "id": "20008",
-        "name": "ν 高达"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.1",
-        "rank": "S",
-        "id": "10055",
-        "name": "V2 BUSTER 高达"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.1",
-        "rank": "S",
-        "id": "10049",
-        "name": "高达F91"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.1",
-        "rank": "S",
-        "id": "23002",
-        "name": "高达DX"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.7",
-        "rank": "SS",
-        "id": "20012",
-        "name": "ν 高达 HWS"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.1",
-        "rank": "S",
-        "id": "22048",
-        "name": "OO 高达"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.1",
-        "rank": "S",
-        "id": "24205",
-        "name": "Turn X高达"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.1",
-        "rank": "S",
-        "id": "24411",
-        "name": "高达AGE-3标准型"
-      }, {
-        "role": "as-ma",
-        "Level": "Lv.1",
-        "rank": "S",
-        "id": "10227",
-        "name": "V2 高达"
-      }],
+      "makeNeed": [],
       "makeNeed_CN": [],
-      "tags": ["高达", "RX78", "", "78", "", "78", "", "始祖", "", "j8", "", "RX78", "", "元祖", "", "78", "", "元祖", "", "鋼彈", "", "钢弹", "", "78", "", "元祖高达", "", "初代高达", "", "高達", "", "始祖高达", "", "刚大木", "", "RX-78-2", "", "RX-78-2", "", "肛蛋", "高达"],
+      "tags": ["高达", "RX78", "RX-78-2", "高达"],
       "_id": 733,
-      "nameCN_G": "鋼彈(RX-78-2)",
+      "nameCN_G": "",
       "fever": 1332,
       "MID": 373,
       "RID": "B_10",
@@ -201,7 +62,7 @@ Page({
       },
       "arm1_1": {
         "img": "3",
-        "name": "光束軍刀",
+        "name": "",
         "effact": [],
         "biuNum": "",
         "pd": "近",
@@ -211,8 +72,8 @@ Page({
         "ping": "0"
       },
       "arm1_2": {
-        "img": "32",
-        "name": "光束步槍",
+        "img": "3",
+        "name": "",
         "effact": [],
         "biuNum": "",
         "pd": "中",
@@ -222,8 +83,8 @@ Page({
         "ping": "30"
       },
       "arm1_3": {
-        "img": "22",
-        "name": "火神砲",
+        "img": "3",
+        "name": "",
         "effact": [],
         "biuNum": "*5",
         "pd": "中",
@@ -308,8 +169,8 @@ Page({
         title: '加载中',
       })
       db.collection('SD_DB').where({
-          ID: options.shareID
-        })
+        ID: options.shareID
+      })
         .get({
           success(res) {
             if (res.data.length) {
@@ -331,6 +192,7 @@ Page({
       this.setData({
         gundam: tmp
       })
+      updateFever(tmp)
     }
   },
 
@@ -406,5 +268,37 @@ function handleErr(err) {
   wx.showToast({
     title: '抱歉，读取错误',
     duration: 2000
+  })
+}
+
+function updateFever(gundam) {
+  let _id = gundam._id
+  // db.collection('todos').doc('todo-identifiant-aleatoire').update({
+  //   // data 传入需要局部更新的数据
+  //   data: {
+  //     // 表示将 done 字段置为 true
+  //     fever: true
+  //   },
+  //   success(res) {
+  //     console.log(res.data)
+  //   }
+  // })
+  const _ = db.command
+  db.collection('SD_DB').doc(_id).get({
+    success(res) {
+      // res.data 包含该记录的数据
+      console.log(res.data)
+    }
+  })
+  db.collection('SD_DB').doc(_id).update({
+    data: {
+      fever: _.inc(10)
+    },
+    success(res) {
+      console.log(res.data)
+    },
+    faile(err) {
+      console.log(err)
+    }
   })
 }

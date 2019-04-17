@@ -1,8 +1,8 @@
 import moment from '../lib/moment'
 
 const userDBconfig = {
-  ReadCount: 200,
-  WriteCount: 200
+  ReadCount: 1000,
+  WriteCount: 1000
 }
 let app = getApp();
 

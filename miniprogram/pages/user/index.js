@@ -87,6 +87,10 @@ Page({
     wx.previewImage({
       urls: ['http://cdn.sdplayer.club/zanshang.jpg'],
     });
+    // 埋点统计查询次数
+    app.aldstat.sendEvent('点击捐赠按钮', {
+      "用户ID": app.globalData.openid || '未登录',
+    })
   }
 
 })

@@ -1,6 +1,7 @@
 import utils from '../../utils/utils'
 import cfg from '../../utils/cfg'
 import Notify from '../../lib/vant-weapp/notify/notify';
+const app = getApp()
 const db = wx.cloud.database()
 
 Page({
@@ -168,8 +169,8 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    return{
+  onShareAppMessage: function() {
+    return {
       title: `SD敢达OL`,
       imageUrl: 'https://go.sdplayer.club/img/logo/logo.png'
     }
@@ -181,7 +182,7 @@ function goFilter(_this, opt) {
   // 限制查询次数
   if (!utils.checkCount()) {
     wx.showToast({
-      title: '超过200次的查询啦',
+      title: '超过200次查询啦',
     })
     Notify('今天超过200次查询啦,明天再查吧！');
     _this.setData({
@@ -300,9 +301,10 @@ function goFilter(_this, opt) {
         utils.mkCount('read')
       }
     })
-
-
-
+  // 埋点统计查询次数
+  app.aldstat.sendEvent('机体列表查询', {
+    "用户ID": app.globalData.openid || '未登录',
+  })
 }
 
 

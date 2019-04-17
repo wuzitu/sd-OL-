@@ -1,5 +1,6 @@
 //app.js
 import moment from '/lib/moment'
+const ald = require('./utils/ald-stat.js')
 const initApp = (_this) => {
   const time = wx.getStorageSync('date');
   if (time && moment().isAfter(moment(time), 'day')) {
