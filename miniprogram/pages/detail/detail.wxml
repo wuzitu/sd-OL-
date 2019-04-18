@@ -1,3 +1,8 @@
+<van-nav-bar title="机体详情" left-text="首页" left-arrow custom-class="nav-bar" bind:click-left="onClickLeft">
+  <!-- <van-icon name="friends-o" slot="right" /> -->
+  <!-- <text slot="right">分享</text> -->
+  <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
+</van-nav-bar>
 <view class="card">
   <view>
     <image class="image" mode="aspectFill" src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png" />
@@ -121,27 +126,19 @@
   </van-row>
   <!-- 盾牌over -->
 </van-panel>
-<van-panel title="技能" status="">
-  <view wx:for="{{gundam.skill}}" wx:key="" style="padding: 0 20px;">
-    <view class='skill-img'>
+<!-- skill -->
+<van-panel title="技能" status="点击技能查看简介">
+  <view wx:for="{{gundam.skill}}" wx:key="" wx:for-index="sindex" style="padding: 0 20px;">
+    <view class='skill-img' bindtap="toggleSkillShow" data-idx="{{sindex}}">
       <image src='cloud://online-07f32f.6f6e-online-07f32f/skill/{{item.id}}.png'></image>
       <text>{{item.skill_name}}</text>
     </view>
-    <view>
+    <view wx:if="{{skillShow[sindex]}}">
       <view>{{item.skill_detail}}</view>
     </view>
   </view>
 </van-panel>
-<van-panel title="机体数据" status="">
-  <view style="padding:0 20px">
-    <van-row>繁体名称：{{gundam.nameCN_G}}</van-row>
-    <van-col span="6">飞行:{{gundam.para.fly}}</van-col>
-    <van-col span="6">移动:{{gundam.para.move}}</van-col>
-    <van-col span="6">boost:{{gundam.para.boost}}</van-col>
-    <van-col span="9">boost回复:{{gundam.para.boost_back}}</van-col>
-    <van-col span="9">boost消耗:{{gundam.para.boost_usage}}</van-col>
-  </view>
-</van-panel>
+<!-- skill over -->
 <!-- <view span="9">变身:{{gundam.R}}</view> -->
 <van-panel title="梦服情报" status="">
   <view style="padding:0 20px">
@@ -151,7 +148,7 @@
     <view>图纸:{{gundam.map_sale}}</view>
   </view>
 </van-panel>
-<van-panel title="合成列表" status="点击查看等级" wx:if="{{gundam.makeNeed_CN.length || gundam.makeNeed.length}}">
+<van-panel title="合成列表" status="点击图片查看等级" wx:if="{{gundam.makeNeed_CN.length || gundam.makeNeed.length}}">
   <van-row>
     <van-col span="4" wx:for="{{gundam.makeNeed_CN.length? gundam.makeNeed_CN : gundam.makeNeed}}" class="mk-card" wx:key="">
       <view style="width:100%">
@@ -161,7 +158,7 @@
     </van-col>
   </van-row>
 </van-panel>
-<van-panel title="用于合成" status="点击查看等级" wx:if="{{gundam.toMake.length}}">
+<van-panel title="用于合成" status="点击图片查看等级" wx:if="{{gundam.toMake.length}}">
   <van-row>
     <van-col span="4" wx:for="{{gundam.toMake}}" class="mk-card" wx:key="">
       <view style="width:100%">
@@ -171,29 +168,34 @@
     </van-col>
   </van-row>
 </van-panel>
-<van-panel title="其他信息" status="">
-  <view style="padding:0 20px">
-    <view>势力：{{gundam.force}}</view>
-    <view>{{gundam.feature}}</view>
-    <view>出自作品：{{gundam.from}}</view>
-    <view>驾驶员：{{gundam.pilot}}</view>
-    <view>机体story：</view>
-    <view>{{gundam.story}}</view>
-  </view>
-</van-panel>
-<!-- <van-collapse value="{{ activeNames }}" bind:change="onChange" accordion>
-  <van-collapse-item title="评论区demo1" name="1">
+<van-collapse value="{{ activeName }}" bind:change="onCollapseChange">
+  <van-collapse-item title="机体数据" name="roboData">
     <view style="padding:0 20px">
+      <van-row>繁体名称：{{gundam.nameCN_G}}</van-row>
+      <van-col span="6" wx:if="{{gundam.para.fly}}">飞行:{{gundam.para.fly}}</van-col>
+      <van-col span="6" wx:if="{{gundam.para.move}}">移动:{{gundam.para.move}}</van-col>
+      <van-col span="6" wx:if="{{gundam.para.boost}}">boost:{{gundam.para.boost}}</van-col>
+      <van-col span="9" wx:if="{{gundam.para.boost_back}}">
+        boost回复:{{gundam.para.boost_back}}
+      </van-col>
+      <van-col span="9" wx:if="{{gundam.para.boost_usage}}">
+        boost消耗:{{gundam.para.boost_usage}}
+      </van-col>
+    </view>
+  </van-collapse-item>
+  <van-collapse-item title="其他信息" name="moreInfo">
+    <view style="padding:0 20px">
+      <view>势力：{{gundam.force}}</view>
+      <view>{{gundam.feature}}</view>
+      <view>出自作品：{{gundam.from}}</view>
+      <view>驾驶员：{{gundam.pilot}}</view>
+      <view>机体story：</view>
       <view>{{gundam.story}}</view>
     </view>
   </van-collapse-item>
-</van-collapse> -->
+</van-collapse>
 <van-cell title="讨论区" value="查看评论" is-link url="/pages/comment/comment" />
-<!-- 按钮区 -->
-<van-button type="info" open-type="share">分享机体</van-button>
-<navigator url="/pages/index/index" open-type="switchTab" hover-class="nav">
-  <van-button type="primary" style="right:0">回到首页</van-button>
-</navigator>
+
 <!-- 底线 -->
 <view class="devide-line" wx:if="{{ !loading }}">
   <span>~o( =∩ω∩= )m</span>

@@ -13,6 +13,8 @@
     "van-tag": "/lib/vant-weapp/tag/index",
     "van-collapse": "/lib/vant-weapp/collapse/index",
     "van-collapse-item": "/lib/vant-weapp/collapse-item/index",
-    "van-notify": "/lib/vant-weapp/notify/index"
+    "van-notify": "/lib/vant-weapp/notify/index",
+    "van-nav-bar": "/lib/vant-weapp/nav-bar/index",
+    "van-icon": "/lib/vant-weapp/icon/index"
   }
 }

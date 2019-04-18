@@ -153,7 +153,9 @@ Page({
       "11": "全弹发射型",
       "12": "地图炮型"
     },
-    activeNames: ['2']
+    activeName: ['roboData'],
+    skillShow: [false, false, false]
+
   },
 
   /**
@@ -169,8 +171,8 @@ Page({
         title: '加载中',
       })
       db.collection('SD_DB').where({
-        ID: options.shareID
-      })
+          ID: options.shareID
+        })
         .get({
           success(res) {
             if (res.data.length) {
@@ -248,9 +250,9 @@ Page({
     }
   },
 
-  onChange(event) {
+  onCollapseChange(event) {
     this.setData({
-      activeNames: event.detail
+      activeName: event.detail
     });
   },
   noticeSubGundam(e) {
@@ -261,7 +263,22 @@ Page({
       selector: '#van-notify',
       backgroundColor: '#1989fa'
     });
+  },
+  toggleSkillShow(e) {
+    let idx = e.currentTarget.dataset.idx
+    let aTmp = this.data.skillShow
+    aTmp[idx] = !this.data.skillShow[idx]
+    this.setData({
+      skillShow: aTmp
+    })
+  },
+  // 顶部navbar点击事件
+  onClickLeft() {
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
   }
+  
 })
 
 function handleErr(err) {

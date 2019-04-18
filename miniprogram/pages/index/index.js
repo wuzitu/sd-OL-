@@ -42,26 +42,6 @@ Page({
       isGet: true
     })
     goFilter(_this, 'isNextPage')
-    // db.collection('sdplayer')
-    //   .skip(_this.data.page * 20).limit(20)
-    //   .orderBy('birth_date', 'desc')
-    //   .get({
-    //     success: res => {
-    //       _this.setData({
-    //         gundamList: _this.data.gundamList.concat(res.data),
-    //         isGet: false,
-    //         page: _this.data.page + 1
-    //       })
-    //       _this.isloadEnd()
-    //     },
-    //     fail: err => {
-    //       wx.showToast({
-    //         icon: 'none',
-    //         title: '查询记录失败'
-    //       })
-    //       _this.isloadEnd()
-    //     }
-    //   })
   },
 
   isloadEnd: function() {
