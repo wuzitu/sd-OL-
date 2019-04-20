@@ -13,9 +13,10 @@
 	},
 	"appid": "wx500669dcb1dad2d0",
 	"projectname": "sd-OL--master",
-	"libVersion": "2.6.4",
+	"libVersion": "2.6.6",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,

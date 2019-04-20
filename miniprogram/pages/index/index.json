@@ -15,6 +15,7 @@
     "van-panel": "/lib/vant-weapp/panel/index",
     "van-icon": "/lib/vant-weapp/icon/index",
     "van-picker": "/lib/vant-weapp/picker/index",
+    "van-tag": "/lib/vant-weapp/tag/index",
     "van-notify": "/lib/vant-weapp/notify/index"
   }
 }
