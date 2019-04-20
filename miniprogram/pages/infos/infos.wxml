@@ -1,0 +1,15 @@
+<view class="infosBox">
+  <swiper class='swiperBox' indicator-dots='true' indicator-color='#F6F6F6' indicator-active-color='#AAAAAA'>
+    <swiper-item wx:for="{{swiperImgs}}" wx:for-item="item" class='swiperItem swiperItem-{{index}}' bindtap="bannerTapHandler" id="{{index}}">
+      <image src='{{item}}'></image>
+    </swiper-item>
+  </swiper>
+  <view class='newsBox'>
+    <text wx:for="{{newsList}}" wx:for-item="item" class='newsItem' id="{{item.articleId}}" bindtap='newsTapHandler'>{{item.title}}</text>
+  </view>
+  <view class='tiebaBox'>
+    <text wx:for="{{tiebaList}}" wx:for-item="item" class='tiebaItem' id="{{index}}" bindtap='tiebaTapHandler'>{{item.title}}</text>
+  </view>
+  <image class='ad' wx:if="{{ad.url}}" src="{{ad.url}}"></image>
+  <view wx:else class='ad'>我是广告我草</view>
+</view>

@@ -1,0 +1,38 @@
+/* miniprogram/pages/infos/infos.wxss */
+page{
+  min-height: 100%;
+  background: #F6F6F6;
+}
+.swiperBox{
+  margin-bottom: 10rpx;
+}
+.swiperItem image{
+  max-height: 100%;
+
+}
+.newsBox,.tiebaBox{
+  width: 92%;
+  margin: 0 auto;
+  max-height: 350rpx;
+  background: #fff;
+  padding: 5rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+.newsBox .newsItem,.tiebaBox .tiebaItem{
+  display: block;
+  height: 60rpx;
+  width: 100%;
+  line-height: 60rpx;
+  font-size: 36rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.ad{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100rpx;
+  width: 100%;
+  background: #fff;
+}
