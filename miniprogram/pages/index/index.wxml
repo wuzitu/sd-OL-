@@ -12,11 +12,9 @@
     <!-- <view class="index-bd"> -->
     <!-- 每一个卡片 -->
     <view wx:for="{{gundamList}}" wx:key="ID">
-      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" thumb="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
+      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" price="GB:{{item.GB_sale}} / MB:{{item.GB_sale}}" thumb="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
         <view slot="tags">
-          <span class="van-tag van-tag--plain van-hairline--surround" style="color: blue">
-            Rank: {{item.rank}}
-          </span>
+          <van-tag color="{{rankColor[item.rank]}}" plain>{{item.rank}}</van-tag>
         </view>
       </van-card>
     </view>

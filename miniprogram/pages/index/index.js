@@ -24,7 +24,23 @@ Page({
     filterspecial: '',
     filterlandType: '',
     searchVal: '',
-    filtersortBy_cn: '自动(默认)'
+    filtersortBy_cn: '自动(默认)',
+    rankColor: {
+      S: "#FB3F51",
+      SS: "#F60018",
+      SR: "#F60018",
+      A: "#7F44D6",
+      AS: "#4F10AD",
+      AR: "#4F10AD",
+      B: "#00AA72",
+      BS: "#00AA72",
+      BR: "#006E4A",
+      BU: "#006E4A",
+      C: "#FF8500",
+      CS: "#FF8500",
+      CR: "#A65600",
+      CU: "#A65600",
+    }
   },
   onLoad(options) {
     let _this = this;
@@ -88,9 +104,9 @@ Page({
         loading: true,
         page: 0
       })
-
+      var odb = wx.cloud.database()
       // 搜索名称，英文名称，id，tag
-      var reg = db.RegExp({
+      var reg = odb.RegExp({
         regexp: text,
         options: 'i',
       })
