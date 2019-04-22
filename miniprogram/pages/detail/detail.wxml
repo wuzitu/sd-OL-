@@ -143,15 +143,17 @@
 <van-panel title="梦服情报" status="">
   <view style="padding:0 20px">
     <van-row>登场日期：{{gundam.birth_date}}</van-row>
-    <view>GB:{{gundam.GB_sale}}</view>
-    <view>MB:{{gundam.MB_sale}}</view>
-    <view>图纸:{{gundam.map_sale}}</view>
+    <view wx:if="{{gundam.GB_sale}}">GB:{{gundam.GB_sale}}</view>
+    <view wx:if="{{gundam.MB_sale}}">MB:{{gundam.MB_sale}}</view>
+    <view wx:if="{{gundam.map_sale}}">图纸:{{gundam.map_sale}}</view>
+    <view wx:if="{{gundam.get_way}}">获取方式：{{gundam.get_way}}</view>
+    <view wx:if="{{gundam.Machine.length}}">扭蛋机：{{gundam.Machine}}</view>
   </view>
 </van-panel>
 <van-panel title="合成列表" status="点击图片查看等级" wx:if="{{gundam.makeNeed_CN.length || gundam.makeNeed.length}}">
   <van-row>
     <van-col span="4" wx:for="{{gundam.makeNeed_CN.length? gundam.makeNeed_CN : gundam.makeNeed}}" class="mk-card" wx:key="">
-      <view style="width:100%">
+      <view style="width:100%;margin-left=20px;">
         <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'key'? 'as-key':''}}" bindtap="noticeSubGundam" data-one="{{item}}"></image>
         <!-- <view class="mkcard-word">{{item.name}}：{{item.Level}}</view> -->
       </view>
@@ -161,7 +163,7 @@
 <van-panel title="用于合成" status="点击图片查看等级" wx:if="{{gundam.toMake.length}}">
   <van-row>
     <van-col span="4" wx:for="{{gundam.toMake}}" class="mk-card" wx:key="">
-      <view style="width:100%">
+      <view style="width:100%;margin-left=20px;">
         <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'as-ke'? 'as-key':''}}" bindtap="noticeSubGundam" data-one="{{item}}"></image>
         <!-- <view class="mkcard-word">{{item.name}}：{{item.Level}}</view> -->
       </view>
@@ -195,7 +197,6 @@
   </van-collapse-item>
 </van-collapse>
 <van-cell title="讨论区" value="查看评论" is-link url="/pages/comment/comment" />
-
 <!-- 底线 -->
 <view class="devide-line" wx:if="{{ !loading }}">
   <span>~o( =∩ω∩= )m</span>

@@ -1,11 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/detail/detail",
     "pages/user/index",
+    "pages/detail/detail",
     "pages/userConsole/userConsole",
-    "pages/comment/comment",
-    "pages/infos/infos"
+    "pages/infos/infos",
+    "pages/comment/comment"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -15,8 +15,7 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "iconPath": "static/icons/home.png",
         "selectedIconPath": "static/icons/home-selected.png",

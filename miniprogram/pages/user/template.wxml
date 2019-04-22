@@ -1,0 +1,11 @@
+<template name="updateLog">
+    <view class="guide">
+        <text class="headline">1.0.2</text>
+        <text class="p">· 个人信息页调整，添加更新日志</text>
+        <text class="p">· 添加按技能搜索、扭蛋机等信息；</text>
+        <text class="headline">1.0.1</text>
+        <text class="p">· 优化显示样式</text>
+        <text class="headline">1.0.0</text>
+        <text class="p">· 移植【SD玩家要塞】至微信小程序。（20190418）</text>
+    </view>
+</template>

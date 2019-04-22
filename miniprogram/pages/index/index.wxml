@@ -111,6 +111,9 @@
     <picker range="{{weapon_e}}" bindchange="bindPickerChange" id='weapon_e'>
       <van-cell title="武器效果：" value="{{filterweapon_e || '请选择'}}" />
     </picker>
+    <picker range="{{skill}}" bindchange="bindPickerChange" id='skill'>
+      <van-cell title="机体技能：" value="{{filterskill || '请选择'}}" />
+    </picker>
     <!-- <picker range="{{weapon_p}}" bindchange="bindPickerChange" id='weapon_p'>
       <van-cell title="武器特性：" value="{{filterweapon_p || '请选择'}}" />
     </picker> -->

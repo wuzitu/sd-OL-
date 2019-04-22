@@ -48,7 +48,7 @@ Page({
     goFilter(_this);
   },
 
-  loadNextPage: function() {
+  loadNextPage: function () {
     let _this = this;
     // 判断获取一次，防止重复获取
     if (this.isloadEnd()) {
@@ -60,7 +60,7 @@ Page({
     goFilter(_this, 'isNextPage')
   },
 
-  isloadEnd: function() {
+  isloadEnd: function () {
     if (this.data.gundamList.length >= this.data.totalCount) {
       this.setData({
         loading: false
@@ -72,7 +72,7 @@ Page({
     }
   },
 
-  goDetail: function(e) {
+  goDetail: function (e) {
     // let one = JSON.stringify(e.currentTarget.dataset.one)
     // wx.navigateTo({
     //   url: `../detail/detail?gundam=${one}`
@@ -89,7 +89,7 @@ Page({
       searchVal: e.detail
     })
   },
-  onSearch: function(e) {
+  onSearch: function (e) {
       // 关闭filter层
       this.setData({
         filterShow: false,
@@ -125,7 +125,7 @@ Page({
 
 
     ,
-  showfilter: function(e) {
+  showfilter: function (e) {
     this.setData({
       filterShow: !this.data.filterShow
     })
@@ -143,6 +143,7 @@ Page({
       filterpilot: '',
       filterforce: '',
       filterweapon_e: '',
+      filterskill: '',
       filtersortBy_cn: '自动(默认)',
     })
   },
@@ -165,7 +166,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       title: `SD敢达OL`,
       imageUrl: 'https://go.sdplayer.club/img/logo/logo.png'
@@ -238,6 +239,19 @@ function goFilter(_this, opt) {
     collection = collection.where({
       rank: _.in(rankArr)
     })
+  }
+  // skill
+  let skillTmp = _this.data.filterskill || null
+  if (skillTmp) {
+    let o = new RegExp(skillTmp, "i")
+    let x = [{
+      'skill.1.skill_name': o
+    }, {
+      'skill.2.skill_name': o
+    }, {
+      'skill.3.skill_name': o
+    }]
+    collection = collection.where(_.or(x))
   }
   // orderBy
   if (_this.data.filtersortBy_cn) {
@@ -316,5 +330,6 @@ function initFilterData(_this) {
     force: f.force,
     weapon_e: f.weapon_e,
     sortBy_cn: f.sortBy_cn,
+    skill: f.skillList
   })
 }

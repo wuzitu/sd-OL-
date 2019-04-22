@@ -6,7 +6,8 @@ Page({
     avatarUrl: './user-unlogin.png',
     userInfo: {},
     logged: false,
-    loading: false
+    loading: false,
+    popupShow: false
   },
 
   onLoad: function () {
@@ -91,6 +92,16 @@ Page({
     app.aldstat.sendEvent('点击捐赠按钮', {
       "用户ID": app.globalData.openid || '未登录',
     })
-  }
+  },
 
+  switchpopup: function (e) {
+    // let tmp = ""
+    // if (e.currentTarget.dataset) {
+    let tmp = e.currentTarget.dataset.type || ""
+    // }
+    this.setData({
+      popupShow: !this.data.popupShow,
+      popuptype: tmp
+    })
+  }
 })

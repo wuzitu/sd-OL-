@@ -1,3 +1,8 @@
 {
-  "usingComponents": {"van-button": "/lib/vant-weapp/button/index"}
+  "usingComponents": {
+    "van-button": "/lib/vant-weapp/button/index",
+    "van-popup": "/lib/vant-weapp/popup/index",
+    "van-icon": "/lib/vant-weapp/icon/index"
+  },
+  "navigationBarTitleText": "SD玩家要塞-个人信息"
 }

@@ -1,5 +1,6 @@
+<import src="./template.wxml" />
 <!-- index.wxml -->
-<view class="container">
+<view class="container-user">
   <!-- 用户 openid -->
   <view class="userinfo">
     <!-- <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})"></button> -->
@@ -12,16 +13,40 @@
       <open-data type="userNickName" wx:else></open-data>
     </view>
   </view>
-  <view class='login-btn' wx:if="{{!logged}}">
-    <van-button type="primary" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" size="large" loading="{{loading}}" loading-text="正在登录...">
-      登录
-    </van-button>
+  <view class="form-wraper">
+    <view class='login-btn' wx:if="{{!logged}}">
+      <van-button type="primary" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" size="large" loading="{{loading}}" loading-text="正在登录...">
+        登录
+      </van-button>
+    </view>
+  </view>
+  <view class="footer">
+    <text bindtap='switchpopup' data-type="updateLog">更新日志</text>
+    |
+    <text bindtap='switchpopup' data-type="about">关于</text>
+    |
+    <text bindtap='donate'>赞赏</text>
   </view>
 </view>
-<view class="devide-line">
+<!-- <view class="devide-line">
   <text>感谢一路有你(≧ω≦)/</text>
   <view>反馈意见，请发至邮箱rabbit586@163.com</view>
   <view>欢迎登陆网址http://sdplayer.club</view>
   <view>SD玩家要塞</view>
   <view style="margin-top:100px" bindtap='donate'>赞助作者</view>
-</view>
+</view> -->
+<van-popup show="{{popupShow}}" bind:close="switchpopup" custom-style="width:100%; height:45%; padding:10rpx 20rpx" position="bottom">
+  <van-icon name="close" bind:tap="switchpopup" data-type="" size="20px" custom-style="float: right;" />
+  <view wx:if="{{popuptype == 'updateLog'}}">
+    <template is="updateLog" />
+  </view>
+  <view wx:if="{{popuptype == 'about'}}">
+    <view class="about">
+      <view>感谢一路有你(≧ω≦)/</view>
+      <view>反馈意见，请发至邮箱：</view>
+      <view>rabbit586@163.com</view>
+      <view>欢迎登陆网址http://sdplayer.club</view>
+      <view>SD玩家要塞</view>
+    </view>
+  </view>
+</van-popup>
