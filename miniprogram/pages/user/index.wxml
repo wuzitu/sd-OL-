@@ -21,8 +21,8 @@
     </view>
     <!-- 自定义昵称 -->
     <van-switch checked="{{ customCheck }}" bind:change="onCustomChange" />
+    <text>使用自定义昵称：(只能修改一次)</text>
     <view>
-      使用自定义昵称：
       <van-cell-group>
         <van-field value="{{ value }}" placeholder="请输入用户名" border="{{ false }}" bind:change="onChange" />
       </van-cell-group>
