@@ -7,7 +7,8 @@ Page({
     userInfo: {},
     logged: false,
     loading: false,
-    popupShow: false
+    popupShow: false,
+    customCheck: true,
   },
 
   onLoad: function () {
@@ -103,5 +104,8 @@ Page({
       popupShow: !this.data.popupShow,
       popuptype: tmp
     })
+  },
+  onCustomChange: function ({detail}) {
+    this.setData({ customCheck: detail });
   }
 })

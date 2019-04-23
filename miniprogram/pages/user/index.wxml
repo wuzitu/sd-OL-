@@ -19,6 +19,9 @@
         登录
       </van-button>
     </view>
+    <!-- 自定义昵称 -->
+    <text>自定义昵称</text>
+    <van-switch checked="{{ customCheck }}" bind:change="onCustomChange" />
   </view>
   <view class="footer">
     <text bindtap='switchpopup' data-type="updateLog">更新日志</text>
