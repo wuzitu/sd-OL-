@@ -3,6 +3,7 @@
     "van-button": "/lib/vant-weapp/button/index",
     "van-popup": "/lib/vant-weapp/popup/index",
     "van-switch": "/lib/vant-weapp/switch/index",
+    "van-field": "/lib/vant-weapp/field/index",
     "van-icon": "/lib/vant-weapp/icon/index"
   },
   "navigationBarTitleText": "SD玩家要塞-个人信息"

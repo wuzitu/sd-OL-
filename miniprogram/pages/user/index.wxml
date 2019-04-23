@@ -20,8 +20,13 @@
       </van-button>
     </view>
     <!-- 自定义昵称 -->
-    <text>自定义昵称</text>
     <van-switch checked="{{ customCheck }}" bind:change="onCustomChange" />
+    <view>
+      使用自定义昵称：
+      <van-cell-group>
+        <van-field value="{{ value }}" placeholder="请输入用户名" border="{{ false }}" bind:change="onChange" />
+      </van-cell-group>
+    </view>
   </view>
   <view class="footer">
     <text bindtap='switchpopup' data-type="updateLog">更新日志</text>
