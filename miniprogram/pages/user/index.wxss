@@ -15,12 +15,12 @@ page {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-left: none;
   border-right: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+ 
   transition: all 300ms ease;
 }
-
+.user-row{
+  line-height: 140rpx;
+}
 .userinfo-avatar {
   width: 100rpx;
   height: 100rpx;

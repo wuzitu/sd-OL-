@@ -3,13 +3,18 @@
 <view class="container-user">
   <!-- 用户 openid -->
   <view class="userinfo">
-    <image src="{{userInfo.avatarUrl}}" class="userinfo-avatar"></image>
-    <view>
-      <button class="userinfo-nickname" wx:if="{{!logged}}">请点击按钮登录</button>
-      <!-- <text wx:else>{{userInfo.nickName}}</text> -->
-      <!-- <open-data type="userNickName" wx:else></open-data> -->
-      <text wx:else>{{userInfo.nickName}}</text>
-    </view>
+    <van-row custom-class="user-row">
+      <van-col span="5">
+        <image src="{{userInfo.avatarUrl}}" class="userinfo-avatar"></image>
+      </van-col>
+      <van-col span="12">
+        <text wx:if="{{!logged}}">请点击按钮登录</text>
+        <text wx:else>{{userInfo.nickName}}</text>
+      </van-col>
+      <van-col span="4">
+        <van-button type="info" plain size="small" bind:click="openDlg" wx:if="{{logged}}">设置</van-button>
+      </van-col>
+    </van-row>
   </view>
   <view class="form-wraper">
     <view class='login-btn' wx:if="{{!logged}}">
@@ -17,11 +22,12 @@
         登录
       </van-button>
     </view>
-
   </view>
   <view class="footer">
-    <text bindtap='switchpopup' data-type="updateLog">更新日志</text> |
-    <text bindtap='switchpopup' data-type="about">关于</text> |
+    <text bindtap='switchpopup' data-type="updateLog">更新日志</text>
+    |
+    <text bindtap='switchpopup' data-type="about">关于</text>
+    |
     <text bindtap='donate'>赞赏</text>
   </view>
 </view>
@@ -47,14 +53,11 @@
     </view>
   </view>
 </van-popup>
-
-
 <!-- dialog弹窗 -->
 <van-dialog use-slot async-close show="{{diagShow}}" show-cancel-button bind:close="onCloseDiag" bind:confirm="onChangeInfo" title="自定义信息">
-  <van-field value="{{ userInfo.nickName }}" label="用户名" placeholder="可以使用贴吧ID~" required
-    clearable bind:change="nickChange" />
+  <van-field value="{{ userInfo.nickName }}" label="用户名" placeholder="可以使用贴吧ID~" required clearable bind:change="nickChange" />
   <van-row>
-    <van-col span="4" offset="1">头像：</van-col>
+    <van-col span="4" offset="1">头像:</van-col>
     <van-col span="4" offset="1" wx:for="{{customAvatar}}" wx:key="">
       <image src="{{item}}" class="{{index == avatarIndex ? 'avatar-picked':'avatar-picker'}}" data-index="{{index}}" bindtap='onSelectAvatar'></image>
     </van-col>

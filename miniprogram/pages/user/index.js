@@ -6,15 +6,16 @@ Page({
     avatarUrl: './user-unlogin.png',
     diagNick: '',
     avatarIndex: 0,
-    customAvatar: ['cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg'],
+    customAvatar: ['cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/avatar/10001.png', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg'],
     userInfo: {},
     logged: false,
     loading: false,
     popupShow: false,
-    diagShow: true,
+    diagShow: false,
   },
 
-  onLoad: function() {
+  onLoad: function () {
+    let _this = this
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -36,12 +37,15 @@ Page({
             success: res => {
               wx.hideLoading()
               console.log(res)
+              // 记录原头像
+              res.userInfo.wxAvatar = res.userInfo.avatarUrl
               // 读取本机缓存的openid，userInfo
               app.globalData.openid = wx.getStorageSync("openid") || ""
               if (!app.globalData.openid) {
                 return;
               }
               let localUserInfo = wx.getStorageSync("userInfo") || ""
+              localUserInfo.wxAvatar = res.userInfo.avatarUrl
               if (localUserInfo.nickName) {
                 this.setData({
                   avatarUrl: localUserInfo.avatarUrl,
@@ -55,16 +59,28 @@ Page({
                   logged: true
                 })
               }
+
+              app.globalData.userInfo = this.data.userInfo
               // 初始化弹窗头像
               initDiag(this)
+            },
+            fail: res => {
+              onFailed(_this)
             }
           })
         }
+        // 未授权，需要登录！
+        else {
+          onFailed(_this)
+        }
+      },
+      fail: res => {
+        onFailed(_this)
       }
     })
   },
 
-  onGetUserInfo: function(e) {
+  onGetUserInfo: function (e) {
     let _this = this;
 
     if (!this.logged && e.detail.userInfo) {
@@ -78,6 +94,7 @@ Page({
         success: res => {
           // console.log('[云函数] [login] user openid: ', res.result.openid)
           app.globalData.openid = res.result.openid
+          app.globalData.userInfo = e.detail.userInfo
           wx.setStorage({
             key: 'openid',
             data: res.result.openid,
@@ -91,6 +108,7 @@ Page({
             avatarUrl: e.detail.userInfo.avatarUrl,
             userInfo: e.detail.userInfo
           })
+          initDiag(_this)
         },
         fail: err => {
           console.error('[云函数] [login] 调用失败', err)
@@ -120,7 +138,7 @@ Page({
     })
   },
 
-  switchpopup: function(e) {
+  switchpopup: function (e) {
     // let tmp = ""
     // if (e.currentTarget.dataset) {
     let tmp = e.currentTarget.dataset.type || ""
@@ -130,19 +148,19 @@ Page({
       popuptype: tmp
     })
   },
-  onSelectAvatar: function(e) {
+  onSelectAvatar: function (e) {
     let index = e.currentTarget.dataset.index;
     // console.log('每个index',index)
     this.setData({
       avatarIndex: index
     })
   },
-  nickChange: function(e) {
+  nickChange: function (e) {
     this.setData({
       diagNick: e.detail
     })
   },
-  onChangeInfo: function(e) {
+  onChangeInfo: function (e) {
     // 设置名称和头像，存入全局变量，存入本机缓存。
     let _this = this
     let userInfo = _this.data.userInfo
@@ -152,21 +170,45 @@ Page({
       userInfo: userInfo,
       diagShow: false
     })
+    // 设置全局变量
+    app.globalData.userInfo = userInfo
+    // IO读写/异步
+    wx.setStorage({
+      key: 'userInfo',
+      data: userInfo
+    })
+
   },
   onCloseDiag(event) {
     this.setData({
       diagShow: false
     });
+    initDiag(this)
+  },
+  openDlg(e) {
+    this.setData({
+      diagShow: true
+    })
   }
 })
 
 
 function initDiag(_this) {
-  let tmp = _this.data.customAvatar
-  tmp[0] = _this.data.userInfo.avatarUrl
+  let tmp = _this.data.customAvatar || []
+  tmp[0] = _this.data.userInfo.wxAvatar
   _this.setData({
     customAvatar: tmp,
     diagNick: _this.data.userInfo.nickName
   })
+  tmp.forEach((ele, index) => {
+    if (ele == _this.data.customAvatar[index]) {
+      _this.setData({
+        avatarIndex: index
+      })
+    }
+  });
+}
 
+function onFailed(_this) {
+  wx.hideLoading()
 }

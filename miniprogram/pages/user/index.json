@@ -9,5 +9,5 @@
     "van-col": "/lib/vant-weapp/col/index",
     "van-icon": "/lib/vant-weapp/icon/index"
   },
-  "navigationBarTitleText": "SD玩家要塞-个人信息"
+  "navigationBarTitleText": "个人信息"
 }
