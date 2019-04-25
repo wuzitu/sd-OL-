@@ -7,10 +7,8 @@ page {
   justify-content: flex-start;
 }
 
-.userinfo,
-.uploader,
-.tunnel {
-  margin-top: 40rpx;
+.userinfo {
+  margin-top: 50rpx;
   height: 140rpx;
   width: 100%;
   background: #fff;
@@ -47,13 +45,11 @@ page {
   border: none;
 }
 
-
 .form-wraper {
   height: 600rpx;
   width: 100%;
   /* background: #0063ce */
 }
-
 
 .footer {
   display: flex;
@@ -66,9 +62,25 @@ page {
   width: 200px;
 }
 
+.avatar-picker {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: white;
+  border: solid white 5rpx;
+}
 
-
-
+.avatar-picked {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: white;
+  border: solid #72b3f8 5rpx;
+}
 
 .disable {
   color: #888;
@@ -87,7 +99,6 @@ page {
   box-sizing: border-box;
   background-color: #f2f2f2;
 }
-
 
 .guide {
   width: 100%;
