@@ -1,3 +1,13 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-button": "/lib/vant-weapp/button/index",
+    "van-nav-bar": "/lib/vant-weapp/nav-bar/index",
+    "van-popup": "/lib/vant-weapp/popup/index",
+    "van-cell": "/lib/vant-weapp/cell/index",
+    "van-switch-cell": "/lib/vant-weapp/switch-cell/index",
+    "van-rate": "/lib/vant-weapp/rate/index",
+    "van-field": "/lib/vant-weapp/field/index",
+    "van-dialog": "/lib/vant-weapp/dialog/index",
+    "van-icon": "/lib/vant-weapp/icon/index"
+  }
 }

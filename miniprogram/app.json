@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/comment/comment",
     "pages/user/index",
     "pages/index/index",
     "pages/detail/detail",
     "pages/userConsole/userConsole",
-    "pages/infos/infos",
-    "pages/comment/comment"
+    "pages/infos/infos"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

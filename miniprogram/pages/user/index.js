@@ -44,9 +44,9 @@ Page({
               if (!app.globalData.openid) {
                 return;
               }
-              let localUserInfo = wx.getStorageSync("userInfo") || ""
-              localUserInfo.wxAvatar = res.userInfo.avatarUrl
+              let localUserInfo = wx.getStorageSync("userInfo") || {}
               if (localUserInfo.nickName) {
+                localUserInfo.wxAvatar = res.userInfo.avatarUrl
                 this.setData({
                   avatarUrl: localUserInfo.avatarUrl,
                   userInfo: localUserInfo,
@@ -93,6 +93,7 @@ Page({
         data: {},
         success: res => {
           // console.log('[云函数] [login] user openid: ', res.result.openid)
+          e.detail.userInfo.wxAvatar = e.detail.userInfo.avatarUrl
           app.globalData.openid = res.result.openid
           app.globalData.userInfo = e.detail.userInfo
           wx.setStorage({
@@ -183,9 +184,9 @@ Page({
     this.setData({
       diagShow: false
     });
-    initDiag(this)
   },
   openDlg(e) {
+    initDiag(this)
     this.setData({
       diagShow: true
     })
@@ -201,7 +202,7 @@ function initDiag(_this) {
     diagNick: _this.data.userInfo.nickName
   })
   tmp.forEach((ele, index) => {
-    if (ele == _this.data.customAvatar[index]) {
+    if (ele == _this.data.userInfo.avatarUrl) {
       _this.setData({
         avatarIndex: index
       })

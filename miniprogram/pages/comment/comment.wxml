@@ -1,2 +1,346 @@
 <!--miniprogram/pages/comment/comment.wxml-->
-<text>积极建设中，敬请期待！</text>
+<!-- <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/1123581321.png"/> -->
+<van-nav-bar title="机体讨论区" left-text="首页" left-arrow custom-class="nav-bar" bind:click-left="onClickLeft">
+  <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
+</van-nav-bar>
+<view class='comment-item'>
+  <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{g_ID}}.png" />
+  <view class='comment-item-name'>
+    <view>{{g_Name}}</view>
+    <view>{{g_Name_EN}}</view>
+  </view>
+</view>
+
+<view style='padding:0 20rpx'>
+
+  <view class="fd-bd-title">
+    <view>全部评论</view>
+  </view>
+
+  <!-- for开始循环 -->
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head-wrap'>
+        <view class='discuss-head'>
+          <image class='discuss-img' src="{{avatar}}"></image>
+          <view class='discuss-name-wrap'>
+            <view class='discuss-name'>aaa</view>
+            <view class='discuss-time'>20190109</view>
+          </view>
+        </view>
+        <view class='discuss-zan'>
+          <text>12342</text>
+          <van-icon name="like-o" />
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+          <view class='discuss-zan'>
+            <van-icon name="like-o" info="9" />
+          </view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+  <view class="fd-rp-discuss">
+    <block>
+      <view class='discuss-head'>
+        <image class='discuss-img' src="{{avatar}}"></image>
+        <view class='discuss-name-wrap'>
+          <view class='discuss-name'>aaa</view>
+          <view class='discuss-time'>20190109</view>
+        </view>
+      </view>
+      <view class='discuss-body'>
+        <text class='discuss-content'>asdgadfgwertwergxzdfgq34tsrt</text>
+      </view>
+    </block>
+  </view>
+
+
+</view>
+
+<!-- 发布按钮 -->
+<view class="round-click" bindtap='switchpopup'>
+  <!-- <van-icon name="plus" /> -->
+  <text>+</text>
+</view>
+
+
+
+<!-- 发布面板 -->
+<van-popup bind:close="switchpopup" custom-style="width:100%; padding:10rpx 20rpx" position="top" show="{{popupShow}}">
+  <view class='popup-content'>
+    <view class='popup-item'>
+      <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/1123581321.png" />
+      <view class='comment-item-name' style='font-size:24rpx;margin:0 30rpx;'>
+        <view>{{g_Name}}</view>
+        <view>{{g_Name_EN}}</view>
+      </view>
+    </view>
+    <form bindsubmit="bindFormSubmit" class='comment-form'>
+      <van-switch-cell title="给机体打分" checked="{{ rateChecked }}" bind:change="onSwitchChange" name="rateEnable" />
+
+      <!-- 打分 -->
+      <view class='rate'>
+        <van-rate value="{{ form_rate }}" bind:change="onRateChange" disabled="{{!rateEnable}}" name="rate" size="{{ 25 }}" />
+        <view style='margin-left:20rpx;'>{{form_rate*2}}</view>
+      </view>
+
+      <!-- 评论区 -->
+      <textarea placeholder="请写下你对机体的评价，心得，插件推荐！" name="content" fixed="true" />
+      <button form-type="submit" size="mini">提交</button>
+    </form>
+  </view>
+</van-popup>

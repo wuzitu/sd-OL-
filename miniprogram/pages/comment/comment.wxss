@@ -1,1 +1,177 @@
 /* miniprogram/pages/comment/comment.wxss */
+
+.comment-item {
+  padding: 30rpx;
+  display: flex;
+  justify-content: flex-start;
+  background: white;
+  margin-top: 46px;
+}
+
+.comment-item image {
+  width: 125rpx;
+  height: 125rpx;
+}
+
+.comment-item-name {
+  margin: 30rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  vertical-align: center;
+}
+
+.fd-bd-title {
+  padding-left: 20rpx;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #444;
+  border-left: 10rpx solid #47a86c;
+}
+
+.fd-bd-title image {
+  height: 125rpx;
+  /* margin-bottom: -50rpx; */
+  width: 125rpx;
+}
+
+.fd-rp-discuss {
+  margin-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.discuss-head-wrap {
+  height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.discuss-head {
+  height: 60rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.discuss-img {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50rpx;
+  margin-right: 20rpx;
+}
+.discuss-zan{
+  font-size: 30rpx;
+  color: rgb(184, 184, 184);
+}
+.discuss-zan text{
+  margin: 10rpx;
+}
+.discuss-body {
+  padding-top: 0;
+  padding-left: 60rpx;
+  margin-bottom: 30rpx;
+}
+
+.discuss-name {
+  font-size: 25rpx;
+}
+
+.discuss-time {
+  color: #ccc;
+  font-size: 20rpx;
+}
+
+.discuss-content {
+  font-size: 30rpx;
+  display: flex;
+}
+
+.discuss-name-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  vertical-align: center;
+}
+
+/* 悬浮按钮 */
+
+.round-click {
+  height: 120rpx;
+  width: 120rpx;
+  /* background-color: #0b6aa1; */
+  background-color: #529df3;
+  color: #f2f1ef;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 150rpx;
+  right: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  box-shadow: 0px 3px 9px 2px #bfbfbf;
+  border: 1px solid rgb(113, 149, 197);
+}
+
+.round-click text {
+  font-size: 50rpx;
+  max-width: 80rpx;
+  color: #fff;
+  text-align: center;
+}
+
+/* 弹出层内的样式 */
+
+.cell {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  overflow: hidden;
+  box-sizing: border-box;
+  color: #323233;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: rgb(201, 216, 216);
+  padding: 10px 15px;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  vertical-align: center;
+}
+
+.popup-item {
+  padding: 20rpx;
+  display: flex;
+  justify-content: flex-start;
+  background: white;
+  font-size: 30rpx;
+}
+
+.popup-item image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.rate {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+/* .comment-form{
+  display: flex;
+  justify-content: center;
+} */
+
+.comment-form button {
+  background-color: #329cf3;
+  color: white;
+}
