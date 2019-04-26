@@ -81,6 +81,8 @@
 .discuss-time {
   color: #ccc;
   font-size: 20rpx;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .discuss-content {

@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/comment/comment",
     "pages/user/index",
-    "pages/index/index",
     "pages/detail/detail",
     "pages/userConsole/userConsole",
     "pages/infos/infos"
