@@ -279,7 +279,7 @@ function goFilter(_this, opt) {
     }
   }
   // 计数
-  if (opt != 'isNestPage') {
+  if (opt != 'isNextPage') {
     collection.count().then(res => {
       let total = res.total
       _this.setData({

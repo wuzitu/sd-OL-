@@ -196,7 +196,7 @@
     </view>
   </van-collapse-item>
 </van-collapse>
-<van-cell title="讨论区" value="查看评论" is-link url="/pages/comment/comment" />
+<van-cell title="讨论区" value="查看评论" is-link url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}" />
 <!-- 底线 -->
 <view class="devide-line" wx:if="{{ !loading }}">
   <span>~o( =∩ω∩= )m</span>

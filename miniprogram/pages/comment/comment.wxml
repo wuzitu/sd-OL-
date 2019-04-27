@@ -1,5 +1,5 @@
-<!-- miniprogram/pages/comment/comment.wxml -->
-<!-- <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/1123581321.png"/> -->
+<!-- 顶部notify -->
+<van-notify id="van-notify" />
 <van-nav-bar title="机体讨论区" left-text="首页" left-arrow custom-class="nav-bar" bind:click-left="onClickLeft">
   <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
 </van-nav-bar>
@@ -7,10 +7,39 @@
   <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{g_ID}}.png" />
   <view class='comment-item-name'>
     <view>{{g_Name}}</view>
-    <view>{{g_Name_EN}}</view>
+    <view style='font-size:20rpx'>{{g_Name_EN}}</view>
   </view>
+  <view style="margin: 40rpx 0 0 60rpx">{{g_rate}}分</view>
 </view>
 <view style='padding:0 20rpx'>
+  <view wx:if="{{postData.content}}">
+    <view class="fd-bd-title">
+      <view>我的评论</view>
+    </view>
+    <view class="fd-rp-discuss">
+      <block>
+        <view class='discuss-head-wrap'>
+          <view class='discuss-head'>
+            <image class='discuss-img' src="{{postData.Avatar}}"></image>
+            <view class='discuss-name-wrap'>
+              <view class='discuss-name'>{{postData.Name}}</view>
+              <view class='discuss-time'>
+                <van-rate value="{{postData.rate}}" readonly="true" name="rate" size="{{ 10 }}" wx:if="{{postData.rateEnable}}" />
+                <text>{{postData.day}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='discuss-zan'>
+            <text>{{postData.zan}}</text>
+            <van-icon name="like-o" />
+          </view>
+        </view>
+        <view class='discuss-body'>
+          <text class='discuss-content'>{{postData.content}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
   <view class="fd-bd-title">
     <view>全部评论</view>
   </view>
@@ -23,7 +52,7 @@
           <view class='discuss-name-wrap'>
             <view class='discuss-name'>{{item.Name}}</view>
             <view class='discuss-time'>
-              <van-rate value="{{item.rate}}" readonly="true" name="rate" size="{{ 10 }}" />
+              <van-rate value="{{item.rate}}" readonly="true" name="rate" size="{{ 10 }}" wx:if="{{item.rateEnable}}" />
               <text>{{item.day}}</text>
             </view>
           </view>
@@ -38,12 +67,14 @@
       </view>
     </block>
   </view>
-  <view class="devide-line">
-    <span>没有更多数据啦！</span>
-  </view>
+</view>
+<!-- 底部loading边 -->
+<i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
+<view class="devide-line" wx:if="{{ !loading }}">
+  <span>共找到{{totalCount}}条，没有更多数据啦</span>
 </view>
 <!-- 发布按钮 -->
-<view class="round-click" bindtap='switchpopup'>
+<view class="round-click" bindtap='showPopup'>
   <!-- <van-icon name="plus" /> -->
   <text>+</text>
 </view>
@@ -61,11 +92,11 @@
       <van-switch-cell title="给机体打分" checked="{{ rateChecked }}" bind:change="onSwitchChange" name="rateEnable" />
       <!-- 打分 -->
       <view class='rate'>
-        <van-rate value="{{ form_rate }}" bind:change="onRateChange" disabled="{{!rateEnable}}" name="rate" size="{{ 25 }}" />
-        <view style='margin-left:20rpx;'>{{form_rate*2}}</view>
+        <van-rate value="{{ formRate || g_rate/2 }}" bind:change="onRateChange" disabled="{{!rateEnable}}" name="rate" size="{{ 25 }}" />
+        <!-- <view style='margin-left:20rpx;'>{{g_rate}}</view> -->
       </view>
       <!-- 评论区 -->
-      <textarea placeholder="请写下你对机体的评价，心得，插件推荐！" name="content" fixed="true" />
+      <textarea placeholder="请写下你对机体的评价，心得，插件推荐！" name="content" fixed="true" value="{{formContent}}" />
       <button form-type="submit" size="mini">提交</button>
     </form>
   </view>

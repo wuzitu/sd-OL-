@@ -55,7 +55,7 @@
 </van-popup>
 <!-- dialog弹窗 -->
 <van-dialog use-slot async-close show="{{diagShow}}" show-cancel-button bind:close="onCloseDiag" bind:confirm="onChangeInfo" title="自定义信息">
-  <van-field value="{{ userInfo.nickName }}" label="用户名" placeholder="可以使用贴吧ID~" required clearable bind:change="nickChange" />
+  <van-field value="{{ userInfo.nickName }}" label="用户名" placeholder="可以使用贴吧ID~" required clearable bind:change="nickChange"  maxlength="20"/>
   <van-row>
     <van-col span="4" offset="1">头像:</van-col>
     <van-col span="4" offset="1" wx:for="{{customAvatar}}" wx:key="">
