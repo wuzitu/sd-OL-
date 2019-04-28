@@ -1,6 +1,7 @@
 // miniprogram/pages/comment/comment.js
 import Notify from '../../lib/vant-weapp/notify/notify';
 import moment from '../../lib/moment'
+import Dialog from '../../lib/vant-weapp/dialog/dialog';
 
 const db = wx.cloud.database()
 const app = getApp()
@@ -30,7 +31,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    // 判断参数异常
     if (!options || !options.g_ID) {
       Notify('读取数据错误！')
     } else {
@@ -47,47 +49,56 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
   // 顶部navbar点击事件
   onClickLeft() {
-    wx.switchTab({
-      url: '/pages/index/index'
+    let curPage = getCurrentPages();
+    if (curPage.length >= 2) {
+      // 回到前一页
+      wx.navigateBack({
+        delta: 1
+      })
+      return false
+    }
+    wx.redirectTo({
+      url: `/pages/detail/detail?shareID=${this.data.g_ID}`
     })
+
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     console.log(this.data.page)
     if (isloadEnd(this)) {
       return false;
@@ -98,25 +109,46 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       title: `【精选评论】${this.data.g_Name}`,
-      path: `/pages/comment/comment?g_ID=${this.data.g_ID}$g_Name=${this.data.g_Name}&g_rate=${this.data.g_rate}&g_Name_EN=${this.data.g_Name_EN}`
+      path: `/pages/comment/comment?g_ID=${this.data.g_ID}&g_Name=${this.data.g_Name}&g_rate=${this.data.g_rate}&g_Name_EN=${this.data.g_Name_EN}`
     }
   },
-  switchpopup: function(e) {
+  switchpopup: function (e) {
 
     this.setData({
       popupShow: !this.data.popupShow,
     })
   },
-  showPopup: function(e) {
+  showPopup: function (e) {
     let _this = this
-    this.setData({
-      popupShow: !this.data.popupShow,
-      commentReq: false,
-      needUpdateComment: false
-    })
+
+    // 判断是否登录
+    if (!app.globalData.openid || !app.globalData.userInfo || !app.globalData.userInfo.avatarUrl || !app.globalData.userInfo.nickName) {
+      Dialog.confirm({
+        // title: '标题',
+        message: '需要登录才可以发布内容哦~',
+        confirmButtonText: '去登录'
+      }).then(() => {
+        // on confirm
+        wx.switchTab({
+          url: '/pages/user/index'
+        })
+      }).catch(() => {
+        // on cancel
+      });
+      return false;
+    }
+    let tmp = {
+      popupShow: !_this.data.popupShow,
+      commentReq: _this.data.commentReq,
+      needUpdateComment: _this.data.needUpdateComment
+    }
+    this.setData(tmp)
+    if (tmp.commentReq) {
+      return false;
+    }
     let collection = db.collection('comments')
     collection
       .where({
@@ -148,74 +180,88 @@ Page({
       })
 
   },
-  onSwitchChange: function(e) {
+  onSwitchChange: function (e) {
     this.setData({
       rateChecked: !this.data.rateChecked,
       rateEnable: !this.data.rateEnable
     })
   },
-  onRateChange: function(e) {
+  onRateChange: function (e) {
     this.setData({
       formRate: e.detail,
       rateEnable: true
     })
   },
-  bindFormSubmit: function(e) {
-    let _this = this
-    console.log(e.detail)
-    let val = e.detail.value
-    // 判断填写合法
-    if (!val.content) {
-      Notify('评论内容还没有填写哦，评价一下机体吧！');
-      wx.showToast({
-        title: '请填写内容',
-        icon: 'none'
-      })
-      return false
-    }
-    if (val.content.match(/\n{15,}/)) {
-      Notify('换行也太多了吧！重新排版一下吧！');
-      return false
-    }
-    let postData = {
-      // user
-      Avatar: app.globalData.userInfo.avatarUrl,
-      Name: app.globalData.userInfo.nickName,
-      openid: app.globalData.openid,
-      // form
-      ID: _this.data.g_ID,
-      rateEnable: val.rateEnable,
-      rate: val.rate,
-      content: val.content,
-      day: moment().format('YYYY-MM-DD')
-    }
-    // 关闭弹层
-    _this.switchpopup()
-    // 判断更新 or 新增
-    if (_this.data.needUpdateComment) {
-      db.collection('comments').doc(_this.data.comment_id).update({
+  bindFormSubmit: function (e) {
+    try {
+
+      let _this = this
+      let val = e.detail.value
+      // 判断填写合法
+      if (!val.content) {
+        Notify('评论内容还没有填写哦，评价一下机体吧！');
+        wx.showToast({
+          title: '请填写内容',
+          icon: 'none'
+        })
+        return false
+      }
+      if (val.content.match(/\n{15,}/)) {
+        Notify('换行也太多了吧！重新排版一下吧！');
+        return false
+      }
+      // 判断网络
+      if (!_this.data.commentReq) {
+        Notify('网络好像有点问题，重新点一下"+号"吧！');
+      }
+      let postData = {
+        // user
+        Avatar: app.globalData.userInfo.avatarUrl,
+        Name: app.globalData.userInfo.nickName,
+        openid: app.globalData.openid,
+        // form
+        ID: _this.data.g_ID,
+        rateEnable: val.rateEnable,
+        rate: val.rate,
+        content: val.content,
+        day: moment().format('YYYY-MM-DD')
+      }
+      // 关闭弹层
+      _this.switchpopup()
+      // 判断更新 or 新增
+      if (_this.data.needUpdateComment) {
+        db.collection('comments').doc(_this.data.comment_id).update({
           data: postData
         })
-        .then(res => {
-          postSuccess(_this, postData)
-        })
-        .catch(err => {
-          Notify('网络错误，提交失败了 T.T')
-        })
-    } else {
-      postData.zan = 0
-      db.collection('comments').add({
+          .then(res => {
+            postSuccess(_this, postData)
+          })
+          .catch(err => {
+            Notify('网络错误，提交失败了 T.T')
+          })
+      } else {
+        postData.zan = 0
+        db.collection('comments').add({
           // data 字段表示需新增的 JSON 数据
           data: postData
         })
-        .then(res => {
-          postSuccess(_this, postData)
-        })
-        .catch(err => {
-          Notify('网络错误，提交失败了 T.T')
-        })
+          .then(res => {
+            postSuccess(_this, postData)
+          })
+          .catch(err => {
+            Notify('网络错误，提交失败了 T.T')
+          })
+      }
+    } catch (error) {
+      Notify(error)
     }
-    
+  },
+  onZan: function (e) {
+    Notify({
+      text: `点赞功能开发中！`,
+      selector: '#van-notify',
+      backgroundColor: '#1989fa'
+    })
   }
 })
 

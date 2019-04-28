@@ -259,7 +259,7 @@ Page({
     let one = e.currentTarget.dataset.one
     Notify({
       text: `${one.name}：${one.Level}`,
-      duration: 1000,
+      duration: 1700,
       selector: '#van-notify',
       backgroundColor: '#1989fa'
     });

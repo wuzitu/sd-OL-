@@ -176,8 +176,13 @@
 .comment-form button {
   background-color: #329cf3;
   color: white;
+  margin: 20rpx 0;
 }
-
+.comment-form textarea{
+  width: 100%;
+  border: 1px solid #b6b6b6;
+  box-shadow: 4px 4px 10px 2px #bfbfbf;
+}
 .loading-iview{
   margin-bottom: 40rpx;
 }

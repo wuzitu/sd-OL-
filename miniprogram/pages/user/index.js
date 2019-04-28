@@ -6,7 +6,7 @@ Page({
     avatarUrl: './user-unlogin.png',
     diagNick: '',
     avatarIndex: 0,
-    customAvatar: ['cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/1.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/2.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/3.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/4.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/5.png', 'cloud://online-07f32f.6f6e-online-07f32f/custom/6.png'],
+    customAvatar: ['cloud://sdplayer-6bad5c.7364-sdplayer-6bad5c/my-image.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/3.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/my-image.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/1.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/2.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/4.jpg', 'cloud://online-07f32f.6f6e-online-07f32f/custom/5.png'],
     userInfo: {},
     logged: false,
     loading: false,
@@ -14,7 +14,7 @@ Page({
     diagShow: false,
   },
 
-  onLoad: function() {
+  onLoad: function () {
     let _this = this
     wx.showLoading({
       title: '加载中',
@@ -80,7 +80,7 @@ Page({
     })
   },
 
-  onGetUserInfo: function(e) {
+  onGetUserInfo: function (e) {
     let _this = this;
 
     if (!this.logged && e.detail.userInfo) {
@@ -139,7 +139,7 @@ Page({
     })
   },
 
-  switchpopup: function(e) {
+  switchpopup: function (e) {
     // let tmp = ""
     // if (e.currentTarget.dataset) {
     let tmp = e.currentTarget.dataset.type || ""
@@ -149,19 +149,19 @@ Page({
       popuptype: tmp
     })
   },
-  onSelectAvatar: function(e) {
+  onSelectAvatar: function (e) {
     let index = e.currentTarget.dataset.index;
     // console.log('每个index',index)
     this.setData({
       avatarIndex: index
     })
   },
-  nickChange: function(e) {
+  nickChange: function (e) {
     this.setData({
       diagNick: e.detail
     })
   },
-  onChangeInfo: function(e) {
+  onChangeInfo: function (e) {
     // 设置名称和头像，存入全局变量，存入本机缓存。
     let _this = this
     // 验证必填

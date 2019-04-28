@@ -62,5 +62,11 @@ App({
         _this.globalData.userInfo = res.data || {}
       }
     })
+    wx.getStorage({
+      key: 'openid',
+      success(res) {
+        _this.globalData.openid = res.data || ''
+      }
+    })
   }
 })
