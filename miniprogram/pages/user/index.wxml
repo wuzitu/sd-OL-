@@ -24,12 +24,12 @@
     </view>
   </view>
   <view class="footer">
-    <text bindtap='switchpopup' data-type="updateLog">更新日志</text>
-    |
-    <text bindtap='switchpopup' data-type="about">关于</text>
-    |
-    <text bindtap='donate'>赞赏</text>
+    <text bindtap='switchpopup' data-type="updateLog">更新日志</text> |
+    <text bindtap='switchpopup' data-type="about">关于</text> |
+    <text bindtap='switchpopup' data-type="ad" style="font-size:27rpx;color:#3399FF">精彩推荐</text>
   </view>
+
+
 </view>
 <!-- <view class="devide-line">
   <text>感谢一路有你(≧ω≦)/</text>
@@ -50,12 +50,21 @@
       <view>rabbit586@163.com</view>
       <view>欢迎登陆网址http://sdplayer.club</view>
       <view>SD玩家要塞</view>
+      <button open-type='feedback'>bug反馈点这里</button>
     </view>
+  </view>
+  <view wx:if="{{popuptype == 'ad'}}">
+    <ad unit-id="adunit-e239848b0dbf51c8"></ad>
+    <view class="devide-line" style='margin:20rpx 0'>
+      <text>恰饭不易，十分感激。</text>
+      <view bindtap='donate'>赞赏作者点这里</view>
+    </view>
+
   </view>
 </van-popup>
 <!-- dialog弹窗 -->
 <van-dialog use-slot async-close show="{{diagShow}}" show-cancel-button bind:close="onCloseDiag" bind:confirm="onChangeInfo" title="自定义信息">
-  <van-field value="{{ userInfo.nickName }}" label="用户名" placeholder="可以使用贴吧ID~" required clearable bind:change="nickChange"  maxlength="20"/>
+  <van-field value="{{ userInfo.nickName }}" label="用户名" placeholder="可以使用贴吧ID~" required clearable bind:change="nickChange" maxlength="20" />
   <van-row>
     <van-col span="4" offset="1">头像:</van-col>
     <van-col span="4" offset="1" wx:for="{{customAvatar}}" wx:key="">

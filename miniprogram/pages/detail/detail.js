@@ -1,4 +1,6 @@
 import Notify from '../../lib/vant-weapp/notify/notify';
+import Dialog from '../../lib/vant-weapp/dialog/dialog';
+
 const db = wx.cloud.database()
 // miniprogram/pages/detail/detail.js
 Page({
@@ -161,7 +163,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     // let tmp = JSON.parse(options.gundam)
     // let tmp = wx.getStorageSync("oneGundam")
     let _this = this;
@@ -201,49 +203,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function (res) {
+  onReachBottom: function(res) {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: this.data.gundam.Name || this.data.gundam.model,
       path: `/pages/detail/detail?shareID=${this.data.gundam.ID}`
@@ -257,12 +259,26 @@ Page({
   },
   noticeSubGundam(e) {
     let one = e.currentTarget.dataset.one
-    Notify({
-      text: `${one.name}：${one.Level}`,
-      duration: 1700,
-      selector: '#van-notify',
-      backgroundColor: '#1989fa'
+
+    Dialog.confirm({
+      // title: '标题',
+      message: `${one.name}：${one.Level}`,
+      confirmButtonText: '查看机体'
+    }).then(() => {
+      // on confirm
+      wx.navigateTo({
+        url: `/pages/detail/detail?shareID=${this.data.gundam.ID}`
+      })
+    }).catch(() => {
+      // on cancel
     });
+
+    // Notify({
+    //   text: `${one.name}：${one.Level}`,
+    //   duration: 1700,
+    //   selector: '#van-notify',
+    //   backgroundColor: '#1989fa'
+    // });
   },
   toggleSkillShow(e) {
     let idx = e.currentTarget.dataset.idx
@@ -278,7 +294,7 @@ Page({
       url: '/pages/index/index'
     })
   }
-  
+
 })
 
 function handleErr(err) {

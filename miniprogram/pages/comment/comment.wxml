@@ -29,7 +29,7 @@
               </view>
             </view>
           </view>
-          <view class='discuss-zan' bindtap="onZan">
+          <view class='discuss-zan' bindtap="onZan" data-docID="{{postData._id}}">
             <text>{{postData.zan}}</text>
             <van-icon name="like-o" />
           </view>
@@ -57,9 +57,9 @@
             </view>
           </view>
         </view>
-        <view class='discuss-zan' bindtap="onZan">
+        <view class='discuss-zan' bindtap="onZan" data-docid="{{item._id}}">
           <text>{{item.zan}}</text>
-          <van-icon name="like-o" />
+          <van-icon name="{{zanMap[item._id]?'like':'like-o'}}" />
         </view>
       </view>
       <view class='discuss-body'>
@@ -96,8 +96,8 @@
         <!-- <view style='margin-left:20rpx;'>{{g_rate}}</view> -->
       </view>
       <!-- 评论区 -->
-      <textarea placeholder="请写下你对机体的评价，心得，插件推荐！" name="content" fixed="true" value="{{formContent}}" maxlength="500" show-confirm-bar="{{false}}" disabled="{{!commentReq}}"/>
-      <button form-type="submit" >提交</button>
+      <textarea placeholder="请写下你对机体的评价，心得，插件推荐！" name="content" fixed="true" value="{{formContent}}" maxlength="500" show-confirm-bar="{{false}}" disabled="{{!commentReq}}" />
+      <button form-type="submit">提交</button>
     </form>
   </view>
 </van-popup>

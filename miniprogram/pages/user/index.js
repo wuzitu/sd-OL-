@@ -14,7 +14,7 @@ Page({
     diagShow: false,
   },
 
-  onLoad: function () {
+  onLoad: function() {
     let _this = this
     wx.showLoading({
       title: '加载中',
@@ -80,7 +80,7 @@ Page({
     })
   },
 
-  onGetUserInfo: function (e) {
+  onGetUserInfo: function(e) {
     let _this = this;
 
     if (!this.logged && e.detail.userInfo) {
@@ -139,7 +139,7 @@ Page({
     })
   },
 
-  switchpopup: function (e) {
+  switchpopup: function(e) {
     // let tmp = ""
     // if (e.currentTarget.dataset) {
     let tmp = e.currentTarget.dataset.type || ""
@@ -149,19 +149,19 @@ Page({
       popuptype: tmp
     })
   },
-  onSelectAvatar: function (e) {
+  onSelectAvatar: function(e) {
     let index = e.currentTarget.dataset.index;
     // console.log('每个index',index)
     this.setData({
       avatarIndex: index
     })
   },
-  nickChange: function (e) {
+  nickChange: function(e) {
     this.setData({
       diagNick: e.detail
     })
   },
-  onChangeInfo: function (e) {
+  onChangeInfo: function(e) {
     // 设置名称和头像，存入全局变量，存入本机缓存。
     let _this = this
     // 验证必填
@@ -205,6 +205,11 @@ Page({
 function initDiag(_this) {
   let tmp = _this.data.customAvatar || []
   tmp[0] = _this.data.userInfo.wxAvatar
+  // for wuzitu
+  if (app.globalData.openid == 'oEH945BhJPrW9EKv7YWWFpqhn04A') {
+    tmp[7] = 'cloud://online-07f32f.6f6e-online-07f32f/custom/wuzitu.jpg'
+  }
+  // xixi
   _this.setData({
     customAvatar: tmp,
     diagNick: _this.data.userInfo.nickName

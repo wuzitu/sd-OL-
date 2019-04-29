@@ -1,6 +1,4 @@
 <van-nav-bar title="机体详情" left-text="首页" left-arrow custom-class="nav-bar" bind:click-left="onClickLeft">
-  <!-- <van-icon name="friends-o" slot="right" /> -->
-  <!-- <text slot="right">分享</text> -->
   <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
 </van-nav-bar>
 <view class="card">
@@ -10,6 +8,11 @@
     <view class='rank'>Rank：{{gundam.rank}} 评分：{{gundam.rating}}</view>
   </view>
 </view>
+<van-notice-bar
+  text="机体讨论区现已开放! 看看大家的评价和部件推荐吧！"
+/>
+<!-- <view style="color:#FF6600; font-size=30rpx;font-weight:bold;"></view> -->
+
 <!-- <text class="">ID：{{ gundam.ID }}</text>
 <view>英文名称：{{gundam.nameEN}}</view> -->
 <van-panel title="武装一" status="必杀：{{spMap[gundam.sp1]}}" wx:if="{{gundam.sp1}}">
@@ -196,10 +199,13 @@
     </view>
   </van-collapse-item>
 </van-collapse>
-<van-cell title="讨论区" value="查看评论" is-link url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}" />
+<van-cell title="讨论区激烈讨论中！" value="查看评论" is-link url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}" custom-class="comment" title-class="comment-title" />
 <!-- 底线 -->
 <view class="devide-line" wx:if="{{ !loading }}">
   <span>~o( =∩ω∩= )m</span>
 </view>
 <!-- 顶部notify -->
 <van-notify id="van-notify" />
+
+<!-- 弹窗机体 -->
+<van-dialog id="van-dialog" />

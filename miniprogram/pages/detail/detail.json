@@ -6,6 +6,7 @@
     "van-search": "/lib/vant-weapp/search/index",
     "van-card": "/lib/vant-weapp/card/index",
     "van-loading": "/lib/vant-weapp/loading/index",
+    "van-dialog": "/lib/vant-weapp/dialog/index",
     "van-row": "/lib/vant-weapp/row/index",
     "van-col": "/lib/vant-weapp/col/index",
     "i-load-more": "/lib/vant-weapp/load-more/index",
@@ -14,6 +15,7 @@
     "van-collapse": "/lib/vant-weapp/collapse/index",
     "van-collapse-item": "/lib/vant-weapp/collapse-item/index",
     "van-notify": "/lib/vant-weapp/notify/index",
+    "van-notice-bar": "/lib/vant-weapp/notice-bar/index",
     "van-nav-bar": "/lib/vant-weapp/nav-bar/index",
     "van-icon": "/lib/vant-weapp/icon/index"
   }

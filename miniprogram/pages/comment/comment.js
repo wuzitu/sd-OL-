@@ -25,18 +25,20 @@ Page({
     needUpdateComment: false,
     comment_id: '',
     postData: {},
-    loading: true
+    loading: true,
+    zanMap: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    let _this = this
     // 判断参数异常
     if (!options || !options.g_ID) {
       Notify('读取数据错误！')
     } else {
-      this.setData({
+      _this.setData({
         g_ID: options.g_ID,
         g_Name: options.g_Name,
         g_rate: options.g_rate,
@@ -44,19 +46,29 @@ Page({
       })
     }
     getDBPage(this, '')
+    // 读取缓存的点赞列表
+    wx.getStorage({
+      key: 'zanMap',
+      success: function(res) {
+        let zanMap = res.data || {}
+        _this.setData({
+          zanMap: zanMap
+        })
+      },
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
   // 顶部navbar点击事件
@@ -77,28 +89,28 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     console.log(this.data.page)
     if (isloadEnd(this)) {
       return false;
@@ -109,19 +121,19 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: `【精选评论】${this.data.g_Name}`,
       path: `/pages/comment/comment?g_ID=${this.data.g_ID}&g_Name=${this.data.g_Name}&g_rate=${this.data.g_rate}&g_Name_EN=${this.data.g_Name_EN}`
     }
   },
-  switchpopup: function (e) {
+  switchpopup: function(e) {
 
     this.setData({
       popupShow: !this.data.popupShow,
     })
   },
-  showPopup: function (e) {
+  showPopup: function(e) {
     let _this = this
 
     // 判断是否登录
@@ -180,19 +192,19 @@ Page({
       })
 
   },
-  onSwitchChange: function (e) {
+  onSwitchChange: function(e) {
     this.setData({
       rateChecked: !this.data.rateChecked,
       rateEnable: !this.data.rateEnable
     })
   },
-  onRateChange: function (e) {
+  onRateChange: function(e) {
     this.setData({
       formRate: e.detail,
       rateEnable: true
     })
   },
-  bindFormSubmit: function (e) {
+  bindFormSubmit: function(e) {
     try {
 
       let _this = this
@@ -231,8 +243,8 @@ Page({
       // 判断更新 or 新增
       if (_this.data.needUpdateComment) {
         db.collection('comments').doc(_this.data.comment_id).update({
-          data: postData
-        })
+            data: postData
+          })
           .then(res => {
             postSuccess(_this, postData)
           })
@@ -242,9 +254,9 @@ Page({
       } else {
         postData.zan = 0
         db.collection('comments').add({
-          // data 字段表示需新增的 JSON 数据
-          data: postData
-        })
+            // data 字段表示需新增的 JSON 数据
+            data: postData
+          })
           .then(res => {
             postSuccess(_this, postData)
           })
@@ -256,12 +268,61 @@ Page({
       Notify(error)
     }
   },
-  onZan: function (e) {
-    Notify({
-      text: `点赞功能开发中！`,
-      selector: '#van-notify',
-      backgroundColor: '#1989fa'
+  onZan: function(e) {
+    let _this = this
+    let docID = e.currentTarget.dataset.docid || ''
+    if (_this.data.zanMap[docID]) {
+      Notify({
+        text: `给出的赞就不要再收回了吧 ^_^`,
+        selector: '#van-notify',
+        backgroundColor: '#1989fa'
+      })
+      return false;
+    }
+
+    // 先让心心变色
+    let zanMap = _this.data.zanMap
+    zanMap[docID] = true;
+    // 列表刷数字
+    let arr = _this.data.commentsList
+    var v = arr.find(value => value._id == docID) || {};
+    v.zan = v.zan + 1 || 0;
+    _this.setData({
+      commentsList: arr,
+      zanMap: zanMap
     })
+
+    wx.cloud.callFunction({
+        name: 'voteZan',
+        data: {
+          docID: docID
+        }
+      })
+      .then(res => {
+        Notify({
+          text: `点赞成功！`,
+          selector: '#van-notify',
+          backgroundColor: '#1989fa'
+        })
+
+        wx.setStorage({
+          key: 'zanMap',
+          data: zanMap,
+        })
+      })
+      .catch(err => {
+        Notify(`网络错误，点赞失败！`)
+        let zanMap = _this.data.zanMap
+        delete zanMap[docID]
+        // 列表刷数字
+        let arr = _this.data.commentsList
+        var v = arr.find(value => value._id == docID) || {};
+        v.zan = v.zan && v.zan - 1 || v.zan;
+        _this.setData({
+          commentsList: arr,
+          zanMap: zanMap
+        })
+      })
   }
 })
 

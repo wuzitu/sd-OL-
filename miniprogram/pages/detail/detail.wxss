@@ -65,3 +65,11 @@
 .mkcard-word {
   font-size: 8px;
 }
+
+/* 评论框 */
+.comment{
+  margin: 20rpx 0;
+}
+.comment-title{
+  color:rgb(218, 49, 49)
+}
