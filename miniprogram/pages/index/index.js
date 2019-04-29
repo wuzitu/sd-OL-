@@ -1,3 +1,4 @@
+var Page = require('../../utils/xmadx_sdk.min.js').xmad(Page).xmPage;
 import utils from '../../utils/utils'
 import cfg from '../../utils/cfg'
 import Notify from '../../lib/vant-weapp/notify/notify';
@@ -40,6 +41,16 @@ Page({
       CS: "#FF8500",
       CR: "#A65600",
       CU: "#A65600",
+    },
+    // ad
+
+    xmad: {
+      adData: {},
+      ad: {
+        banner: "xm285f8c42c7cb76dadefda0ba2c4e76", // 按需引⼊入
+        insert: "xm285f8c42c7cb76dadefda0ba2c4e76", // 按需引⼊入
+        fixed: "xm285f8c42c7cb76dadefda0ba2c4e76"
+      }
     }
   },
   onLoad(options) {
@@ -90,41 +101,41 @@ Page({
     })
   },
   onSearch: function (e) {
-      // 关闭filter层
-      this.setData({
-        filterShow: false,
-        loading: true
-      })
-      // 开始搜索
-      let text = this.data.searchVal
-      let _this = this
-      // 初始化
-      _this.setData({
-        gundamList: [],
-        loading: true,
-        page: 0
-      })
-      var odb = wx.cloud.database()
-      // 搜索名称，英文名称，id，tag
-      var reg = odb.RegExp({
-        regexp: text,
-        options: 'i',
-      })
-      // 带有空格的模糊搜索
-      if (/\s/.test(text)) {
-        text = text.split(/\s+/)
-        reg = new RegExp(text.join("|"), "i")
-      }
-      _this.setData({
-        searchReg: reg
-      })
-
-      // const _ = db.command
-      goFilter(_this)
+    // 关闭filter层
+    this.setData({
+      filterShow: false,
+      loading: true
+    })
+    // 开始搜索
+    let text = this.data.searchVal
+    let _this = this
+    // 初始化
+    _this.setData({
+      gundamList: [],
+      loading: true,
+      page: 0
+    })
+    var odb = wx.cloud.database()
+    // 搜索名称，英文名称，id，tag
+    var reg = odb.RegExp({
+      regexp: text,
+      options: 'i',
+    })
+    // 带有空格的模糊搜索
+    if (/\s/.test(text)) {
+      text = text.split(/\s+/)
+      reg = new RegExp(text.join("|"), "i")
     }
+    _this.setData({
+      searchReg: reg
+    })
+
+    // const _ = db.command
+    goFilter(_this)
+  }
 
 
-    ,
+  ,
   showfilter: function (e) {
     this.setData({
       filterShow: !this.data.filterShow
@@ -192,17 +203,17 @@ function goFilter(_this, opt) {
   const _ = db.command
   let nameReg = _this.data.searchReg || ''
   let orArr = [{
-      Name: nameReg
-    },
-    {
-      model: nameReg
-    },
-    {
-      tags: nameReg
-    },
-    {
-      nameEN: nameReg
-    }
+    Name: nameReg
+  },
+  {
+    model: nameReg
+  },
+  {
+    tags: nameReg
+  },
+  {
+    nameEN: nameReg
+  }
   ];
   let rankArr = _this.data.rankFilter
   let eqTmp = {

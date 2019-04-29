@@ -5,7 +5,11 @@
     "pages/user/index",
     "pages/detail/detail",
     "pages/userConsole/userConsole",
-    "pages/infos/infos"
+    "pages/infos/infos",
+
+    "pages/xmadPage/copyInfo",
+    "pages/xmadPage/sell",
+    "pages/xmadPage/collect"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -15,7 +19,8 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "iconPath": "static/icons/home.png",
         "selectedIconPath": "static/icons/home-selected.png",

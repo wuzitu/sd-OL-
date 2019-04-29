@@ -1,5 +1,7 @@
 //app.js
 import moment from '/lib/moment'
+var App = require('./utils/xmadx_sdk.min.js').xmad(App,'App').xmApp;
+
 const ald = require('./utils/ald-stat.js')
 const initApp = (_this) => {
   const time = wx.getStorageSync('date');
