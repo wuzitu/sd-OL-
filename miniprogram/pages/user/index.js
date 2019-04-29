@@ -165,7 +165,7 @@ Page({
     // 设置名称和头像，存入全局变量，存入本机缓存。
     let _this = this
     // 验证必填
-    if (!this.data.diagNick) {
+    if (!this.data.diagNick.trim()) {
       wx.showToast({
         title: '昵称为空',
         icon: 'loading'

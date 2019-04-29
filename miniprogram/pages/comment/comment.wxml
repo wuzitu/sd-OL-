@@ -31,7 +31,7 @@
           </view>
           <view class='discuss-zan' bindtap="onZan" data-docID="{{postData._id}}">
             <text>{{postData.zan}}</text>
-            <van-icon name="like-o" />
+            <van-icon name="{{zanMap[postData._id]?'like':'like-o'}}" />
           </view>
         </view>
         <view class='discuss-body'>

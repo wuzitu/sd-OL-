@@ -210,7 +210,7 @@ Page({
       let _this = this
       let val = e.detail.value
       // 判断填写合法
-      if (!val.content) {
+      if (!val.content.trim()) {
         Notify('评论内容还没有填写哦，评价一下机体吧！');
         wx.showToast({
           title: '请填写内容',
