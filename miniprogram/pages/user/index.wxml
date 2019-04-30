@@ -8,7 +8,7 @@
         <image src="{{userInfo.avatarUrl}}" class="userinfo-avatar"></image>
       </van-col>
       <van-col span="12">
-        <text wx:if="{{!logged}}">请点击按钮登录</text>
+        <text wx:if="{{!logged}}">请点击下方按钮登录</text>
         <text wx:else>{{userInfo.nickName}}</text>
       </van-col>
       <van-col span="4">

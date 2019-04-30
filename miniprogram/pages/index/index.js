@@ -1,4 +1,3 @@
-var Page = require('../../utils/xmadx_sdk.min.js').xmad(Page).xmPage;
 import utils from '../../utils/utils'
 import cfg from '../../utils/cfg'
 import Notify from '../../lib/vant-weapp/notify/notify';
@@ -42,16 +41,7 @@ Page({
       CR: "#A65600",
       CU: "#A65600",
     },
-    // ad
-
-    xmad: {
-      adData: {},
-      ad: {
-        banner: "xm285f8c42c7cb76dadefda0ba2c4e76", // 按需引⼊入
-        insert: "xm285f8c42c7cb76dadefda0ba2c4e76", // 按需引⼊入
-        fixed: "xm285f8c42c7cb76dadefda0ba2c4e76"
-      }
-    }
+   
   },
   onLoad(options) {
     let _this = this;

@@ -16,7 +16,7 @@
     "van-icon": "/lib/vant-weapp/icon/index",
     "van-picker": "/lib/vant-weapp/picker/index",
     "van-tag": "/lib/vant-weapp/tag/index",
-    "van-notify": "/lib/vant-weapp/notify/index",
-    "xm-ad": "/components/xmAD/xmAD"
+    "van-notify": "/lib/vant-weapp/notify/index"
+    
   }
 }

@@ -1,6 +1,6 @@
 //app.js
 import moment from '/lib/moment'
-var App = require('./utils/xmadx_sdk.min.js').xmad(App,'App').xmApp;
+var App = require('./utils/xmadx_sdk.min.js').xmad(App, 'App').xmApp;
 
 const ald = require('./utils/ald-stat.js')
 const initApp = (_this) => {
@@ -31,7 +31,7 @@ const initApp = (_this) => {
   }
 }
 App({
-  onLaunch: function () {
+  onLaunch: function() {
     let _this = this
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -58,17 +58,48 @@ App({
         initApp(_this)
       }
     })
-    wx.getStorage({
-      key: 'userInfo',
-      success(res) {
-        _this.globalData.userInfo = res.data || {}
-      }
-    })
+
     wx.getStorage({
       key: 'openid',
       success(res) {
         _this.globalData.openid = res.data || ''
       }
     })
+    // 获取用户登录情况
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              wx.getStorage({
+                key: 'userInfo',
+                success(res) {
+                  _this.globalData.userInfo = res.data || {}
+                }
+              })
+            },
+            fail: res => {
+              onFailed(_this)
+            }
+          })
+        }
+        // 未授权，需要登录！
+        else {
+          onFailed(_this)
+        }
+      },
+      fail: res => {
+        onFailed(_this)
+      }
+    })
   }
 })
+
+
+
+function onFailed(_this) {
+  wx.hideLoading()
+  _this.globalData.userInfo = {}
+  _this.globalData.openid = ""
+}

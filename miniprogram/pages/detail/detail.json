@@ -17,6 +17,7 @@
     "van-notify": "/lib/vant-weapp/notify/index",
     "van-notice-bar": "/lib/vant-weapp/notice-bar/index",
     "van-nav-bar": "/lib/vant-weapp/nav-bar/index",
-    "van-icon": "/lib/vant-weapp/icon/index"
+    "van-icon": "/lib/vant-weapp/icon/index",
+    "xm-ad": "/components/xmAD/xmAD"
   }
 }

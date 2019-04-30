@@ -68,7 +68,10 @@
 
 /* 评论框 */
 .comment{
-  margin: 20rpx 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  font-weight: bold;
 }
 .comment-title{
   color:rgb(218, 49, 49)

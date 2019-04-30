@@ -19,9 +19,13 @@
       </van-card>
     </view>
     <!-- 每个卡片 -->
-    <view class="xm_banner" style="width:100%">
-      <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad>
-    </view>
+    
+
+
+
+
+
+    
     <!-- 底部条 -->
     <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
     <view class="devide-line" wx:if="{{ !loading }}">

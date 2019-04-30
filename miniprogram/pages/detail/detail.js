@@ -1,5 +1,6 @@
 import Notify from '../../lib/vant-weapp/notify/notify';
 import Dialog from '../../lib/vant-weapp/dialog/dialog';
+var Page = require('../../utils/xmadx_sdk.min.js').xmad(Page).xmPage;
 
 const db = wx.cloud.database()
 // miniprogram/pages/detail/detail.js
@@ -156,8 +157,16 @@ Page({
       "12": "地图炮型"
     },
     activeName: ['roboData'],
-    skillShow: [false, false, false]
-
+    skillShow: [false, false, false],
+    // ad
+    xmad: {
+      adData: {},
+      ad: {
+        banner: "xm0b5b17108142a9e2fec0df8450d6cb", // 按需引⼊入
+        insert: "xm0b5b17108142a9e2fec0df8450d6cb", // 按需引⼊入
+        fixed: "xm0b5b17108142a9e2fec0df8450d6cb"
+      }
+    }
   },
 
   /**

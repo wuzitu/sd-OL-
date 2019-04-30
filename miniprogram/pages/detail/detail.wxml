@@ -8,9 +8,7 @@
     <view class='rank'>Rank：{{gundam.rank}} 评分：{{gundam.rating}}</view>
   </view>
 </view>
-<van-notice-bar
-  text="机体讨论区现已开放! 看看大家的评价和部件推荐吧！"
-/>
+<van-notice-bar text="机体讨论区现已开放! 看看大家的评价和部件推荐吧！" />
 <!-- <view style="color:#FF6600; font-size=30rpx;font-weight:bold;"></view> -->
 
 <!-- <text class="">ID：{{ gundam.ID }}</text>
@@ -199,11 +197,19 @@
     </view>
   </van-collapse-item>
 </van-collapse>
+<view style='margin:30rpx 0 40rpx 0'>
 <van-cell title="讨论区激烈讨论中！" value="查看评论" is-link url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}" custom-class="comment" title-class="comment-title" />
+
+</view>
+
+<view class="xm_banner" style="width:100%">
+  <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad>
+</view>
 <!-- 底线 -->
 <view class="devide-line" wx:if="{{ !loading }}">
   <span>~o( =∩ω∩= )m</span>
 </view>
+
 <!-- 顶部notify -->
 <van-notify id="van-notify" />
 

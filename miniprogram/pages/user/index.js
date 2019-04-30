@@ -225,4 +225,10 @@ function initDiag(_this) {
 
 function onFailed(_this) {
   wx.hideLoading()
+  app.globalData.userInfo = {}
+  app.globalData.openid = ""
+  wx.showToast({
+    title: '请重新登录！',
+    icon: 'none'
+  })
 }
