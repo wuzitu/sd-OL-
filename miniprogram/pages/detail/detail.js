@@ -276,7 +276,7 @@ Page({
     }).then(() => {
       // on confirm
       wx.navigateTo({
-        url: `/pages/detail/detail?shareID=${this.data.gundam.ID}`
+        url: `/pages/detail/detail?shareID=${one.id}`
       })
     }).catch(() => {
       // on cancel

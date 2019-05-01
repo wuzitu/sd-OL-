@@ -89,7 +89,7 @@
       </view>
     </view>
     <form bindsubmit="bindFormSubmit" class='comment-form'>
-      <van-switch-cell title="给机体打分" checked="{{ rateEnable }}" bind:change="onSwitchChange" name="rateEnable" />
+      <van-switch-cell title="给机体打分（开关→）" checked="{{ rateEnable }}" bind:change="onSwitchChange" name="rateEnable" />
       <!-- 打分 -->
       <view class='rate'>
         <van-rate value="{{ formRate || g_rate/2 }}" bind:change="onRateChange" disabled="{{!rateEnable}}" name="rate" size="{{ 25 }}" />
