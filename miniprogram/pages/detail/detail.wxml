@@ -198,16 +198,21 @@
   </van-collapse-item>
 </van-collapse>
 <view style='margin:30rpx 0 40rpx 0'>
-<van-cell title="讨论区激烈讨论中！" value="查看评论" is-link url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}" custom-class="comment" title-class="comment-title" />
+  <van-cell title="讨论区激烈讨论中！" value="查看评论" is-link url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}" custom-class="comment" title-class="comment-title" />
 
 </view>
-
-<view class="xm_banner" style="width:100%">
-  <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad>
-</view>
-<!-- 底线 -->
-<view class="devide-line" wx:if="{{ !loading }}">
-  <span>~o( =∩ω∩= )m</span>
+<view wx:if="{{showAD}}">
+  <view class="devide-line">
+    <span>支持发展，每日一点 ↓</span>
+  </view>
+  <view class="xm_banner" style="margin:20rpx;" bindtap='tapAD'>
+    <!-- <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad> -->
+    <ad unit-id="adunit-edcbb3995a947ab1" bindtap='tapAD'></ad>
+  </view>
+  <!-- 底线 -->
+  <view class="devide-line">
+    <span>支持发展，每日一点 ↑</span>
+  </view>
 </view>
 
 <!-- 顶部notify -->

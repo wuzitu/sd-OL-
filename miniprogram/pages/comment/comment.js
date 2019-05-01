@@ -17,7 +17,7 @@ Page({
     g_Name_EN: 'GUNDAM',
     popupShow: false,
     rateChecked: false,
-    rateEnable: false,
+    rateEnable: true,
     formRate: 0,
     commentsList: [],
     page: 0,
@@ -224,7 +224,7 @@ Page({
       }
       // 判断网络
       if (!_this.data.commentReq) {
-        Notify('网络好像有点问题，重新点一下"+号"吧！');
+        Notify('网络好像有点问题，重新点一下"评论按钮"吧！');
       }
       let postData = {
         // user

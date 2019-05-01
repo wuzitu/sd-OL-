@@ -1,6 +1,8 @@
 import Notify from '../../lib/vant-weapp/notify/notify';
 import Dialog from '../../lib/vant-weapp/dialog/dialog';
 var Page = require('../../utils/xmadx_sdk.min.js').xmad(Page).xmPage;
+import moment from '../../lib/moment'
+const app = getApp()
 
 const db = wx.cloud.database()
 // miniprogram/pages/detail/detail.js
@@ -166,7 +168,8 @@ Page({
         insert: "xm0b5b17108142a9e2fec0df8450d6cb", // 按需引⼊入
         fixed: "xm0b5b17108142a9e2fec0df8450d6cb"
       }
-    }
+    },
+    showAD: false
   },
 
   /**
@@ -176,6 +179,13 @@ Page({
     // let tmp = JSON.parse(options.gundam)
     // let tmp = wx.getStorageSync("oneGundam")
     let _this = this;
+    // 广告显示
+    app.globalData.ad_detail_banner = app.globalData.ad_detail_banner || "2019-01-01"
+    if (moment().isAfter(moment(app.globalData.ad_detail_banner), 'day')) {
+      this.setData({
+        showAD: true
+      })
+    }
     // share情况下，读取数据库加载页面
     if (options.shareID) {
       wx.showLoading({
@@ -205,8 +215,8 @@ Page({
       this.setData({
         gundam: tmp
       })
-      updateFever(tmp)
     }
+
   },
 
   /**
@@ -301,6 +311,17 @@ Page({
   onClickLeft() {
     wx.switchTab({
       url: '/pages/index/index'
+    })
+  },
+  tapAD(e) {
+    // 广告点击一次消失
+    this.setData({
+      showAD: false
+    })
+    app.globalData.ad_detail_banner = moment().format('YYYY-MM-DD');
+    wx.setStorage({
+      key: 'ad_detail_banner',
+      data: moment().format('YYYY-MM-DD'),
     })
   }
 

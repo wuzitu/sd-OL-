@@ -93,6 +93,13 @@ App({
         onFailed(_this)
       }
     })
+    // 获取广告显示情况
+    wx.getStorage({
+      key: 'ad_detail_banner',
+      success: function(res) {
+        _this.globalData.ad_detail_banner = res.data || '2019-01-01'
+      },
+    })
   }
 })
 
