@@ -211,7 +211,7 @@
   </view>
   <!-- 底线 -->
   <view class="devide-line">
-    <span>支持发展，每日一点 ↑</span>
+    <span>选择关闭，不再显示 ↑</span>
   </view>
 </view>
 
