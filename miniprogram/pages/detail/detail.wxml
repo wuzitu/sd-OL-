@@ -207,7 +207,7 @@
   </view>
   <view class="xm_banner" style="margin:20rpx;" bindtap='tapAD'>
     <!-- <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad> -->
-    <ad unit-id="adunit-edcbb3995a947ab1" bindtap='tapAD'></ad>
+    <ad unit-id="adunit-edcbb3995a947ab1" bindclose="tapAD" binderror="tapAD"></ad>
   </view>
   <!-- 底线 -->
   <view class="devide-line">
