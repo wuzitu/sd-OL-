@@ -250,6 +250,10 @@ Page({
           })
           .catch(err => {
             Notify('网络错误，提交失败了 T.T')
+            _this.setData({
+              postData: postData,
+              commentReq: false
+            })
           })
       } else {
         postData.zan = 0
@@ -262,6 +266,10 @@ Page({
           })
           .catch(err => {
             Notify('网络错误，提交失败了 T.T')
+            _this.setData({
+              postData: postData,
+              commentReq: false
+            })
           })
       }
     } catch (error) {
@@ -331,7 +339,8 @@ function postSuccess(_this, postData) {
     title: '提交成功！',
   })
   _this.setData({
-    postData: postData
+    postData: postData,
+    commentReq: false
   })
 }
 
@@ -343,7 +352,7 @@ function getDBPage(_this, opt) {
   collection
     .orderBy('zan', 'desc')
     .orderBy('day', 'desc')
-    .skip(_this.data.page * 7).limit(7)
+    .skip(_this.data.page * 20).limit(20)
     .get()
     .then(res => {
       _this.setData({

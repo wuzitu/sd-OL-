@@ -2,6 +2,7 @@
 const cloud = require('wx-server-sdk')
 cloud.init({
   env: 'online-07f32f',
+  // env: 'sdplayer-6bad5c',
   traceUser: true,
 })
 const db = cloud.database()

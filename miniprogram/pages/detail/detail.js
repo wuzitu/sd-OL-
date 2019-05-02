@@ -1,6 +1,6 @@
 import Notify from '../../lib/vant-weapp/notify/notify';
 import Dialog from '../../lib/vant-weapp/dialog/dialog';
-var Page = require('../../utils/xmadx_sdk.min.js').xmad(Page).xmPage;
+// var Page = require('../../utils/xmadx_sdk.min.js').xmad(Page).xmPage;
 import moment from '../../lib/moment'
 const app = getApp()
 
