@@ -206,12 +206,12 @@
     <span>支持发展，每日一点 ↓</span>
   </view>
   <view class="xm_banner" style="margin:20rpx;" bindtap='tapAD'>
-    <!-- <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad> -->
-    <ad unit-id="adunit-edcbb3995a947ab1" bindclose="tapAD" binderror="tapAD"></ad>
+    <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad>
+    <ad unit-id="adunit-edcbb3995a947ab1" bindclose="tapAD" binderror="tapAD" wx:if="{{!xmad&&xmad.adData&&xmad.ad&&xmad.ad.banner&&xmad.adData  [xmad.ad.banner]&&xmad.adData[xmad.ad.banner].hasshow}}"></ad>
   </view>
   <!-- 底线 -->
   <view class="devide-line">
-    <span>选择关闭，不再显示 ↑</span>
+    <span>点击一次，不再显示 ↑</span>
   </view>
 </view>
 
