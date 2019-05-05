@@ -8,7 +8,7 @@
     </van-search>
   </view>
   <!-- 滚动显示框 -->
-  <scroll-view class="index-bd" bindscrolltolower="loadNextPage" scroll-y="true" enable-back-to-top="true">
+  <view style='margin-top:44px'>
     <!-- <view class="index-bd"> -->
     <!-- 每一个卡片 -->
     <view wx:for="{{gundamList}}" wx:key="ID">
@@ -19,19 +19,19 @@
       </van-card>
     </view>
     <!-- 每个卡片 -->
-    
 
 
 
 
 
-    
+
+
     <!-- 底部条 -->
     <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
     <view class="devide-line" wx:if="{{ !loading }}">
       <span>共找到{{totalCount}}条，没有更多数据啦</span>
     </view>
-  </scroll-view>
+  </view>
   <!-- </view> -->
 </view>
 <!-- 筛选框弹出层 -->

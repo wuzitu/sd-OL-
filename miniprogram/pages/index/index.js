@@ -41,15 +41,20 @@ Page({
       CR: "#A65600",
       CU: "#A65600",
     },
-   
+
   },
   onLoad(options) {
     let _this = this;
     initFilterData(_this);
     goFilter(_this);
   },
-
-  loadNextPage: function () {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    this.loadNextPage()
+  },
+  loadNextPage: function() {
     let _this = this;
     // 判断获取一次，防止重复获取
     if (this.isloadEnd()) {
@@ -61,7 +66,7 @@ Page({
     goFilter(_this, 'isNextPage')
   },
 
-  isloadEnd: function () {
+  isloadEnd: function() {
     if (this.data.gundamList.length >= this.data.totalCount) {
       this.setData({
         loading: false
@@ -73,7 +78,7 @@ Page({
     }
   },
 
-  goDetail: function (e) {
+  goDetail: function(e) {
     // let one = JSON.stringify(e.currentTarget.dataset.one)
     // wx.navigateTo({
     //   url: `../detail/detail?gundam=${one}`
@@ -90,43 +95,43 @@ Page({
       searchVal: e.detail
     })
   },
-  onSearch: function (e) {
-    // 关闭filter层
-    this.setData({
-      filterShow: false,
-      loading: true
-    })
-    // 开始搜索
-    let text = this.data.searchVal
-    let _this = this
-    // 初始化
-    _this.setData({
-      gundamList: [],
-      loading: true,
-      page: 0
-    })
-    var odb = wx.cloud.database()
-    // 搜索名称，英文名称，id，tag
-    var reg = odb.RegExp({
-      regexp: text,
-      options: 'i',
-    })
-    // 带有空格的模糊搜索
-    if (/\s/.test(text)) {
-      text = text.split(/\s+/)
-      reg = new RegExp(text.join("|"), "i")
+  onSearch: function(e) {
+      // 关闭filter层
+      this.setData({
+        filterShow: false,
+        loading: true
+      })
+      // 开始搜索
+      let text = this.data.searchVal
+      let _this = this
+      // 初始化
+      _this.setData({
+        gundamList: [],
+        loading: true,
+        page: 0
+      })
+      var odb = wx.cloud.database()
+      // 搜索名称，英文名称，id，tag
+      var reg = odb.RegExp({
+        regexp: text,
+        options: 'i',
+      })
+      // 带有空格的模糊搜索
+      if (/\s/.test(text)) {
+        text = text.split(/\s+/)
+        reg = new RegExp(text.join("|"), "i")
+      }
+      _this.setData({
+        searchReg: reg
+      })
+
+      // const _ = db.command
+      goFilter(_this)
     }
-    _this.setData({
-      searchReg: reg
-    })
-
-    // const _ = db.command
-    goFilter(_this)
-  }
 
 
-  ,
-  showfilter: function (e) {
+    ,
+  showfilter: function(e) {
     this.setData({
       filterShow: !this.data.filterShow
     })
@@ -167,7 +172,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: `SD敢达OL`,
       imageUrl: 'https://go.sdplayer.club/img/logo/logo.png'
@@ -193,17 +198,17 @@ function goFilter(_this, opt) {
   const _ = db.command
   let nameReg = _this.data.searchReg || ''
   let orArr = [{
-    Name: nameReg
-  },
-  {
-    model: nameReg
-  },
-  {
-    tags: nameReg
-  },
-  {
-    nameEN: nameReg
-  }
+      Name: nameReg
+    },
+    {
+      model: nameReg
+    },
+    {
+      tags: nameReg
+    },
+    {
+      nameEN: nameReg
+    }
   ];
   let rankArr = _this.data.rankFilter
   let eqTmp = {

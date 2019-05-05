@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/infos/infos",
     "pages/index/index",
     "pages/comment/comment",
     "pages/user/index",
     "pages/detail/detail",
     "pages/userConsole/userConsole",
-    "pages/infos/infos",
 
     "pages/xmadPage/copyInfo",
     "pages/xmadPage/sell",
@@ -21,10 +21,16 @@
   "tabBar": {
     "list": [
       {
+        "pagePath": "pages/infos/infos",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-selected.png",
+        "text": "要塞情报"
+      },
+      {
         "pagePath": "pages/index/index",
         "iconPath": "static/icons/home.png",
         "selectedIconPath": "static/icons/home-selected.png",
-        "text": "数据库"
+        "text": "机体数据"
       },
       {
         "pagePath": "pages/user/index",

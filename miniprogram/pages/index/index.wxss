@@ -2,7 +2,7 @@
 
 .index-bd {
   position: absolute;
-  height: 90%;
+  height: 100%;
   overflow: scroll;
 }
 
@@ -12,11 +12,15 @@
 /*搜索框  */
 
 .searchForm {
-  height: 10%;
   padding: 0 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: fixed;
+  height: 44px;
+  z-index:1;
+  top:0;
+  background-color: white;
 }
 
 .filter-picker {
@@ -26,6 +30,7 @@
 .filter-button {
   display: inline-block;
 }
+
 
 .devide-line span {
   position: relative;
