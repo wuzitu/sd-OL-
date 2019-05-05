@@ -6,7 +6,6 @@
     "pages/user/index",
     "pages/detail/detail",
     "pages/userConsole/userConsole",
-
     "pages/xmadPage/copyInfo",
     "pages/xmadPage/sell",
     "pages/xmadPage/collect"
@@ -41,6 +40,9 @@
     ],
     "selectedColor": "#f59aaa",
     "borderStyle": "white"
+  },
+  "usingComponents": {
+    "cu-custom": "lib/colorui/components/cu-custom"
   },
   "sitemapLocation": "sitemap.json"
 }

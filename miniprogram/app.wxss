@@ -1,4 +1,6 @@
 /**app.wxss**/
+@import "lib/colorui/main.wxss";
+@import "lib/colorui/icon.wxss";
 @import "lib/vant-weapp/common/index.wxss";
 
 .container {

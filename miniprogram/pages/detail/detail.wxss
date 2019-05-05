@@ -61,6 +61,7 @@
 .mk-card image{
   width: 60px;
   height: 60px;
+  max-width: 120px;
 }
 .mkcard-word {
   font-size: 8px;

@@ -1,4 +1,6 @@
 /* miniprogram/pages/infos/infos.wxss */
+@import "/lib/colorui/main.wxss";
+@import "/lib/colorui/icon.wxss";
 
 page {
   min-height: 100%;
@@ -70,4 +72,28 @@ page {
   background-color: rgb(123, 147, 163);
   color: white;
   box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.info-title {
+  width: 97%;
+  padding: 30rpx;
+}
+
+.comment-card image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+
+.discuss {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.discuss image {
+  width: 60rpx;
+  height: 60rpx;
 }
