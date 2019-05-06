@@ -2,7 +2,7 @@
   <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
 </van-nav-bar>
 <view class="bg-img bg-mask shadow-blur padding-xl radius bg-grey margin-top" style="background-image: url('https://go.sdplayer.club/img/avatar/{{gundam.ID}}.gif');height: 400rpx;background-position:top;">
-  <view class="padding-xl text-white">
+  <view class="padding-xl text-white ">
     <view class="padding-xs text-xl">
       {{gundam.Name || gundam.model}}
     </view>
@@ -21,7 +21,10 @@
     <view class='rank'>Rank：{{gundam.rank}} 评分：{{gundam.rating}}</view>
   </view>
 </view> -->
-<van-notice-bar text="机体讨论区现已开放! 看看大家的评价和部件推荐吧！" />
+<navigator url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}">
+  <van-notice-bar text="（点击进入讨论）机体讨论区现已开放! 看看大家的评价和部件推荐吧！" />
+</navigator>
+
 <!-- <view style="color:#FF6600; font-size=30rpx;font-weight:bold;"></view> -->
 
 <!-- <text class="">ID：{{ gundam.ID }}</text>
@@ -186,17 +189,17 @@
 </van-panel>
 <van-collapse value="{{ activeName }}" bind:change="onCollapseChange">
   <van-collapse-item title="机体数据" name="roboData">
-    <view style="padding:0 20px">
-      <van-row>繁体名称：{{gundam.nameCN_G}}</van-row>
-      <van-col span="6" wx:if="{{gundam.para.fly}}">飞行:{{gundam.para.fly}}</van-col>
-      <van-col span="6" wx:if="{{gundam.para.move}}">移动:{{gundam.para.move}}</van-col>
-      <van-col span="6" wx:if="{{gundam.para.boost}}">boost:{{gundam.para.boost}}</van-col>
-      <van-col span="9" wx:if="{{gundam.para.boost_back}}">
+    <view style="padding:0 20px;display:flex;flex-wrap:wrap;justify-content:space-around;">
+      <view>繁体名称：{{gundam.nameCN_G}}</view>
+      <text wx:if="{{gundam.para.fly}}">飞行:{{gundam.para.fly}}</text>
+      <text wx:if="{{gundam.para.move}}">移动:{{gundam.para.move}}</text>
+      <text wx:if="{{gundam.para.boost}}">boost:{{gundam.para.boost}}</text>
+      <text wx:if="{{gundam.para.boost_back}}">
         boost回复:{{gundam.para.boost_back}}
-      </van-col>
-      <van-col span="9" wx:if="{{gundam.para.boost_usage}}">
+      </text>
+      <text wx:if="{{gundam.para.boost_usage}}">
         boost消耗:{{gundam.para.boost_usage}}
-      </van-col>
+      </text>
     </view>
   </van-collapse-item>
   <van-collapse-item title="其他信息" name="moreInfo">
@@ -210,13 +213,14 @@
     </view>
   </van-collapse-item>
 </van-collapse>
+
 <view style='margin:30rpx 0 40rpx 0'>
   <van-cell title="讨论区激烈讨论中！" value="查看评论" is-link url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}" custom-class="comment" title-class="comment-title" />
 
 </view>
 <view wx:if="{{showAD}}">
-  <view class="devide-line">
-    <span>支持发展，每日一点 ↓</span>
+  <view class="devide-line" style='color:#6DBEA;'>
+    <span>广告</span>
   </view>
   <view class="xm_banner" style="margin:20rpx;" bindtap='tapAD'>
     <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad>

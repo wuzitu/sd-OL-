@@ -61,7 +61,7 @@ page {
 }
 
 .comment-card {
-  padding: 30rpx;
+  padding: 25rpx;
   border-radius: 12rpx;
   width: 97%;
   margin: 20rpx auto;
@@ -75,13 +75,19 @@ page {
   display: flex;
   justify-content: flex-start;
   align-content: center;
+  height: 200rpx;
+  overflow: hidden;
 }
 
 .info-title {
   width: 97%;
   padding: 30rpx;
 }
-
+.comment-author{
+  height:50rpx;
+  display: flex;
+  justify-content: flex-start;
+}
 .comment-card image {
   width: 120rpx;
   height: 120rpx;
@@ -96,4 +102,25 @@ page {
 .discuss image {
   width: 60rpx;
   height: 60rpx;
+}
+
+.ad-card {
+  padding: 10rpx 20rpx;
+  border-radius: 12rpx;
+  width: 97%;
+  margin: 20rpx auto;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(167, 167, 167, 0.404);
+  color: white;
+  box-sizing: border-box;
+}
+
+.comment-block {
+  display: flex;
+  flex-direction: column;
+  height: 170rpx;
+  overflow: hidden;
 }

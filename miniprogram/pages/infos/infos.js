@@ -1,108 +1,93 @@
 // miniprogram/pages/infos/infos.js
+const db = wx.cloud.database()
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    swiperImgs: [
-      '../../static/images/img1.png',
-      '../../static/images/img2.png',
-      '../../static/images/img3.png',
-      '../../static/images/img3.png',
-      '../../static/images/img3.png',
+    commentsList: [],
+    backgroundList: [
+      "https://hbimg.huabanimg.com/b4e6504b42622a99ef283002cc386b52b6ad04622fed2-RQKtS4_fw658",
+      "https://hbimg.huabanimg.com/d772a0e61c4b7e24b70f6104952c601adf84ec1b23ead-lc0zMK_fw658",
+      "http://img.htmlsucai.com/forum/201707/26/091357dthkj8tfekkkrwqr.jpg",
+      "https://hbimg.huabanimg.com/a2a17648ac2ae8cb30da64a39c71ae1b1251777018a5a-6FE5VG_fw658"
     ],
-    newsList: [
-      {
-        title: '武磊没得头发',
-        articleId: 'toufa'
-      },
-      {
-        title: '武磊真的没有头发',
-        articleId: 666
-      },
-      {
-        title: '别问了，再问就是没有。。。。。。。。。。。。。。。。。。。。。。。。。。',
-        articleId: 3
-      },
-    ],
-    tiebaList: [
-      {
-        title: '武磊没得头发',
-        articleUrl: 'http://www.sdplayer.club'
-      },
-      {
-        title: '武磊真的没有头发',
-        articleUrl: 'http://www.sdplayer.club'
-      },
-      {
-        title: '别问了，再问就是没有。。。。。。。。。。。。。。。。。。。。。。。。。。',
-        articleUrl: 'http://www.sdplayer.club'
-      },
-    ],
-    ad: {
-      url: '../../static/images/ad.png'
-    }
+    loading: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    let _this = this
+    let collection = db.collection('comments')
+    collection
+      .orderBy('day', 'desc')
+      .orderBy('zan', 'desc')
+      .skip(0 * 20).limit(20)
+      .get()
+      .then(res => {
+        _this.setData({
+          commentsList: _this.data.commentsList.concat(res.data),
+          loading: false
+        })
+      })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
   bannerTapHandler: function(e) {
     let _id = parseInt(e.currentTarget.id);
-    switch (_id){
+    switch (_id) {
       case 0:
         console.log('武磊没得头发');
         break;
@@ -113,7 +98,7 @@ Page({
         console.log('胖胖说得对');
     }
   },
-  newsTapHandler: function (e) {
+  newsTapHandler: function(e) {
     let _atcId = e.currentTarget.id;
     console.log(_atcId);
   },

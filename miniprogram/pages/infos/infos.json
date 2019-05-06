@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "van-rate": "/lib/vant-weapp/rate/index"
+    "van-rate": "/lib/vant-weapp/rate/index",
+    "i-load-more": "/lib/vant-weapp/load-more/index"
   }
 }
