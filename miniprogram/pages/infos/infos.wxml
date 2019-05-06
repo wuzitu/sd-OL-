@@ -1,21 +1,13 @@
 <view class="infosBox">
   <image src='https://i.loli.net/2019/05/05/5ccea22f96659.png' style='width:100%;height:300rpx;'></image>
+
   <view class="news-card padding-xl radius shadow-blur">
     <text>SD情报</text>
     <view>开发中</view>
   </view>
   <view class="info-title">正在讨论</view>
-  <!-- <view class="comment-card padding-xl radius shadow-blur">
-    <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/10001.png"></image>
-    <view>
-      <view class='discuss'>
-        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/10001.png"></image>
-        <van-rate value="5" readonly="true" name="rate" size="{{ 10 }}" />
-      </view>
-      <text>eee33444444</text>
-    </view>
-  </view> -->
-  <view class="comment-card padding-xl radius shadow-blur bg-img bg-mask padding-tb-xl" style="background-image: url('https://hbimg.huabanimg.com/d772a0e61c4b7e24b70f6104952c601adf84ec1b23ead-lc0zMK_fw658');height:200rpx;overflow:hidden;">
+
+  <view class="comment-card padding-xl radius shadow-blur bg-img bg-mask" style="background-image: url('https://hbimg.huabanimg.com/d772a0e61c4b7e24b70f6104952c601adf84ec1b23ead-lc0zMK_fw658');height:200rpx;overflow:hidden;">
     <view>
       <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/10001.png"></image>
     </view>
@@ -24,26 +16,16 @@
       <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/10001.png" style='height:50rpx;width:50rpx;'></image>
       <van-rate value="5" readonly="true" name="rate" size="{{ 10 }}" />
       <text>2019-05-05</text>
-      <text>eee334444三维丝所所所所所所所所所所所所所所zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz所所所所所送送44</text>
+      <view style='height:150rpx; overflow:hidden'>eee334444三维丝所所所所所所所所所所所所所所zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz所所所所所送送44</view>
     </view>
+  </view>
+  <view class='comment-card radius shadow-blur'>
+    <ad unit-id="adunit-e239848b0dbf51c8"></ad>
   </view>
 
-  <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('https://hbimg.huabanimg.com/5c0c814e28365170bf04a3d4eb46e4d36e6aeab514952-35ohGs_fw658');height: 414rpx;">
-    <view class="padding-xl text-white">
-      <view class="padding-xs text-xl">
-        钢铁之翼
-      </view>
-      <view class="padding-xs">
-        Only the guilty need fear me.
-      </view>
-    </view>
-  </view>
   <!-- 最新评论 -->
   <view>
 
-  </view>
-  <view class="padding-xl radius shadow-blur bg-red margin-top bg-img" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big91005.jpg); width:97%;">
-    <view>根据背景图而改变的阴影</view>
   </view>
 
 </view>

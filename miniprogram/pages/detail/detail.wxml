@@ -1,13 +1,26 @@
 <van-nav-bar title="机体详情" left-text="首页" left-arrow custom-class="nav-bar" bind:click-left="onClickLeft">
   <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
 </van-nav-bar>
-<view class="card">
+<view class="bg-img bg-mask shadow-blur padding-xl radius bg-grey margin-top" style="background-image: url('https://go.sdplayer.club/img/avatar/{{gundam.ID}}.gif');height: 400rpx;background-position:top;">
+  <view class="padding-xl text-white">
+    <view class="padding-xs text-xl">
+      {{gundam.Name || gundam.model}}
+    </view>
+    <view class="padding-xs">
+      {{gundam.nameEN || ''}}
+    </view>
+    <view class="padding-xs">
+      Rank：{{gundam.rank}} 评分：{{gundam.rating}}
+    </view>
+  </view>
+</view>
+<!-- <view class="card">
   <view>
     <image class="image" mode="aspectFill" src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png" />
     <view class="title">{{gundam.Name || gundam.model}}</view>
     <view class='rank'>Rank：{{gundam.rank}} 评分：{{gundam.rating}}</view>
   </view>
-</view>
+</view> -->
 <van-notice-bar text="机体讨论区现已开放! 看看大家的评价和部件推荐吧！" />
 <!-- <view style="color:#FF6600; font-size=30rpx;font-weight:bold;"></view> -->
 
