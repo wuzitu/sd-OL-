@@ -314,6 +314,10 @@ Page({
     })
   },
   tapAD(e) {
+    // 埋点统计查询次数
+    app.aldstat.sendEvent('点击阿拉丁广告', {
+      "用户ID": app.globalData.openid || '未登录',
+    })
     // 广告点击一次消失
     this.setData({
       showAD: false

@@ -54,8 +54,8 @@
     </view>
   </view>
   <view wx:if="{{popuptype == 'ad'}}">
-    <ad unit-id="adunit-e239848b0dbf51c8"></ad>
-    <view class="devide-line" style='margin:20rpx 0'>
+    <ad unit-id="adunit-446ec7bdce648f0e"></ad>
+    <view class="devide-line" style='margin:40rpx 0'>
       <text>恰饭不易，十分感激。</text>
       <view bindtap='donate'>赞赏作者点这里</view>
     </view>

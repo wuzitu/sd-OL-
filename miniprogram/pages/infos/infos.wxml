@@ -29,12 +29,17 @@
       </view>
     </navigator>
     <!-- ad -->
-    <view class='ad-card radius shadow-blur' wx:if="{{index && index%7 == 0}}">
+    <view class='ad-card radius shadow-blur' wx:if="{{index && index == 7}}">
       <ad unit-id="adunit-e239848b0dbf51c8"></ad>
     </view>
   </view>
+
   <!-- 底部loading边 -->
   <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
+  <!-- ad -->
+  <view class='ad-card radius shadow'>
+    <ad unit-id="adunit-e239848b0dbf51c8"></ad>
+  </view>
   <view class="devide-line" wx:if="{{ !loading }}">
     <span>我是有底线的！</span>
   </view>
