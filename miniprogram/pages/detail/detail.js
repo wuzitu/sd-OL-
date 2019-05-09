@@ -169,7 +169,8 @@ Page({
         fixed: "xm0b5b17108142a9e2fec0df8450d6cb"
       }
     },
-    showAD: false
+    showAD: false,
+    commentsList: []
   },
 
   /**
@@ -187,7 +188,8 @@ Page({
       })
     }
     // share情况下，读取数据库加载页面
-    if (options.shareID) {
+    if (!options.shareID) {
+      options.shareID = "10001"
       wx.showLoading({
         title: '加载中',
       })
@@ -201,6 +203,7 @@ Page({
                 gundam: res.data[0]
               })
               wx.hideLoading()
+              load_comment(_this)
             } else {
               handleErr('err')
             }
@@ -216,6 +219,7 @@ Page({
         gundam: tmp
       })
     }
+
 
   },
 
@@ -368,4 +372,26 @@ function updateFever(gundam) {
       console.log(err)
     }
   })
+}
+
+// load 评论
+function load_comment(_this) {
+  setTimeout(() => {
+    let collection = db.collection('comments')
+    collection
+      .where({
+        ID: _this.data.gundam.ID
+      })
+      // .orderBy('day', 'desc')
+      .orderBy('zan', 'desc')
+      .skip(0 * 3).limit(3)
+      .get()
+      .then(res => {
+        _this.setData({
+          commentsList: _this.data.commentsList.concat(res.data),
+          loading: false
+        })
+      })
+  }, 2000)
+
 }

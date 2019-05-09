@@ -1,5 +1,5 @@
 /* miniprogram/pages/detail/detail.wxss */
-
+@import "../infos/infos.wxss";
 .card {
   border: 2px solid #fff;
   border-radius: 5px;
@@ -64,7 +64,8 @@
   max-width: 120px;
 }
 .mkcard-word {
-  font-size: 8px;
+  font-size: 24rpx;
+  width:120rpx;
 }
 
 /* 评论框 */
@@ -87,4 +88,14 @@
 }
 .sp-data{
   border-bottom: 1px solid rgb(206, 205, 205)
+}
+
+.fd-bd-title {
+  padding-left: 20rpx;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #444;
+  border-left: 10rpx solid #47a86c;
 }

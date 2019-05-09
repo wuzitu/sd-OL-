@@ -1,6 +1,5 @@
 //index.js
 const app = getApp()
-let interstitialAd = null
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
@@ -15,15 +14,7 @@ Page({
   },
 
   onLoad: function() {
-    if (wx.createInterstitialAd) {
-      interstitialAd = wx.createInterstitialAd({
-        adUnitId: 'adunit-2aef497222e8ac9d'
-      })
-      interstitialAd.onLoad(() => {})
-      interstitialAd.onError((err) => {})
-      interstitialAd.onClose(() => {})
-    }
-
+    
     let _this = this
     wx.showLoading({
       title: '加载中',
@@ -138,11 +129,11 @@ Page({
   },
 
   onShow: function() {
-    if (interstitialAd) {
-      interstitialAd.show().catch((err) => {
-        console.error(err)
-      })
-    }
+    // if (interstitialAd) {
+    //   interstitialAd.show().catch((err) => {
+    //     console.error(err)
+    //   })
+    // }
   },
 
   // 捐助
@@ -150,7 +141,7 @@ Page({
     wx.previewImage({
       urls: ['http://cdn.sdplayer.club/zanshang.jpg'],
     });
-    // 埋点统计查询次数
+    // 埋点统计次数
     app.aldstat.sendEvent('点击捐赠按钮', {
       "用户ID": app.globalData.openid || '未登录',
     })
@@ -165,11 +156,11 @@ Page({
       popupShow: !this.data.popupShow,
       popuptype: tmp
     })
-    if (interstitialAd && this.data.popuptype == 'ad') {
-      interstitialAd.show().catch((err) => {
-        console.error(err)
-      })
-    }
+    // if (interstitialAd && this.data.popuptype == 'ad') {
+    //   interstitialAd.show().catch((err) => {
+    //     console.error(err)
+    //   })
+    // }
   },
   onSelectAvatar: function(e) {
     let index = e.currentTarget.dataset.index;

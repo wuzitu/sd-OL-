@@ -26,7 +26,7 @@ Page({
     let collection = db.collection('comments')
     collection
       .orderBy('day', 'desc')
-      .orderBy('zan', 'desc')
+      // .orderBy('zan', 'desc')
       .skip(0 * 20).limit(20)
       .get()
       .then(res => {
@@ -84,27 +84,5 @@ Page({
    */
   onShareAppMessage: function() {
 
-  },
-  bannerTapHandler: function(e) {
-    let _id = parseInt(e.currentTarget.id);
-    switch (_id) {
-      case 0:
-        console.log('武磊没得头发');
-        break;
-      case 2:
-        console.log('下辈子也么有');
-        break;
-      default:
-        console.log('胖胖说得对');
-    }
-  },
-  newsTapHandler: function(e) {
-    let _atcId = e.currentTarget.id;
-    console.log(_atcId);
-  },
-  tiebaTapHandler: function(e) {
-    let _id = e.currentTarget.id
-    let _url = this.data.tiebaList[_id].articleUrl;
-    console.log(_id, _url)
   }
 })

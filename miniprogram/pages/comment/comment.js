@@ -236,7 +236,7 @@ Page({
         rateEnable: val.rateEnable,
         rate: val.rate,
         content: val.content,
-        day: moment().format('YYYY-MM-DD')
+        day: moment().format('YYYY-MM-DD H:mm')
       }
       // 关闭弹层
       _this.switchpopup()

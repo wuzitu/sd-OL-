@@ -14,7 +14,7 @@
 .devide-line span {
   position: relative;
   top: -8px;
-  background: #fff;
+  background: #f6f6f6;
   padding: 0px 10px;
 }
 
@@ -35,4 +35,5 @@
   width: 100%;
   top: 0;
   height: 50px;
+  z-index: 5;
 }

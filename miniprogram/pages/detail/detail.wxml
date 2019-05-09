@@ -28,13 +28,13 @@
 <!-- <view style="color:#FF6600; font-size=30rpx;font-weight:bold;"></view> -->
 
 <!-- tab区分武装1&2 -->
-<van-tabs animated swipeable sticky>
-  <van-tab title="武装一" disabled="{{gundam.sp1? false:true}}">
+<van-tabs animated swipeable wx:if="{{gundam.sp1 || gundam.sp2}}">
+  <van-tab title="武装一" disabled="{{gundam.sp1? false:true}}" class="bg-gray light">
     <!-- 必杀 -->
-    <view class='flex justify-center align-center sp-data'> 必杀：{{spMap[gundam.sp1]}}
+    <view class="flex justify-center align-center sp-data bg-blue light"> 必杀：{{spMap[gundam.sp1]}}
       <image src='cloud://online-07f32f.6f6e-online-07f32f/skill/{{gundam.sp1}}.png' style='width:43rpx;height:43rpx'></image>
     </view>
-    <view wx:for="{{[1,2,3]}}" wx:for-item="x" wx:key="x">
+    <view wx:for="{{[1,2,3]}}" wx:for-item="x" wx:key="x" class="{{index%2==0?'bg-gray light':'bg-olive light'}}">
       <view class="margin-lr-xs ">
         <view class="flex  p-xs margin-top-xs mb-sm">
           <view class="flex-twice radius margin-lr-xs">
@@ -69,7 +69,7 @@
       </view>
     </view>
     <!-- 盾牌 -->
-    <view class="flex  p-xs margin-lr-xs mb-sm">
+    <view class="flex  p-xs margin-lr-xs mb-sm bg-olive light">
       <view class="flex-twice margin-xs radius">
         <view class='weapon_img'>
           <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png"></image>
@@ -83,64 +83,67 @@
       </view>
     </view>
     <!-- 盾牌over -->
+    <!-- 无数据展示 -->
+    <view class='flex justify-center align-center' wx:if="{{!gundam.sp1}}">暂无数据</view>
   </van-tab>
-  <van-tab title="{{gundam.sp2? '武装二(R后)':'不可变形'}}" disabled="{{gundam.sp2? false:true}}">
-    必杀：{{spMap[gundam.sp2]}}
-    <view wx:for="{{[1,2,3]}}" wx:for-item="x" wx:key="x">
-      <van-row>
-        <van-col span="7">
-          <view class='weapon_img'>
-            <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/{{gundam['arm2_'+x].img}}.png"></image>
+  <van-tab title="{{gundam.sp2? '武装二(R后)':'不可变形'}}" disabled="{{gundam.sp2? false:true}}" class="bg-gray light">
+    <!-- 无数据展示 -->
+    <view class='flex justify-center align-center' wx:if="{{!gundam.sp2}}">暂无数据</view>
+    <view wx:else>
+      <!-- 必杀 -->
+      <view class='flex justify-center align-center sp-data'> 必杀：{{spMap[gundam.sp2]}}
+        <image src='cloud://online-07f32f.6f6e-online-07f32f/skill/{{gundam.sp2}}.png' style='width:43rpx;height:43rpx'></image>
+      </view>
+      <view wx:for="{{[1,2,3]}}" wx:for-item="x" wx:key="x" class="{{index%2==0?'bg-olive light':'bg-gray light'}}">
+        <view class="margin-lr-xs ">
+          <view class="flex  p-xs margin-top-xs mb-sm">
+            <view class="flex-twice radius margin-lr-xs">
+              <view class='weapon_img'>
+                <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/{{gundam['arm2_'+x].img}}.png"></image>
+              </view>
+            </view>
+            <view class="flex-treble radius margin-lr-xs align-center">
+              <van-tag color="#0776A0" plain wx:if="{{gundam['arm2_'+x].pd}}">
+                {{gundam['arm2_'+x].pd}}
+              </van-tag>
+              <text>{{gundam['arm2_'+x].name || "名称:??"}}</text>
+            </view>
+            <!-- 武器特效 -->
+            <view class="flex-sub radius margin-lr-xs">
+              <van-tag color="#f2826a" plain wx:for="{{gundam['arm2_'+x].effact}}" wx:key="x">
+                {{item}}
+              </van-tag>
+            </view>
           </view>
-        </van-col>
-        <van-col span="11">
-          <van-tag color="#0776A0" plain wx:if="{{gundam['arm2_'+x].pd}}">
-            {{gundam['arm2_'+x].pd}}
-          </van-tag>
-          <text>{{gundam['arm2_'+x].name || "名称:??"}}</text>
-        </van-col>
-        <!-- 武器特效 -->
-        <van-col span="6">
-          <van-tag color="#f2826a" plain wx:for="{{gundam['arm2_'+x].effact}}" wx:key="x">
-            {{item}}
-          </van-tag>
-        </van-col>
-      </van-row>
-      <!-- 武器数据 -->
-      <van-row gutter="" style="font-size:16px;">
-        <van-col span="7">
-          <view wx:if="{{gundam['arm2_'+x].power}}">
-            系数：{{gundam['arm2_'+x].power ||"?"}}
-            <!-- 连发数量 -->
-            <text wx:if="{{gundam['arm2_'+x].biuNum}}">{{gundam['arm2_'+x].biuNum}}</text>
+          <!-- 武器数据 -->
+          <view class="grid col-4 margin-bottom-xs text-center weapon-data">
+            <view wx:if="{{gundam['arm2_'+x].power}}">
+              系数:{{gundam['arm2_'+x].power ||"?"}}
+              <!-- 连发数量 -->
+              <text wx:if="{{gundam['arm2_'+x].biuNum}}">{{gundam['arm2_'+x].biuNum}}</text>
+            </view>
+            <view wx:if="{{gundam['arm2_'+x].gongsu}}">攻速:{{gundam['arm2_'+x].gongsu ||"?"}}</view>
+            <view wx:if="{{gundam['arm2_'+x].des}}">距离:{{gundam['arm2_'+x].des ||"?"}}</view>
+            <view wx:if="{{gundam['arm2_'+x].ping}}">延迟:{{gundam['arm2_'+x].ping ||"?"}}</view>
           </view>
-        </van-col>
-        <van-col span="6">
-          <view wx:if="{{gundam['arm2_'+x].gongsu}}">攻速：{{gundam['arm2_'+x].gongsu ||"?"}}</view>
-        </van-col>
-        <van-col span="6">
-          <view wx:if="{{gundam['arm2_'+x].des}}">距离：{{gundam['arm2_'+x].des ||"?"}}</view>
-        </van-col>
-        <van-col span="5">
-          <view wx:if="{{gundam['arm2_'+x].ping}}">延迟：{{gundam['arm2_'+x].ping ||"?"}}</view>
-        </van-col>
-      </van-row>
-    </view>
-    <!-- 盾牌 -->
-    <view class="flex p-xs margin-bottom-sm mb-sm bg-grey" wx:if="{{gundam.shield2.life || gundam.shield2.def}}">
-      <view class="flex-twice bg-grey padding-sm margin-xs radius">
-        <view class='weapon_img'>
-          <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png"></image>
         </view>
       </view>
-      <view class="flex-treble bg-grey padding-sm margin-xs radius">
-        <text>血量:{{gundam.shield2.life || "?"}}</text>
+      <!-- 盾牌 -->
+      <view class="flex  p-xs margin-lr-xs mb-sm">
+        <view class="flex-twice margin-xs radius">
+          <view class='weapon_img'>
+            <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png"></image>
+          </view>
+        </view>
+        <view class="flex-twice margin-xs radius">
+          <text>血量:{{gundam.shield2.life || "?"}}</text>
+        </view>
+        <view class="flex-sub margin-xs radius">
+          <text>防御:{{gundam.shield2.def || "?"}}</text>
+        </view>
       </view>
-      <view class="flex-sub bg-grey padding-sm margin-xs radius">
-        <text>防御:{{gundam.shield2.def || "?"}}</text>
-      </view>
+      <!-- 盾牌over -->
     </view>
-    <!-- 盾牌over -->
   </van-tab>
 </van-tabs>
 
@@ -168,42 +171,76 @@
     <view wx:if="{{gundam.Machine.length}}">扭蛋机：{{gundam.Machine}}</view>
   </view>
 </van-panel>
+
 <van-panel title="合成列表" status="点击图片查看等级" wx:if="{{gundam.makeNeed_CN.length || gundam.makeNeed.length}}">
-  <van-row>
-    <van-col span="4" wx:for="{{gundam.makeNeed_CN.length? gundam.makeNeed_CN : gundam.makeNeed}}" class="mk-card" wx:key="">
-      <view style="width:100%;margin-left=20px;">
-        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'key'? 'as-key':''}}" bindtap="noticeSubGundam" data-one="{{item}}"></image>
-        <!-- <view class="mkcard-word">{{item.name}}：{{item.Level}}</view> -->
+  <view class="bg-white padding-lr-xs">
+    <view class="flex flex-wrap justify-center">
+      <!-- 单个素材 -->
+      <view wx:for="{{gundam.makeNeed_CN.length? gundam.makeNeed_CN : gundam.makeNeed}}" wx:key="" class='flex flex-direction padding-lr-xs'>
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'key'? 'bg-pink light':'bg-blue light'}}" bindtap="noticeSubGundam" data-one="{{item}}" style="width:120rpx;height:120rpx;"></image>
+        <view class="mkcard-word text-cut">{{item.name}}:{{item.Level}}</view>
       </view>
-    </van-col>
-  </van-row>
+    </view>
+  </view>
 </van-panel>
 <van-panel title="用于合成" status="点击图片查看等级" wx:if="{{gundam.toMake.length}}">
-  <van-row>
-    <van-col span="4" wx:for="{{gundam.toMake}}" class="mk-card" wx:key="">
-      <view style="width:100%;margin-left=20px;">
-        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'as-ke'? 'as-key':''}}" bindtap="noticeSubGundam" data-one="{{item}}"></image>
-        <!-- <view class="mkcard-word">{{item.name}}：{{item.Level}}</view> -->
+  <view class="bg-white padding-lr-xs">
+    <view class="flex flex-wrap justify-center ">
+      <!-- 单个素材 -->
+      <view wx:for="{{gundam.toMake}}" wx:key="" class='flex flex-direction padding-lr-xs'>
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'as-ke'? 'bg-pink light':'bg-blue light'}}" bindtap="noticeSubGundam" data-one="{{item}}" style="width:120rpx;height:120rpx;"></image>
+        <view class="mkcard-word text-cut">{{item.name}}:{{item.Level}}</view>
       </view>
-    </van-col>
-  </van-row>
-</van-panel>
-<van-collapse value="{{ activeName }}" bind:change="onCollapseChange">
-  <van-collapse-item title="机体数据" name="roboData">
-    <view style="padding:0 20px;display:flex;flex-wrap:wrap;justify-content:space-around;">
-      <view>繁体名称：{{gundam.nameCN_G}}</view>
-      <text wx:if="{{gundam.para.fly}}">飞行:{{gundam.para.fly}}</text>
-      <text wx:if="{{gundam.para.move}}">移动:{{gundam.para.move}}</text>
-      <text wx:if="{{gundam.para.boost}}">boost:{{gundam.para.boost}}</text>
-      <text wx:if="{{gundam.para.boost_back}}">
-        boost回复:{{gundam.para.boost_back}}
-      </text>
-      <text wx:if="{{gundam.para.boost_usage}}">
-        boost消耗:{{gundam.para.boost_usage}}
-      </text>
     </view>
-  </van-collapse-item>
-  <van-collapse-item title="其他信息" name="moreInfo">
+  </view>
+</van-panel>
+
+<van-tabs animated swipeable>
+  <van-tab title="维度数据">
+    <view class='margin'>
+      <view class='flex align-center'>
+        <view style='width:60px;'>攻击：</view>
+        <view class="cu-progress round margin-top">
+          <view class="bg-red light" style='width:{{(gundam.ManMaoVal.att/200*10000) / 100.00 + "%"}}'>{{gundam.ManMaoVal.att}}</view>
+        </view>
+      </view>
+      <view class='flex align-center'>
+        <view style='width:60px;'>防御：</view>
+        <view class="cu-progress round margin-top">
+          <view class="bg-blue light" style='width:{{(gundam.ManMaoVal.def/200*10000) / 100.00 + "%"}}'>{{gundam.ManMaoVal.def}}</view>
+        </view>
+      </view>
+      <view class='flex align-center'>
+        <view style='width:60px;'>机动：</view>
+        <view class="cu-progress round margin-top">
+          <view class="bg-olive light" style='width:{{(gundam.ManMaoVal.fly/200*10000) / 100.00 + "%"}}'>{{gundam.ManMaoVal.fly}}</view>
+        </view>
+      </view>
+      <view class='flex align-center'>
+        <view style='width:60px;'>操控：</view>
+        <view class="cu-progress round margin-top">
+          <view class="bg-yellow light" style='width:{{(gundam.ManMaoVal.ctl/200*10000) / 100.00 + "%"}}'>{{gundam.ManMaoVal.ctl}}</view>
+        </view>
+      </view>
+    </view>
+  </van-tab>
+  <van-tab title="机体数据">
+
+    <view class='flex justify-center'>繁体名称：{{gundam.nameCN_G}}</view>
+    <view class="grid col-5 text-center">
+      <view wx:if="{{gundam.para.fly}}">飞行:{{gundam.para.fly}}</view>
+      <view wx:if="{{gundam.para.move}}">移动:{{gundam.para.move}}</view>
+      <view wx:if="{{gundam.para.boost}}">boost:{{gundam.para.boost}}</view>
+      <view wx:if="{{gundam.para.boost_back}}">
+        气回复:{{gundam.para.boost_back}}
+      </view>
+      <view wx:if="{{gundam.para.boost_usage}}">
+        气消耗:{{gundam.para.boost_usage}}
+      </view>
+    </view>
+
+  </van-tab>
+  <van-tab title="更多信息">
     <view style="padding:0 20px">
       <view>势力：{{gundam.force}}</view>
       <view>{{gundam.feature}}</view>
@@ -212,24 +249,44 @@
       <view>机体story：</view>
       <view>{{gundam.story}}</view>
     </view>
-  </van-collapse-item>
-</van-collapse>
+  </van-tab>
+</van-tabs>
 
 <view style='margin:30rpx 0 40rpx 0'>
   <van-cell title="讨论区激烈讨论中！" value="查看评论" is-link url="/pages/comment/comment?g_ID={{gundam.ID}}&g_Name={{gundam.Name || gundam.model}}&g_rate={{gundam.rating || 'null'}}&g_Name_EN={{gundam.nameEN}}" custom-class="comment" title-class="comment-title" />
 
 </view>
 <view wx:if="{{showAD}}">
-  <view class="devide-line" style='color:#6DBEA;'>
-    <span>广告</span>
-  </view>
+
   <view class="xm_banner" style="margin:20rpx;" bindtap='tapAD'>
-    <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad>
-    <ad unit-id="adunit-edcbb3995a947ab1" bindclose="tapAD" binderror="tapAD" wx:if="{{!xmad&&xmad.adData&&xmad.ad&&xmad.ad.banner&&xmad.adData  [xmad.ad.banner]&&xmad.adData[xmad.ad.banner].hasshow}}"></ad>
+    <!-- 小盟广告质量一般，收益低 -->
+    <!-- <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad>
+    <ad unit-id="adunit-edcbb3995a947ab1" bindclose="tapAD" binderror="tapAD" wx:if="{{!xmad&&xmad.adData&&xmad.ad&&xmad.ad.banner&&xmad.adData  [xmad.ad.banner]&&xmad.adData[xmad.ad.banner].hasshow}}"></ad> -->
+    <ad unit-id="adunit-edcbb3995a947ab1"></ad>
+  </view>
+
+  <view class="fd-bd-title">
+    <view>精选评论</view>
+  </view>
+  <view class="solid-bottom text-sm padding" wx:if="{{!commentsList.length}}">
+    <text class="text-grey">暂无评论，快去抢1楼吧！</text>
+  </view>
+  <!-- top评论 -->
+  <view wx:for="{{commentsList}}" wx:key="">
+    <navigator url="/pages/detail/detail?shareID={{item.ID}}" class="comment-card padding-xl radius shadow bg-grey" style="background-image: url({{backgroundList[index%backgroundList.length]}});height:200rpx;overflow:hidden;">
+      <view class='comment-block'>
+        <view class='comment-author'>
+          <image src="{{item.Avatar}}" style='height:50rpx;width:50rpx;'></image>
+          <van-rate value="{{item.rate}}" readonly="true" name="rate" size="{{ 10 }}" custom-class="rate" />
+          <text style="margin-left:10rpx;">{{item.day}}</text>
+        </view>
+        <view style='height:120rpx;word-wrap:break-word;word-break: normal;'>{{item.content}}</view>
+      </view>
+    </navigator>
   </view>
   <!-- 底线 -->
   <view class="devide-line">
-    <span>点击一次，不再显示 ↑</span>
+    <span>已经到底了~</span>
   </view>
 </view>
 
