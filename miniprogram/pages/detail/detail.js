@@ -1,6 +1,5 @@
 import Notify from '../../lib/vant-weapp/notify/notify';
 import Dialog from '../../lib/vant-weapp/dialog/dialog';
-var Page = require('../../utils/xmadx_sdk.min.js').xmad(Page).xmPage;
 import moment from '../../lib/moment'
 const app = getApp()
 
@@ -160,16 +159,8 @@ Page({
     },
     activeName: ['roboData'],
     skillShow: [false, false, false],
-    // ad
-    xmad: {
-      adData: {},
-      ad: {
-        banner: "xm0b5b17108142a9e2fec0df8450d6cb", // 按需引⼊入
-        insert: "xm0b5b17108142a9e2fec0df8450d6cb", // 按需引⼊入
-        fixed: "xm0b5b17108142a9e2fec0df8450d6cb"
-      }
-    },
-    showAD: false,
+
+    showAD: true,
     commentsList: []
   },
 
@@ -181,15 +172,15 @@ Page({
     // let tmp = wx.getStorageSync("oneGundam")
     let _this = this;
     // 广告显示
-    app.globalData.ad_detail_banner = app.globalData.ad_detail_banner || "2019-01-01"
-    if (moment().isAfter(moment(app.globalData.ad_detail_banner), 'day')) {
-      this.setData({
-        showAD: true
-      })
-    }
+    // app.globalData.ad_detail_banner = app.globalData.ad_detail_banner || "2019-01-01"
+    // if (moment().isAfter(moment(app.globalData.ad_detail_banner), 'day')) {
+    //   this.setData({
+    //     showAD: true
+    //   })
+    // }
     // share情况下，读取数据库加载页面
-    if (!options.shareID) {
-      options.shareID = "10001"
+    if (options.shareID) {
+      // options.shareID = "10001"
       wx.showLoading({
         title: '加载中',
       })
@@ -203,6 +194,7 @@ Page({
                 gundam: res.data[0]
               })
               wx.hideLoading()
+              // 读取评论
               load_comment(_this)
             } else {
               handleErr('err')
@@ -218,6 +210,8 @@ Page({
       this.setData({
         gundam: tmp
       })
+      // 读取评论
+      load_comment(_this)
     }
 
 
@@ -331,6 +325,11 @@ Page({
       key: 'ad_detail_banner',
       data: moment().format('YYYY-MM-DD'),
     })
+  },
+  mathers: {
+    toFix: function(val) {
+      return value.toFixed(0)
+    }
   }
 
 })

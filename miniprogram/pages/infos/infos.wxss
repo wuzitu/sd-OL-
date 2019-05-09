@@ -89,6 +89,7 @@ page {
   height:50rpx;
   display: flex;
   justify-content: flex-start;
+  align-content: center;
 }
 .comment-card image {
   width: 120rpx;
@@ -125,4 +126,5 @@ page {
   flex-direction: column;
   height: 170rpx;
   overflow: hidden;
+  width: 100%;
 }

@@ -99,3 +99,7 @@
   color: #444;
   border-left: 10rpx solid #47a86c;
 }
+
+.vanTab{
+  z-index: 0;
+}

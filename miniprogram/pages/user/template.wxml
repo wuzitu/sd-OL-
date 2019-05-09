@@ -1,5 +1,9 @@
 <template name="updateLog">
   <view class="guide">
+    <text class="headline">1.1.5</text>
+    <text class="p">· 新功能：要塞情报板块-最新最热的资讯在这里;</text>
+    <text class="p">· 机体页优化样式,更易于信息展示;</text>
+    <text class="p">· 小广告由腾讯算法提供,如果对你有帮助可以点一下;</text>
     <text class="headline">1.1.0</text>
     <text class="p">· 新功能：评论&点赞, 用户隐私自定义功能;</text>
     <text class="p">· 新功能：bug反馈功能（位置：关于）;</text>

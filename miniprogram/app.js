@@ -1,6 +1,5 @@
 //app.js
 import moment from '/lib/moment'
-var App = require('./utils/xmadx_sdk.min.js').xmad(App, 'App').xmApp;
 
 const ald = require('./utils/ald-stat.js')
 const initApp = (_this) => {
@@ -94,12 +93,12 @@ App({
       }
     })
     // 获取广告显示情况
-    wx.getStorage({
-      key: 'ad_detail_banner',
-      success: function(res) {
-        _this.globalData.ad_detail_banner = res.data || '2019-01-01'
-      },
-    })
+    // wx.getStorage({
+    //   key: 'ad_detail_banner',
+    //   success: function(res) {
+    //     _this.globalData.ad_detail_banner = res.data || '2019-01-01'
+    //   },
+    // })
   }
 })
 
