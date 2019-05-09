@@ -20,6 +20,8 @@
     "van-icon": "/lib/vant-weapp/icon/index",
     "van-tab": "/lib/vant-weapp/tab/index",
     "van-tabs": "/lib/vant-weapp/tabs/index",
-    "xm-ad": "/components/xmAD/xmAD"
+    "xm-ad": "/components/xmAD/xmAD",
+    "van-tab": "/lib/vant-weapp/tab/index",
+    "van-tabs": "/lib/vant-weapp/tabs/index"
   }
 }

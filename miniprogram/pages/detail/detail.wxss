@@ -34,8 +34,8 @@
 }
 
 .weapon_img image{
-  width: 93px;
-  height: 30px;
+  width: 83px;
+  height: 22px;
   position: relative;
 }
 .skill-img image{
@@ -80,4 +80,11 @@
 
 .devide-line span{
   background: #f6f6f6;
+}
+
+.weapon-data{
+  border-bottom: 1px solid rgb(206, 205, 205)
+}
+.sp-data{
+  border-bottom: 1px solid rgb(206, 205, 205)
 }
