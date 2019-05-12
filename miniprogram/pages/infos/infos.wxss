@@ -47,7 +47,7 @@ page {
 }
 
 .news-card {
-  padding: 30rpx;
+  padding: 20rpx;
   border-radius: 12rpx;
   width: 97%;
   margin: 0 auto;
@@ -61,7 +61,9 @@ page {
   box-sizing: border-box;
   height: 300rpx;
 }
-
+.news-content{
+  background: rgba(238, 133, 13, 0.05);
+}
 .comment-card {
   padding: 25rpx;
   border-radius: 12rpx;

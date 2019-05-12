@@ -1,5 +1,8 @@
 <template name="updateLog">
   <view class="guide">
+    <text class="headline">1.1.6</text>
+    <text class="p">· 新功能：🌮情报同步（每2小时）/简陋扭蛋机按钮;</text>
+    <text class="p">· 修复部分数据错误，扭蛋机错误;</text>
     <text class="headline">1.1.5</text>
     <text class="p">· 新功能：要塞情报板块-最新最热的资讯在这里;</text>
     <text class="p">· 机体页优化样式,更易于信息展示;</text>

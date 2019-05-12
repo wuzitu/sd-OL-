@@ -2,12 +2,20 @@
   <!-- <image src='https://i.loli.net/2019/05/05/5ccea22f96659.png' style='width:97%;height:300rpx;margin:0 auto;' class="radius shadow-blur"></image> -->
   <!-- logo -->
   <view class="bg-img radius" style="background-image: url('https://i.loli.net/2019/05/05/5ccea22f96659.png');height: 300rpx; width:97%;margin: 20rpx auto;"></view>
-  <view class="news-card padding-xl radius shadow-blur">
-    <text style='font-weight:bold;font-size:28rpx;'>SD情报</text>
-    <view>功能开发中</view>
-    <view style='height:120rpx;word-wrap:break-word;word-break: normal;'>
-      数据库的维护花费很大精力，感谢你的耐心和支持。 目前希望评论区能有更多有用的情报和勘误；欢迎积极反馈留言。
-    </view>
+  <view class="info-title">SD情报</view>
+  <view class="news-card padding-xl radius shadow-blur text-cut">
+    <!-- <text style='font-weight:bold;font-size:28rpx;'>SD情报</text> -->
+    <!-- <view style='height:240rpx' class='text-cut'>
+      
+    </view> -->
+    <scroll-view scroll-y style="height: 260rpx;">
+      <view class=' text-cut basis-xl ' wx:if="{{!newsList.length}}">数据读取中，请稍候...</view>
+      <navigator wx:for="{{newsList}}" wx:key="" class='text-lg flex justify-between padding-xs radius {{index%2==0?"":"news-content"}}' url='/pages/infos/news?id={{item._id}}'>
+        <view class=' text-cut basis-lg '>{{item.title}}</view>
+        <view class=' '>{{item.sTime}}</view>
+      </navigator>
+    </scroll-view>
+
   </view>
   <view class="info-title">正在讨论</view>
   <!-- top评论 -->
@@ -16,20 +24,20 @@
 
 
       <view>
-        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID||'10001'}}.png" />
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID||'10001 '}}.png" />
       </view>
-      <view class='comment-block'>
+      <view class='comment-block '>
 
-        <view class='comment-author'>
-          <image src="{{item.Avatar}}" style='height:50rpx;width:50rpx;'></image>
+        <view class='comment-author '>
+          <image src="{{item.Avatar}}" style='height:50rpx;width:50rpx; '></image>
           <van-rate value="{{item.rate}}" readonly="true" name="rate" size="{{ 10 }}" custom-class="rate" />
           <text style="margin-left:10rpx;">{{item.day}}</text>
         </view>
-        <view style='height:120rpx;word-wrap:break-word;word-break: normal;'>{{item.content}}</view>
+        <view style='height:120rpx;word-wrap:break-word;word-break: normal; '>{{item.content}}</view>
       </view>
     </navigator>
     <!-- ad -->
-    <view class='ad-card radius shadow-blur' wx:if="{{index && index == 7}}">
+    <view class='ad-card radius shadow-blur ' wx:if="{{index && index == 7}}">
       <ad unit-id="adunit-e239848b0dbf51c8"></ad>
     </view>
   </view>
@@ -37,7 +45,7 @@
   <!-- 底部loading边 -->
   <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
   <!-- ad -->
-  <view class='ad-card radius shadow'>
+  <view class='ad-card radius shadow '>
     <ad unit-id="adunit-e239848b0dbf51c8"></ad>
   </view>
   <view class="devide-line" wx:if="{{ !loading }}">

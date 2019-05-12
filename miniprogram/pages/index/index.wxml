@@ -13,7 +13,7 @@
     <!-- <view class="index-bd"> -->
     <!-- 每一个卡片 -->
     <view wx:for="{{gundamList}}" wx:key="ID">
-      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" price="GB:{{filters.toFix(item.GB_sale*1.15)}} / MB:{{filters.toFix(item.MB_sale*1.15)}}" thumb="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
+      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" price="GB:{{item.GB_sale}} / MB:{{item.MB_sale}}" thumb="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
         <view slot="tags">
           <van-tag color="{{rankColor[item.rank]}}" plain>{{item.rank}}</van-tag>
         </view>
@@ -146,3 +146,9 @@
 </van-popup>
 <!-- 顶部notify -->
 <van-notify id="van-notify" />
+
+<!-- 扭蛋按钮 -->
+<view class="round-click bg-pink light" bindtap='Capsule'>
+  <text>扭蛋</text>
+  <!-- <van-icon name="comment" /> -->
+</view>

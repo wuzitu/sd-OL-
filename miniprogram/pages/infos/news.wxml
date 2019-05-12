@@ -1,0 +1,21 @@
+<view class='margin padding bg-brown light' style='min-height:350px;'>
+
+  <view class="solid-bottom text-xl padding flex align-center flex-direction ">
+    <text class="text-black text-bold">{{title}}</text>
+    <text class="text-black text-lg">{{sTime}}</text>
+  </view>
+  <text>{{content}}</text>
+
+</view>
+<view class='margin-lr text-grey text-xs' style='bottom:10rpx'>from：jianbinguozi.com</view>
+
+
+
+<view class='margin'>
+
+  <view class="devide-line">
+    <span>插个广告，点缀一下</span>
+  </view>
+
+  <ad unit-id="adunit-6e7c98314f618cbb"></ad>
+</view>

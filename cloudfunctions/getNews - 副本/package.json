@@ -10,9 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "wx-server-sdk": "latest",
-    "cheerio": "latest",
-    "moment": "latest",
-    "superagent": "latest",
-    "superagent-charset": "latest"
+    "cheerio": "^1.0.0-rc.3",
+    "moment": "^2.23.0",
+    "superagent": "^4.1.0",
+    "superagent-charset": "^1.2.0"
   }
 }

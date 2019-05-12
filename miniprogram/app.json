@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/infos/infos",
+    "pages/infos/news",
     "pages/detail/detail",
     "pages/index/index",
     "pages/comment/comment",

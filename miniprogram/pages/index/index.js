@@ -178,6 +178,12 @@ Page({
       imageUrl: 'https://go.sdplayer.club/img/logo/logo.png'
     }
   },
+  Capsule: function(e) {
+    let _id = Math.floor(Math.random() * 768 + 1)
+    wx.navigateTo({
+      url: `../detail/detail?_id=${_id}`,
+    })
+  }
 })
 
 
@@ -251,6 +257,8 @@ function goFilter(_this, opt) {
   if (skillTmp) {
     let o = new RegExp(skillTmp, "i")
     let x = [{
+      'skill.0.skill_name': o
+    }, {
       'skill.1.skill_name': o
     }, {
       'skill.2.skill_name': o

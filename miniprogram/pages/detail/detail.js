@@ -155,7 +155,8 @@ Page({
     spMap: {
       "10": "乱舞型",
       "11": "全弹发射型",
-      "12": "地图炮型"
+      "12": "地图炮型",
+      "239": "突进型"
     },
     activeName: ['roboData'],
     skillShow: [false, false, false],
@@ -179,29 +180,45 @@ Page({
     //   })
     // }
     // share情况下，读取数据库加载页面
-    if (options.shareID) {
+    if (options.shareID || options._id) {
       // options.shareID = "10001"
       wx.showLoading({
         title: '加载中',
       })
-      db.collection('SD_DB').where({
+      let collection = db.collection('SD_DB')
+      // 扭蛋
+      if (options.shareID) {
+        collection = collection.where({
           ID: options.shareID
         })
-        .get({
-          success(res) {
-            if (res.data.length) {
-              _this.setData({
-                gundam: res.data[0]
-              })
-              wx.hideLoading()
-              // 读取评论
-              load_comment(_this)
-            } else {
-              handleErr('err')
-            }
-          }
+      } else {
+        // Notify('抽扭蛋吗？希望能得到你想要的机体!')
+        Notify({
+          text: `抽扭蛋吗？希望能得到你想要的机体!`,
+          // selector: '#van-notify',
+          backgroundColor: '#D17BBC'
         })
-
+        collection = collection.where({
+          _id: Number(options._id)
+        })
+      }
+      collection.get({
+        success(res) {
+          if (res.data.length) {
+            _this.setData({
+              gundam: res.data[0]
+            })
+            wx.hideLoading()
+            // 读取评论
+            load_comment(_this)
+          } else {
+            handleErr('err')
+          }
+        },
+        fail(err) {
+          console.log(err)
+        }
+      })
       return;
     }
 
@@ -280,7 +297,8 @@ Page({
     Dialog.confirm({
       // title: '标题',
       message: `${one.name}：${one.Level}`,
-      confirmButtonText: '查看机体'
+      confirmButtonText: '查看机体',
+      closeOnClickOverlay: true
     }).then(() => {
       // on confirm
       wx.navigateTo({

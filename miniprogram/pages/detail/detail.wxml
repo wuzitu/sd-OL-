@@ -2,16 +2,24 @@
 <van-nav-bar title="机体详情" left-text="首页" left-arrow custom-class="nav-bar" bind:click-left="onClickLeft">
   <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
 </van-nav-bar>
-<view class="bg-img bg-mask shadow-blur padding-xl radius bg-grey margin-top" style="background-image: url('https://go.sdplayer.club/img/avatar/{{gundam.ID}}.gif');height: 400rpx;background-position:top;">
-  <view class="padding-xl text-white ">
-    <view class="padding-xs text-xl">
-      {{gundam.Name || gundam.model}}
-    </view>
-    <view class="padding-xs">
-      {{gundam.nameEN || ''}}
-    </view>
-    <view class="padding-xs">
-      Rank：{{gundam.rank}} 评分：{{gundam.rating}}
+<view class='header-container shadow-blur padding-xl'>
+  <image class='img-bg bg-mask' src='cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png' mode='aspectFill'></image>
+  <view class='gd-title flex flex-direction justify-center'>
+    <view class='title-content'>
+      <image class="margin-sm margin-top-lg  text-white " src='cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png'></image>
+      <view class="padding-top-xl text-white ">
+        <view class="padding-right-sm padding-top-xs text-lg">
+          {{gundam.Name||gundam.model}}
+        </view>
+        <view class="padding-top-xs text-xs">
+          {{gundam.nameEN || ''}}
+        </view>
+        <view class="padding-top-xs">
+          Rank：
+          <text class='text-bold'>{{gundam.rank}} </text>
+          <text class='text-sm padding-left-xs'>参考评分：{{gundam.rating}}</text>
+        </view>
+      </view>
     </view>
   </view>
 </view>
@@ -87,7 +95,7 @@
     <!-- 无数据展示 -->
     <view class='flex justify-center align-center' wx:if="{{!gundam.sp1}}">暂无数据</view>
   </van-tab>
-  <van-tab title="{{gundam.sp2? '武装二(R后)':'不可变形'}}" disabled="{{gundam.sp2? false:true}}" class="bg-white">
+  <van-tab title="{{gundam.sp2? '武装二(R后)':'不可变形'}}" disabled="{{gundam.sp2? false:true}}" class="bg-white tabclass">
     <!-- 无数据展示 -->
     <view class='flex justify-center align-center' wx:if="{{!gundam.sp2}}">暂无数据</view>
     <view wx:else>
@@ -165,8 +173,8 @@
 <van-panel title="梦服情报" status="">
   <view style="padding:0 20px">
     <van-row>登场日期：{{gundam.birth_date}}</van-row>
-    <view wx:if="{{gundam.GB_sale}}">GB:{{filters.toFix(gundam.GB_sale*1.15)}}</view>
-    <view wx:if="{{gundam.MB_sale}}">MB:{{filters.toFix(gundam.MB_sale*1.15)}}</view>
+    <view wx:if="{{gundam.GB_sale}}">GB:{{gundam.GB_sale*1.15}}</view>
+    <view wx:if="{{gundam.MB_sale}}">MB:{{gundam.MB_sale*1.15}}</view>
     <view wx:if="{{gundam.map_sale}}">图纸:{{gundam.map_sale}}</view>
     <view wx:if="{{gundam.get_way}}">获取方式：{{gundam.get_way}}</view>
     <view wx:if="{{gundam.Machine.length}}">扭蛋机：{{gundam.Machine}}</view>
@@ -197,7 +205,7 @@
 </van-panel>
 
 <van-tabs animated swipeable z-index="0">
-  <van-tab title="维度数据">
+  <van-tab title="维度数据" class="bg-white">
     <view class='margin'>
       <view class='flex align-center'>
         <view style='width:60px;'>攻击：</view>
@@ -225,7 +233,7 @@
       </view>
     </view>
   </van-tab>
-  <van-tab title="机体数据">
+  <van-tab title="机体数据" class="tabclass bg-white">
 
     <view class='flex justify-center'>繁体名称：{{gundam.nameCN_G}}</view>
     <view class="grid col-5 text-center">
@@ -241,7 +249,7 @@
     </view>
 
   </van-tab>
-  <van-tab title="更多信息">
+  <van-tab title="更多信息" class="bg-white">
     <view style="padding:0 20px">
       <view>势力：{{gundam.force}}</view>
       <view>{{gundam.feature}}</view>

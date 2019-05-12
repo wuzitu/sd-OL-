@@ -1,23 +1,101 @@
+var cheerio = require('cheerio');
+var request = require('superagent');
+
 const cloud = require('wx-server-sdk')
-cloud.init()
+cloud.init({
+  env: 'online-07f32f',
+  // env: 'sdplayer-6bad5c',
+  traceUser: true,
+})
 const db = cloud.database()
-exports.main = async (event, context) => {
+exports.main = async(event, context) => {
   try {
-    return await db.collection('news').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        description: 'learn cloud database',
-        due: new Date('2018-09-01'),
-        tags: [
-          'cloud',
-          'database'
-        ],
-        // 位置（113°E，23°N）
-        location: new db.Geo.Point(113, 23),
-        done: false
-      }
-    })
+
+    return await new Promise(
+      (resolve, reject) => {
+        let newsList = [],
+          count = 0
+        // get news
+        request.get(`http://www.jianbinguozi.com/`)
+          .then(res => {
+            const $ = cheerio.load(res.text)
+            // fs.writeFileSync('page1.html', res.text)
+            let tmpList = $($(".list-bd")[0]).find('li');
+            tmpList.length = 15;
+            tmpList.each((index, news) => {
+
+              let str = $($(news).find('span')).text().trim() || '';
+              let sTime = $($(news).find('time')).text().trim() || ''
+              let href = $($(news).find('a')).attr('href').trim() || ''
+              newsList.push({
+                title: str,
+                sTime: sTime,
+                href: href
+              })
+            })
+
+            newsList.forEach(element => {
+              request.get(`http://www.jianbinguozi.com${element.href}`)
+                .then(res => {
+                  console.log('获取情报OK = 》 ' + element.title)
+                  var $ = cheerio.load(res.text)
+                  $($('.new-bd__inner').find('time')).remove() || '';
+                  let html = $('.new-bd__inner') || '';
+                  var RST = ''
+                  getContent(html)
+
+                  console.log(RST)
+                  // get over
+                  // delete element.href
+                  element.content = RST
+                  count++
+                  if (count >= 15) {
+                    let tmp = []
+                    newsList.forEach((ele, index) => {
+                      // update
+                      tmp.push(
+                        db.collection('news').doc(index + '')
+                        .update({
+                          // data 传入需要局部更新的数据
+                          data: ele
+                        }))
+                    })
+                    resolve(Promise.all(tmp))
+                  }
+
+                  // function
+                  function getContent(node) {
+                    var a = node.contents();
+                    if (a.length == 0) {
+                      if (node.is('br')) {
+                        RST += '\n';
+                      } else {
+                        RST += node.text().trim();
+                      }
+                    } else {
+                      node.contents().each(function(i, elem) {
+                        getContent($(this));
+                      });
+
+                      if (node.is('p') || node.is('tr')) {
+                        RST += '\n';
+                      }
+                    }
+                  }
+                })
+                .catch(err => {
+                  reject(err)
+                })
+            });
+
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
+
   } catch (e) {
     console.error(e)
   }
 }
+let goGet = ''

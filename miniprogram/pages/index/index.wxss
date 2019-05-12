@@ -12,7 +12,8 @@
 /*搜索框  */
 
 .searchForm {
-  padding: 0 20px;
+  padding: 0 0 0 20px;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -68,3 +69,22 @@
   width: 30%;
 }
 
+/* 悬浮按钮 */
+
+.round-click {
+  height: 120rpx;
+  width: 120rpx;
+  /* background-color: #0b6aa1; */
+  /* background-color: #e77de7; */
+  color: #f2f1ef;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 80rpx;
+  right: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  box-shadow: 0px 3px 9px 2px #bfbfbf;
+  /* border: 1px solid rgb(113, 149, 197); */
+}

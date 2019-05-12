@@ -9,6 +9,7 @@ Page({
    */
   data: {
     commentsList: [],
+    newsList: [],
     backgroundList: [
       "https://hbimg.huabanimg.com/b4e6504b42622a99ef283002cc386b52b6ad04622fed2-RQKtS4_fw658",
       "https://hbimg.huabanimg.com/d772a0e61c4b7e24b70f6104952c601adf84ec1b23ead-lc0zMK_fw658",
@@ -22,6 +23,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.initPageContent()
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+  initPageContent: function() {
     let _this = this
     let collection = db.collection('comments')
     collection
@@ -35,15 +46,8 @@ Page({
           loading: false
         })
       })
+    getNews(_this)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -86,3 +90,21 @@ Page({
 
   }
 })
+
+function getNews(_this) {
+  let collection = db.collection('news')
+  collection
+    // .orderBy('_id','asc')
+    // .orderBy('zan', 'desc')
+    .field({
+      title: true,
+      sTime: true,
+      // progress: true
+    })
+    .get()
+    .then(res => {
+      _this.setData({
+        newsList: res.data
+      })
+    })
+}

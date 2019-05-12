@@ -3,7 +3,7 @@
     {
       "name": "newsTrigger",
       "type": "timer",
-      "config": "0 0 */2 * * * *"
+      "config": "*/20 * * * * * *"
     }
   ]
 }
