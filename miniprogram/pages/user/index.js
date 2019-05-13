@@ -99,7 +99,7 @@ Page({
         videoAd.onError((err) => {})
         videoAd.onClose((res) => {})
       }
-    }, 2000)
+    }, 700)
   },
 
   onGetUserInfo: function(e) {

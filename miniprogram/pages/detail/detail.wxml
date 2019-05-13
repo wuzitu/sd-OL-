@@ -7,7 +7,7 @@
   <image class='img-bg bg-mask' src='../../static/img/def-gundam.png' mode='aspectFill' wx:else></image>
   <view class='gd-title flex flex-direction justify-center'>
     <view class='title-content'>
-      <image class="margin-sm margin-top-lg  text-white " src='cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png' wx:if="{{gundam.ID}}"></image>
+      <image class="margin-sm margin-top-lg  text-white " src='cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png' wx:if="{{gundam.ID}}" bindload="onImgLoadend" ></image>
       <image class="margin-sm margin-top-lg  text-white " src='../../static/img/def-gundam.png' wx:else></image>
       <view class="padding-top-xl text-white ">
         <view class="padding-right-sm padding-top-xs text-lg">

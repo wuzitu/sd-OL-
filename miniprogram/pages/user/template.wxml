@@ -1,5 +1,7 @@
 <template name="updateLog">
   <view class="guide">
+    <text class="headline">1.1.7</text>
+    <text class="p">· 优化流畅度，减少图片加载</text>
     <text class="headline">1.1.6</text>
     <text class="p">· 新功能：🌮情报同步（每2小时）/简陋扭蛋机按钮;</text>
     <text class="p">· 修复部分数据错误，扭蛋机错误;</text>

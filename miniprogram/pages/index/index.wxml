@@ -152,3 +152,5 @@
   <text>扭蛋</text>
   <!-- <van-icon name="comment" /> -->
 </view>
+
+<van-toast id="custom-selector" />

@@ -1,6 +1,7 @@
 import utils from '../../utils/utils'
 import cfg from '../../utils/cfg'
 import Notify from '../../lib/vant-weapp/notify/notify';
+import Toast from '../../lib/vant-weapp/toast/toast';
 const app = getApp()
 const db = wx.cloud.database()
 
@@ -180,9 +181,31 @@ Page({
   },
   Capsule: function(e) {
     let _id = Math.floor(Math.random() * 768 + 1)
-    wx.navigateTo({
-      url: `../detail/detail?_id=${_id}`,
-    })
+    // toast
+    const toast = Toast.loading({
+      duration: 0, // 持续展示 toast
+      forbidClick: true, // 禁用背景点击
+      message: '抽扭蛋吗？',
+      loadingType: 'spinner',
+      selector: '#custom-selector'
+    });
+
+    let second = 2;
+    const timer = setInterval(() => {
+      second--;
+      if (second) {
+        toast.setData({
+          message: `希望能得到你想要的机体！`
+        });
+      } else {
+        clearInterval(timer);
+        Toast.clear();
+        wx.navigateTo({
+          url: `../detail/detail?_id=${_id}`,
+        })
+      }
+    }, 1000);
+
   }
 })
 

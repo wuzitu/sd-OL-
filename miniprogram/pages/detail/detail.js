@@ -162,6 +162,7 @@ Page({
     skillShow: [false, false, false],
 
     showAD: true,
+    showAvatar: false,
     commentsList: []
   },
 
@@ -194,7 +195,7 @@ Page({
       } else {
         // Notify('抽扭蛋吗？希望能得到你想要的机体!')
         Notify({
-          text: `抽扭蛋吗？希望能得到你想要的机体!`,
+          text: `祝贺你，获得新机体！`,
           // selector: '#van-notify',
           backgroundColor: '#D17BBC'
         })
@@ -344,10 +345,10 @@ Page({
       data: moment().format('YYYY-MM-DD'),
     })
   },
-  mathers: {
-    toFix: function(val) {
-      return value.toFixed(0)
-    }
+  onImgLoadend(e) {
+    this.setData({
+      showAvatar: true
+    })
   }
 
 })
