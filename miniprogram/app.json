@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/user/index",
     "pages/infos/infos",
     "pages/infos/news",
     "pages/detail/detail",
     "pages/index/index",
     "pages/comment/comment",
-    "pages/user/index",
     "pages/userConsole/userConsole",
     "pages/xmadPage/copyInfo",
     "pages/xmadPage/sell",

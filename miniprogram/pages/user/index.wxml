@@ -28,18 +28,12 @@
     <text bindtap='switchpopup' data-type="about">关于</text> |
     <text bindtap='switchpopup' data-type="ad" style="font-size:27rpx;color:#3399FF">精彩推荐</text>
   </view>
-
-
 </view>
-<!-- <view class="devide-line">
-  <text>感谢一路有你(≧ω≦)/</text>
-  <view>反馈意见，请发至邮箱rabbit586@163.com</view>
-  <view>欢迎登陆网址http://sdplayer.club</view>
-  <view>SD玩家要塞</view>
-  <view style="margin-top:100px" bindtap='donate'>赞助作者</view>
-</view> -->
+
 <van-popup show="{{popupShow}}" bind:close="switchpopup" custom-style="width:100%; height:45%; padding:10rpx 20rpx" position="bottom">
-  <van-icon name="close" bind:tap="switchpopup" data-type="" size="20px" custom-style="float: right;" />
+  <view class='flex justify-end'>
+    <van-icon name="close" bind:tap="switchpopup" data-type="" size="20px" custom-style="float: right;" />
+  </view>
   <view wx:if="{{popuptype == 'updateLog'}}">
     <template is="updateLog" />
   </view>
@@ -54,12 +48,14 @@
     </view>
   </view>
   <view wx:if="{{popuptype == 'ad'}}">
-    <ad unit-id="adunit-446ec7bdce648f0e"></ad>
-    <view class="devide-line" style='margin:40rpx 0'>
-      <text>恰饭不易，十分感激。</text>
-      <view bindtap='donate'>赞赏作者点这里</view>
+    <!-- <view class='flex justify-center'>
+      <van-button round type="info " bind:click="onWatchAD">看一段广告不？</van-button>
+    </view> -->
+    <view class="padding bg-white">
+      <view class="text-left padding">恰饭不易，十分感激。</view>
+      <view class="text-center padding">希望能找到你想要的机体</view>
+      <view class="text-right padding" bindtap='donate'>赞赏作者点这里</view>
     </view>
-
   </view>
 </van-popup>
 <!-- dialog弹窗 -->

@@ -9,7 +9,15 @@
 		"newFeature": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"appid": "wx500669dcb1dad2d0",
 	"projectname": "sd-OL--master",

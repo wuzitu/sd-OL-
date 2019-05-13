@@ -1,4 +1,6 @@
-//index.js
+// 在页面中定义激励视频广告
+let videoAd = null
+let interstitialAd = null
 const app = getApp()
 Page({
   data: {
@@ -14,7 +16,7 @@ Page({
   },
 
   onLoad: function() {
-    
+
     let _this = this
     wx.showLoading({
       title: '加载中',
@@ -78,6 +80,26 @@ Page({
         onFailed(_this)
       }
     })
+
+    setTimeout(() => { // 在页面onLoad回调事件中创建插屏广告实例
+      if (wx.createInterstitialAd) {
+        interstitialAd = wx.createInterstitialAd({
+          adUnitId: 'adunit-2aef497222e8ac9d'
+        })
+        interstitialAd.onLoad(() => {})
+        interstitialAd.onError((err) => {})
+        interstitialAd.onClose(() => {})
+      }
+      // 在页面onLoad回调事件中创建激励视频广告实例
+      if (wx.createRewardedVideoAd) {
+        videoAd = wx.createRewardedVideoAd({
+          adUnitId: 'adunit-41debc9af2440e2f'
+        })
+        videoAd.onLoad(() => {})
+        videoAd.onError((err) => {})
+        videoAd.onClose((res) => {})
+      }
+    }, 2000)
   },
 
   onGetUserInfo: function(e) {
@@ -129,11 +151,7 @@ Page({
   },
 
   onShow: function() {
-    // if (interstitialAd) {
-    //   interstitialAd.show().catch((err) => {
-    //     console.error(err)
-    //   })
-    // }
+
   },
 
   // 捐助
@@ -156,11 +174,11 @@ Page({
       popupShow: !this.data.popupShow,
       popuptype: tmp
     })
-    // if (interstitialAd && this.data.popuptype == 'ad') {
-    //   interstitialAd.show().catch((err) => {
-    //     console.error(err)
-    //   })
-    // }
+    if (interstitialAd && this.data.popuptype == 'ad') {
+      interstitialAd.show().catch((err) => {
+        console.error(err)
+      })
+    }
   },
   onSelectAvatar: function(e) {
     let index = e.currentTarget.dataset.index;
@@ -211,6 +229,19 @@ Page({
     this.setData({
       diagShow: true
     })
+  },
+  onWatchAD(e) {
+    // 用户触发广告后，显示激励视频广告
+    if (videoAd) {
+      videoAd.show().catch(() => {
+        // 失败重试
+        videoAd.load()
+          .then(() => videoAd.show())
+          .catch(err => {
+            console.log('激励视频 广告显示失败')
+          })
+      })
+    }
   }
 })
 

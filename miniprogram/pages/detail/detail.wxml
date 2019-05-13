@@ -3,10 +3,12 @@
   <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
 </van-nav-bar>
 <view class='header-container shadow-blur padding-xl'>
-  <image class='img-bg bg-mask' src='cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png' mode='aspectFill'></image>
+  <image class='img-bg bg-mask' src='cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png' mode='aspectFill' wx:if="{{gundam.ID}}"></image>
+  <image class='img-bg bg-mask' src='../../static/img/def-gundam.png' mode='aspectFill' wx:else></image>
   <view class='gd-title flex flex-direction justify-center'>
     <view class='title-content'>
-      <image class="margin-sm margin-top-lg  text-white " src='cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png'></image>
+      <image class="margin-sm margin-top-lg  text-white " src='cloud://online-07f32f.6f6e-online-07f32f/avatar/{{gundam.ID}}.png' wx:if="{{gundam.ID}}"></image>
+      <image class="margin-sm margin-top-lg  text-white " src='../../static/img/def-gundam.png' wx:else></image>
       <view class="padding-top-xl text-white ">
         <view class="padding-right-sm padding-top-xs text-lg">
           {{gundam.Name||gundam.model}}
@@ -48,14 +50,14 @@
         <view class="flex  p-xs mb-sm">
           <view class="flex-twice radius margin-lr-xs">
             <view class='weapon_img'>
-              <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/{{gundam['arm1_'+x].img}}.png"></image>
+              <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/{{gundam['arm1_'+x].img}}.png" wx:if="{{gundam['arm1_'+x].img}}"></image>
             </view>
           </view>
           <view class="flex-treble radius margin-lr-xs align-center">
             <van-tag color="#0776A0" plain wx:if="{{gundam['arm1_'+x].pd}}">
               {{gundam['arm1_'+x].pd}}
             </van-tag>
-            <text>{{gundam['arm1_'+x].name || "名称:??"}}</text>
+            <text>{{gundam['arm1_'+x].name || "暂无数据"}}</text>
           </view>
           <!-- 武器特效 -->
           <view class="flex-sub radius margin-lr-xs">
@@ -81,7 +83,7 @@
     <view class="flex  p-xs margin-lr-xs mb-sm bg-olive light">
       <view class="flex-twice radius">
         <view class='weapon_img'>
-          <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png"></image>
+          <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png" lazy-load='true'></image>
         </view>
       </view>
       <view class="flex-twice radius">
@@ -93,11 +95,11 @@
     </view>
     <!-- 盾牌over -->
     <!-- 无数据展示 -->
-    <view class='flex justify-center align-center' wx:if="{{!gundam.sp1}}">暂无数据</view>
+    <view class='flex justify-center align-center' wx:if="{{!gundam.sp1}}">暂无信息</view>
   </van-tab>
   <van-tab title="{{gundam.sp2? '武装二(R后)':'不可变形'}}" disabled="{{gundam.sp2? false:true}}" class="bg-white tabclass">
     <!-- 无数据展示 -->
-    <view class='flex justify-center align-center' wx:if="{{!gundam.sp2}}">暂无数据</view>
+    <view class='flex justify-center align-center' wx:if="{{!gundam.sp2}}">暂无信息</view>
     <view wx:else>
       <!-- 必杀 -->
       <view class='flex justify-center align-center sp-data bg-blue light'> 必杀：{{spMap[gundam.sp2]}}
@@ -108,14 +110,14 @@
           <view class="flex  p-xs mb-sm">
             <view class="flex-twice radius margin-lr-xs">
               <view class='weapon_img'>
-                <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/{{gundam['arm2_'+x].img}}.png"></image>
+                <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/{{gundam['arm2_'+x].img}}.png" lazy-load='true'></image>
               </view>
             </view>
             <view class="flex-treble radius margin-lr-xs align-center">
               <van-tag color="#0776A0" plain wx:if="{{gundam['arm2_'+x].pd}}">
                 {{gundam['arm2_'+x].pd}}
               </van-tag>
-              <text>{{gundam['arm2_'+x].name || "名称:??"}}</text>
+              <text>{{gundam['arm2_'+x].name || "暂无数据"}}</text>
             </view>
             <!-- 武器特效 -->
             <view class="flex-sub radius margin-lr-xs">
@@ -141,7 +143,7 @@
       <view class="flex p-xs margin-lr-xs mb-sm bg-olive light">
         <view class="flex-twice radius">
           <view class='weapon_img'>
-            <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png"></image>
+            <image src="cloud://online-07f32f.6f6e-online-07f32f/weapon/999.png" lazy-load='true'></image>
           </view>
         </view>
         <view class="flex-twice radius">
@@ -160,7 +162,7 @@
 <van-panel title="技能" status="点击技能查看简介">
   <view wx:for="{{gundam.skill}}" wx:key="" wx:for-index="sindex" style="padding: 0 20px;">
     <view class='skill-img' bindtap="toggleSkillShow" data-idx="{{sindex}}">
-      <image src='cloud://online-07f32f.6f6e-online-07f32f/skill/{{item.id}}.png'></image>
+      <image src='cloud://online-07f32f.6f6e-online-07f32f/skill/{{item.id}}.png' lazy-load='true' wx:if="{{item.id}}"></image>
       <text>{{item.skill_name}}</text>
     </view>
     <view wx:if="{{skillShow[sindex]}}">
@@ -186,7 +188,7 @@
     <view class="flex flex-wrap justify-center">
       <!-- 单个素材 -->
       <view wx:for="{{gundam.makeNeed_CN.length? gundam.makeNeed_CN : gundam.makeNeed}}" wx:key="" class='flex flex-direction padding-lr-xs'>
-        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'key'? 'bg-pink light':'bg-blue light'}}" bindtap="noticeSubGundam" data-one="{{item}}" style="width:120rpx;height:120rpx;"></image>
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'key'? 'bg-pink light':'bg-blue light'}}" bindtap="noticeSubGundam" data-one="{{item}}" style="width:120rpx;height:120rpx;" lazy-load="true"></image>
         <view class="mkcard-word text-cut">{{item.name}}:{{item.Level}}</view>
       </view>
     </view>
@@ -197,7 +199,7 @@
     <view class="flex flex-wrap justify-center ">
       <!-- 单个素材 -->
       <view wx:for="{{gundam.toMake}}" wx:key="" class='flex flex-direction padding-lr-xs'>
-        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'as-ke'? 'bg-pink light':'bg-blue light'}}" bindtap="noticeSubGundam" data-one="{{item}}" style="width:120rpx;height:120rpx;"></image>
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.id}}.png" class="{{item.role&&item.role == 'as-ke'? 'bg-pink light':'bg-blue light'}}" bindtap="noticeSubGundam" data-one="{{item}}" style="width:120rpx;height:120rpx;" lazy-load="true"></image>
         <view class="mkcard-word text-cut">{{item.name}}:{{item.Level}}</view>
       </view>
     </view>
@@ -287,7 +289,7 @@
       <view class='comment-block'>
         <view class='flex justify-between'>
           <view class='comment-author'>
-            <image src="{{item.Avatar}}" style='height:50rpx;width:50rpx;'></image>
+            <image src="{{item.Avatar}}" style='height:50rpx;width:50rpx;' lazy-load="true"></image>
             <van-rate value="{{item.rate}}" readonly="true" name="rate" size="{{ 10 }}" custom-class="rate" />
             <text style="margin-left:15rpx;">{{item.day}}</text>
           </view>

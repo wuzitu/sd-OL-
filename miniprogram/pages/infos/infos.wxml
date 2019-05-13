@@ -24,12 +24,12 @@
 
 
       <view>
-        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID||'10001 '}}.png" />
+        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID||'10001 '}}.png" lazy-load="true" />
       </view>
       <view class='comment-block '>
 
         <view class='comment-author '>
-          <image src="{{item.Avatar}}" style='height:50rpx;width:50rpx; '></image>
+          <image src="{{item.Avatar}}" style='height:50rpx;width:50rpx;' lazy-load="true"></image>
           <van-rate value="{{item.rate}}" readonly="true" name="rate" size="{{ 10 }}" custom-class="rate" />
           <text style="margin-left:10rpx;">{{item.day}}</text>
         </view>
