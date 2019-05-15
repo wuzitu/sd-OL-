@@ -175,8 +175,8 @@
 <van-panel title="梦服情报" status="">
   <view style="padding:0 20px">
     <van-row>登场日期：{{gundam.birth_date}}</van-row>
-    <view wx:if="{{gundam.GB_sale}}">GB:{{gundam.GB_sale*1.15}}</view>
-    <view wx:if="{{gundam.MB_sale}}">MB:{{gundam.MB_sale*1.15}}</view>
+    <view wx:if="{{gundam.GB_sale}}">GB:{{gundam.GB_sale}}</view>
+    <view wx:if="{{gundam.MB_sale}}">MB:{{gundam.MB_sale}}</view>
     <view wx:if="{{gundam.map_sale}}">图纸:{{gundam.map_sale}}</view>
     <view wx:if="{{gundam.get_way}}">获取方式：{{gundam.get_way}}</view>
     <view wx:if="{{gundam.Machine.length}}">扭蛋机：{{gundam.Machine}}</view>
