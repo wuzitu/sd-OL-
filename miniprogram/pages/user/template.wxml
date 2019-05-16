@@ -1,5 +1,7 @@
 <template name="updateLog">
   <view class="guide">
+    <text class="headline">1.1.8</text>
+    <text class="p">· 数据库扩充，武器数据补完。</text>
     <text class="headline">1.1.7</text>
     <text class="p">· 优化流畅度，减少图片加载</text>
     <text class="headline">1.1.6</text>
