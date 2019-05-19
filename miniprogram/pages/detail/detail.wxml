@@ -69,23 +69,44 @@
           </view>
         </view>
         <!-- 武器数据 -->
-        <view class="grid col-4 text-center weapon-data">
+        <!-- <view class="grid col-4 text-center weapon-data">
           <view wx:if="{{gundam['arm1_'+x].power}}">
             系数:{{gundam['arm1_'+x].power ||"?"}}
-            <!-- 连发数量 -->
             <text wx:if="{{gundam['arm1_'+x].biuNum}}">{{gundam['arm1_'+x].biuNum}}</text>
           </view>
           <view wx:if="{{gundam['arm1_'+x].gongsu}}">攻速:{{gundam['arm1_'+x].gongsu ||"?"}}</view>
           <view wx:if="{{gundam['arm1_'+x].des}}">距离:{{gundam['arm1_'+x].des ||"?"}}</view>
           <view wx:if="{{gundam['arm1_'+x].ping}}">延迟:{{gundam['arm1_'+x].ping ||"?"}}</view>
+        </view> -->
+
+        <view class="grid col-4 text-center weapon-data">
+          <view>系数</view>
+          <view>攻速</view>
+          <view>距离</view>
+          <view>延迟</view>
         </view>
-        <view class="grid col-3 text-center weapon-data">
-          <view wx:if="{{gundam['arm1_'+x].ammunitition}}">
-            弹药:{{gundam['arm1_'+x].ammunitition ||"?"}}
+        <view class="grid col-4 text-center weapon-data">
+          <view>{{gundam['arm1_'+x].power ||"-"}}
+            <!-- 连发数量 -->
+            <text wx:if="{{gundam['arm1_'+x].biuNum}}">{{gundam['arm1_'+x].biuNum}}</text>
           </view>
-          <view wx:if="{{gundam['arm1_'+x].reload}}">装填:{{gundam['arm1_'+x].reload ||"?"}}</view>
-          <view wx:if="{{gundam['arm1_'+x].effactMore}}">{{gundam['arm1_'+x].effactMore ||"?"}}</view>
+          <view>{{gundam['arm1_'+x].gongsu ||"-"}}</view>
+          <view>{{gundam['arm1_'+x].des ||"-"}}</view>
+          <view>{{gundam['arm1_'+x].ping ||"-"}}</view>
         </view>
+        <view class="grid col-4 text-center weapon-data">
+          <view>弹药</view>
+          <view>装填</view>
+          <view>倒地</view>
+          <view>更多</view>
+        </view>
+        <view class="grid col-4 text-center weapon-data">
+          <view>{{gundam['arm1_'+x].ammunitition ||"-"}}</view>
+          <view>{{gundam['arm1_'+x].reload ||"-"}}</view>
+          <view>{{gundam['arm1_'+x].dfloor ||"-"}}</view>
+          <view>{{gundam['arm1_'+x].effactMore ||"-"}}</view>
+        </view>
+        <view wx:if="{{gundam['arm1_'+x].effactMore}}">{{gundam['arm1_'+x].effactMore ||"?"}}</view>
       </view>
     </view>
     <!-- 盾牌 -->
