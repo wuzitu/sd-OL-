@@ -206,6 +206,9 @@ Page({
       collection.get({
         success(res) {
           if (res.data.length) {
+            if (res.data[0].skill[2] && res.data[0].skill[2].skill_name.match("型必杀")) {
+              res.data[0].skill.length = 2
+            }
             _this.setData({
               gundam: res.data[0]
             })
@@ -225,6 +228,9 @@ Page({
 
     let tmp = getApp().globalData.oneGundam
     if (tmp) {
+      if (tmp.skill[2] && tmp.skill[2].skill_name.match("型必杀")) {
+        tmp.skill.length = 2
+      }
       this.setData({
         gundam: tmp
       })

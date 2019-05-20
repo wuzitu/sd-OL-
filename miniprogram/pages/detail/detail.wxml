@@ -46,6 +46,7 @@
     <!-- 必杀 -->
     <view class="flex justify-center align-center sp-data bg-blue light"> 必杀：{{spMap[gundam.sp1]}}
       <image src='cloud://online-07f32f.6f6e-online-07f32f/skill/{{gundam.sp1}}.png' style='width:43rpx;height:43rpx'></image>
+      <text wx:if="{{gundam.sp1_p}}">（{{gundam.sp1_p}}）</text>
     </view>
     <view wx:for="{{[1,2,3]}}" wx:for-item="x" wx:key="x" class="{{index%2==0?'bg-white':'bg-olive light'}}">
       <view class="margin-lr-xs ">
@@ -79,7 +80,7 @@
           <view wx:if="{{gundam['arm1_'+x].ping}}">延迟:{{gundam['arm1_'+x].ping ||"?"}}</view>
         </view> -->
 
-        <view class="grid col-4 text-center weapon-data">
+        <view class="grid col-4 text-center">
           <view>系数</view>
           <view>攻速</view>
           <view>距离</view>
@@ -94,7 +95,7 @@
           <view>{{gundam['arm1_'+x].des ||"-"}}</view>
           <view>{{gundam['arm1_'+x].ping ||"-"}}</view>
         </view>
-        <view class="grid col-4 text-center weapon-data">
+        <view class="grid col-4 text-center">
           <view>弹药</view>
           <view>装填</view>
           <view>倒地</view>
