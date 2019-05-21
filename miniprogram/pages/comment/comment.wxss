@@ -64,6 +64,7 @@
 .discuss-zan{
   font-size: 30rpx;
   color: rgb(184, 184, 184);
+  min-width: 50rpx;
 }
 .discuss-zan text{
   margin: 10rpx;

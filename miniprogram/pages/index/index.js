@@ -80,15 +80,15 @@ Page({
   },
 
   goDetail: function(e) {
-    // let one = JSON.stringify(e.currentTarget.dataset.one)
-    // wx.navigateTo({
-    //   url: `../detail/detail?gundam=${one}`
-    // })
+    
     let one = e.currentTarget.dataset.one
-    // wx.setStorageSync("oneGundam", one)
-    getApp().globalData.oneGundam = one;
+    // getApp().globalData.oneGundam = one;
+    // wx.navigateTo({
+    //   url: `../detail/detail?gundam=${one.ID}`
+    // })
+
     wx.navigateTo({
-      url: `../detail/detail?gundam=${one.ID}`
+      url: `/pages/detail/detail?shareID=${one.ID}`
     })
   },
   searchInput(e) {
@@ -329,6 +329,16 @@ function goFilter(_this, opt) {
   }
 
   collection.skip(_this.data.page * 20).limit(20)
+    .field({
+      Name: true,
+      ID: true,
+      model: true,
+      GB_sale: true,
+      MB_sale: true,
+      fightType: true,
+      landType: true,
+      rank:true
+    })
     .get({
       success: res => {
         _this.setData({

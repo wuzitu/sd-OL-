@@ -1,5 +1,6 @@
 /* miniprogram/pages/detail/detail.wxss */
-@import "../infos/infos.wxss";
+/* @import "../infos/infos.wxss"; */
+@import "../comment/comment.wxss";
 
 .header-container {
   display: flex;

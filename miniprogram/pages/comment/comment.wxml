@@ -59,7 +59,11 @@
         </view>
         <view class='discuss-zan' bindtap="onZan" data-docid="{{item._id}}">
           <text>{{item.zan}}</text>
-          <van-icon name="{{zanMap[item._id]?'like':'like-o'}}" />
+          <!-- <van-icon name="{{zanMap[item._id]?'like':'like-o'}}" />
+          <van-icon name="{{zanMap[item._id]?'appreciate':'appreciatefill'}}" /> -->
+          <!-- <view class="cu-item"> -->
+          <text class="cuIcon-{{zanMap[item._id]?'appreciatefill':'appreciate'}} lg text-gray"></text>
+          <!-- </view> -->
         </view>
       </view>
       <view class='discuss-body'>
@@ -72,6 +76,12 @@
 <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
 <view class="devide-line" wx:if="{{ !loading }}">
   <span>共找到{{totalCount}}条，没有更多数据啦</span>
+</view>
+
+<!-- 广告位 -->
+<view class='margin-sm bg-blue light radius shadow' style='min-height:200rpx;'>
+  <ad unit-id="adunit-446ec7bdce648f0e" wx:if="{{commentsList.length >= 5}}"></ad>
+  <view wx:else class='text-center'>看起来评论并不多，留下你的足迹！</view>
 </view>
 <!-- 发布按钮 -->
 <view class="round-click" bindtap='showPopup'>

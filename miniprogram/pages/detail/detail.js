@@ -97,7 +97,7 @@ Page({
         "gongsu": "1.3",
         "ping": "5"
       },
-      "sp1": "10",
+      "sp1": "",
       "shield1": {
         "life": "1000",
         "def": "50%"
@@ -406,8 +406,8 @@ function load_comment(_this) {
       .where({
         ID: _this.data.gundam.ID
       })
-      // .orderBy('day', 'desc')
       .orderBy('zan', 'desc')
+      .orderBy('day', 'desc')
       .skip(0 * 3).limit(3)
       .get()
       .then(res => {
@@ -416,6 +416,6 @@ function load_comment(_this) {
           loading: false
         })
       })
-  }, 2000)
+  }, 1000)
 
 }
