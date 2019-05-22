@@ -79,7 +79,7 @@
 </view>
 
 <!-- 广告位 -->
-<view class='margin-sm bg-blue light radius shadow' style='min-height:200rpx;'>
+<view class='margin-sm bg-blue light radius shadow' style='min-height:200rpx;' wx:if="{{!loading}}">
   <ad unit-id="adunit-446ec7bdce648f0e" wx:if="{{commentsList.length >= 5}}"></ad>
   <view wx:else class='text-center'>看起来评论并不多，留下你的足迹！</view>
 </view>

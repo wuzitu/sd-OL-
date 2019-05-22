@@ -278,7 +278,8 @@ function goFilter(_this, opt) {
   // skill
   let skillTmp = _this.data.filterskill || null
   if (skillTmp) {
-    let o = new RegExp(skillTmp, "i")
+    // let o = new RegExp(skillTmp, "i")
+    let o = skillTmp
     let x = [{
       'skill.0.skill_name': o
     }, {
@@ -297,6 +298,34 @@ function goFilter(_this, opt) {
         collection = collection
           .orderBy('birth_date', 'desc')
           .orderBy('fever', 'desc')
+        break;
+      case 'Rank(SCBA)':
+        collection = collection
+          .orderBy('rank', 'desc')
+        break;
+      case '3维总和':
+        collection = collection
+          .orderBy('ManMaoVal.D3sum', 'desc')
+        break;
+      case '4维总和':
+        collection = collection
+          .orderBy('ManMaoVal.D4sum', 'desc')
+        break;
+      case '攻击':
+        collection = collection
+          .orderBy('ManMaoVal.att', 'desc')
+        break;
+      case '防御':
+        collection = collection
+          .orderBy('ManMaoVal.def', 'desc')
+        break;
+      case '机动':
+        collection = collection
+          .orderBy('ManMaoVal.fly', 'desc')
+        break;
+      case '操控(难度)':
+        collection = collection
+          .orderBy('ManMaoVal.ctl', 'desc')
         break;
       case '登场日期':
         collection = collection

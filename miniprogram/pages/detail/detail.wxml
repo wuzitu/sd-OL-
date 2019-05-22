@@ -211,7 +211,7 @@
 </van-tabs>
 
 <!-- skill -->
-<van-panel title="技能(点击查看数据)" status="点击技能查看简介">
+<van-panel title="技能(点击查看更多数据)" status="点击技能查看简介">
   <view wx:for="{{gundam.skill}}" wx:key="" wx:for-index="sindex" style="padding: 0 20px;">
     <view bindtap="toggleSkillShow" data-idx="{{sindex}}">
       <view class='skill-img'>
@@ -228,8 +228,7 @@
 <!-- skill over -->
 <!-- <view span="9">变身:{{gundam.R}}</view> -->
 <van-panel title="梦服情报" status="">
-
-  <view style="padding:0 20px">
+  <view class='margin-sm margin-lr'>
     <view class="grid col-5 text-center weapon-data">
       <view>登场日期</view>
       <view>GB</view>
@@ -348,7 +347,8 @@
       </view>
       <view>{{gundam.rare || '-'}}</view>
     </view>
-
+    <view wx:if="{{gundam.ManMaoVal.boost_time}}" class='margin-top-sm'>机动数据1:{{gundam.ManMaoVal.boost_time}}</view>
+    <view wx:if="{{gundam.ManMaoVal.boost_time2}}" class='margin-top-sm'>机动数据2:{{gundam.ManMaoVal.boost_time2}}</view>
   </van-tab>
   <van-tab title="更多信息" class="bg-white">
     <view style="padding:0 20px">
