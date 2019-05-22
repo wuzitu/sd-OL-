@@ -221,7 +221,7 @@
       <view>{{item.skill_detail}}</view>
     </view>
     <view wx:if="{{skillShow[sindex]}}">
-      <view>{{item.ext}}</view>
+      <view class='text-grey'>{{item.ext}}</view>
     </view>
   </view>
 </van-panel>

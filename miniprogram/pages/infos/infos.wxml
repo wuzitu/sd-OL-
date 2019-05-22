@@ -8,10 +8,12 @@
       </view>
       <view class="padding-top-xs">
         机体数据库大量扩充&更新
+        新增4维排序功能。
       </view>
       <view class="padding-top-xs">
         欢迎积极反馈错误，有问题及时告知。若数据错误严重，我会回退到上一版本！
-      </view>      
+      </view>
+      感谢你的支持。
     </view>
   </view>
   <view class="info-title">SD情报</view>

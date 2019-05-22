@@ -131,6 +131,7 @@
     <view class="devide-line">
       <span>我是有底线的！</span>
     </view>
+    <view style='height:40px'></view>
   </scroll-view>
   <view class='filter-btn-group'>
     <van-button type="default" size="small" bindtap='showfilter' custom-class='filter_btn' style='width:30%'>
