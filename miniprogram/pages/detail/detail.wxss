@@ -6,9 +6,11 @@
   display: flex;
   flex-direction: row;
   height: 400rpx;
+  width:100%;
   background-color: #444;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .gd-title {

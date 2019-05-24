@@ -4,6 +4,8 @@ import Notify from '../../lib/vant-weapp/notify/notify';
 import Toast from '../../lib/vant-weapp/toast/toast';
 const app = getApp()
 const db = wx.cloud.database()
+// 在页面中定义插屏广告
+let interstitialAd = null
 
 Page({
   data: {
@@ -45,9 +47,34 @@ Page({
 
   },
   onLoad(options) {
+    if (app.globalData.gdFilter && app.globalData.gdFilter.find) {
+      return
+    }
     let _this = this;
     initFilterData(_this);
     goFilter(_this);
+
+
+    setTimeout(() => {
+      // 在页面onLoad回调事件中创建插屏广告实例
+      if (wx.createInterstitialAd) {
+        interstitialAd = wx.createInterstitialAd({
+          adUnitId: 'adunit-44f80c1971570587'
+        })
+        interstitialAd.onLoad(() => {})
+        interstitialAd.onError((err) => {})
+        interstitialAd.onClose(() => {})
+      }
+    }, 500)
+  },
+  onShow() {
+    let _this = this;
+    if (app.globalData.gdFilter && app.globalData.gdFilter.find) {
+      _this.filterClear()
+      _this.setData(app.globalData.gdFilter)
+      _this.onSearch()
+      app.globalData.gdFilter.find = false
+    }
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -80,7 +107,7 @@ Page({
   },
 
   goDetail: function(e) {
-    
+
     let one = e.currentTarget.dataset.one
     // getApp().globalData.oneGundam = one;
     // wx.navigateTo({
@@ -143,6 +170,7 @@ Page({
     _this.setData({
       rankFilter: [],
       filterMachine: [],
+      searchVal: '',
       filterfightType: '',
       filterspecial: '',
       filterlandType: '',
@@ -197,6 +225,12 @@ Page({
         toast.setData({
           message: `希望能得到你想要的机体！`
         });
+        // 在适合的场景显示插屏广告
+        if (interstitialAd) {
+          interstitialAd.show().catch((err) => {
+            console.error(err)
+          })
+        }
       } else {
         clearInterval(timer);
         Toast.clear();
@@ -366,7 +400,7 @@ function goFilter(_this, opt) {
       MB_sale: true,
       fightType: true,
       landType: true,
-      rank:true
+      rank: true
     })
     .get({
       success: res => {

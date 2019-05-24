@@ -355,8 +355,20 @@ Page({
     this.setData({
       showAvatar: true
     })
+  },
+  goFilterGD(e) {
+    let _this = this
+    let type = e.currentTarget.dataset.type
+    let d = e.currentTarget.dataset.d
+    let tmp = {
+      find: true
+    }
+    tmp[`filter${type}`] = d
+    app.globalData.gdFilter = (tmp)
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
   }
-
 })
 
 function handleErr(err) {

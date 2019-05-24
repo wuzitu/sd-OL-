@@ -2,7 +2,7 @@
   <!-- <image src='https://i.loli.net/2019/05/05/5ccea22f96659.png' style='width:97%;height:300rpx;margin:0 auto;' class="radius shadow-blur"></image> -->
   <!-- logo -->
   <view class="bg-img radius bg-mask" style="background-image: url('https://i.loli.net/2019/05/05/5ccea22f96659.png');height: 300rpx; width:97%;margin: 20rpx auto;">
-    <view class="padding-xl text-white ">
+    <view class="padding text-white ">
       <view class="padding-right-sm padding-top-xs text-lg">
         要塞公告
       </view>
@@ -13,7 +13,7 @@
       <view class="padding-top-xs">
         欢迎积极反馈错误，有问题及时告知。若数据错误严重，我会回退到上一版本！
       </view>
-      感谢你的支持。
+      感谢你的支持。小广告由腾讯算法提供,如果对你有帮助可以点一下。
     </view>
   </view>
   <view class="info-title">SD情报</view>

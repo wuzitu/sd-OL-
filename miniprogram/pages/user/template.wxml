@@ -2,6 +2,8 @@
   <view class="guide">
     <text class="headline">1.1.8</text>
     <text class="p">· 数据库扩充，武器数据补完。</text>
+    <text class="p">· 增加4维、rank排序。</text>
+    <text class="p">· 修改技能筛选等bug。</text>
     <text class="headline">1.1.7</text>
     <text class="p">· 优化流畅度，减少图片加载</text>
     <text class="headline">1.1.6</text>
