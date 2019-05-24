@@ -17,7 +17,8 @@ Page({
       "https://hbimg.huabanimg.com/fb3ee7f9c0a038b596318ab806c4d9d9196ee4bbe26e-fERGeR_fw658",
       "https://hbimg.huabanimg.com/a2a17648ac2ae8cb30da64a39c71ae1b1251777018a5a-6FE5VG_fw658"
     ],
-    loading: true
+    loading: true,
+    announcement: ""
   },
 
   /**
@@ -48,6 +49,7 @@ Page({
         })
       })
     getNews(_this)
+    getAnnunce(_this)
   },
   /**
    * 生命周期函数--监听页面显示
@@ -104,8 +106,27 @@ function getNews(_this) {
     })
     .get()
     .then(res => {
+      if (res.data.length > 15) {
+        // 公告板
+        _this.setData({
+          announcement: res.data[15]
+        })
+        res.data.length = 15;
+      }
       _this.setData({
         newsList: res.data
+      })
+    })
+}
+
+function getAnnunce(_this) {
+  let collection = db.collection('announcement')
+  collection
+    .get()
+    .then(res => {
+      // 公告板
+      _this.setData({
+        announcement: res.data[0] ? res.data[0].content : ""
       })
     })
 }

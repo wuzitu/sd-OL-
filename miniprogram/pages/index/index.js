@@ -226,7 +226,8 @@ Page({
           message: `希望能得到你想要的机体！`
         });
         // 在适合的场景显示插屏广告
-        if (interstitialAd) {
+        // 概率1/2
+        if (interstitialAd && _id%2==0) {
           interstitialAd.show().catch((err) => {
             console.error(err)
           })
@@ -239,7 +240,10 @@ Page({
         })
       }
     }, 1000);
-
+    // 埋点统计查询次数
+    app.aldstat.sendEvent('点击扭蛋', {
+      "用户ID": app.globalData.openid || '未登录',
+    })
   }
 })
 
