@@ -221,7 +221,9 @@
       <view>{{item.skill_detail}}</view>
     </view>
     <view wx:if="{{skillShow[sindex]}}">
-      <view class='text-grey'>{{item.ext}}<button class="cu-btn round sm bg-grey light" bindtap="goFilterGD" data-type="skill" data-d="{{item.skill_name}}">查询相同技能</button></view>
+      <view class='text-grey'>{{item.ext}}
+        <button class="cu-btn round sm bg-grey light" bindtap="goFilterGD" data-type="skill" data-d="{{item.skill_name}}">查询相同技能</button>
+      </view>
     </view>
   </view>
 </van-panel>
