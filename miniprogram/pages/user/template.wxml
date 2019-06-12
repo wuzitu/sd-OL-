@@ -1,5 +1,10 @@
 <template name="updateLog">
   <view class="guide">
+    <text class="headline">1.1.9</text>
+    <text class="p">· 首页新功能：下拉刷新</text>
+    <text class="p">· 优化果子新闻日期显示(方便失忆)</text>
+    <text class="p">· 添加评论间隔，防止无意义刷屏</text>
+    <text class="p">· 开放rank：AU 查询</text>
     <text class="headline">1.1.8</text>
     <text class="p">· 数据库扩充，武器数据补完。</text>
     <text class="p">· 增加4维、rank排序。</text>

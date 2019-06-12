@@ -66,7 +66,7 @@
             <van-checkbox name="AR">AR</van-checkbox>
           </van-col>
           <van-col span="6">
-            <van-checkbox name="AU" disabled='true'>AU</van-checkbox>
+            <van-checkbox name="AU"><text class='bg-mauve light'>AU</text></van-checkbox>
           </van-col>
           <van-col span="6">
             <van-checkbox name="B">B</van-checkbox>

@@ -1,5 +1,6 @@
 var cheerio = require('cheerio');
 var request = require('superagent');
+var moment = require('moment');
 
 const cloud = require('wx-server-sdk')
 cloud.init({
@@ -26,10 +27,13 @@ exports.main = async(event, context) => {
 
               let str = $($(news).find('span')).text().trim() || '';
               let sTime = $($(news).find('time')).text().trim() || ''
+              // let sTime = $($(news).find('time')).attr('datetime') ? $($(news).find('time')).attr('datetime').trim() : sDate;
+              // let sMoment = $($(news).find('time')).attr('datetime') ? moment($($(news).find('time')).attr('datetime').trim()).format('HH:mm:ss') : '未知时间';
               let href = $($(news).find('a')).attr('href').trim() || ''
               newsList.push({
                 title: str,
                 sTime: sTime,
+                // sMoment: sMoment,
                 href: href
               })
             })
@@ -43,7 +47,7 @@ exports.main = async(event, context) => {
                   let html = $('.new-bd__inner') || '';
                   var RST = ''
                   getContent(html)
-
+ 
                   console.log(RST)
                   // get over
                   // delete element.href

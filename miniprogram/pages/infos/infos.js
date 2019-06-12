@@ -1,6 +1,8 @@
 // miniprogram/pages/infos/infos.js
 const db = wx.cloud.database()
 const app = getApp()
+import moment from '../../lib/moment'
+import Dialog from '../../lib/vant-weapp/dialog/dialog'
 
 Page({
 
@@ -76,7 +78,19 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    wx.showNavigationBarLoading()
+    this.setData({
+      commentsList: [],
+      newsList: [],
+      loading: true,
+      announcement: ""
+    })
+    this.initPageContent()
+    wx.showToast({
+      title: 'loading....',
+      icon: 'loading'
+    })
+    wx.stopPullDownRefresh()
   },
 
   /**
@@ -91,6 +105,23 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  longTap: function(e) {
+    Dialog.confirm({
+      title: '举报不当言论',
+      message: '遇到不友善的言论，就点击举报吧！功能开发中。别增加作者无谓的工作量了，请友善讨论，嘴上积德~',
+      confirmButtonText: '举报！',
+      closeOnClickOverlay: true
+    }).then(() => {
+      // on confirm
+    }).catch(() => {
+      // on cancel
+    });
+    return false;
+  },
+  modalcnt1: function () {
+
+    wx.startPullDownRefresh()
   }
 })
 
@@ -101,21 +132,25 @@ function getNews(_this) {
     // .orderBy('zan', 'desc')
     .field({
       title: true,
-      sTime: true,
-      // progress: true
+      sTime: true
     })
+    .orderBy('sTime', 'desc')
+    // .orderBy('sMoment', 'desc')
     .get()
     .then(res => {
-      if (res.data.length > 15) {
-        // 公告板
-        _this.setData({
-          announcement: res.data[15]
+      if (res.data.length) {
+        // 日期格式化
+        res.data.forEach(ele => {
+          ele.sTime = moment(ele.sTime).format('MM-DD HH:mm')
+          // ele.sTime = moment(ele.sTime).format('MM-DD HH:mm')
         })
-        res.data.length = 15;
+
       }
       _this.setData({
         newsList: res.data
       })
+      wx.stopPullDownRefresh()
+      wx.hideNavigationBarLoading()
     })
 }
 

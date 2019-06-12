@@ -90,14 +90,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    app.globalData.commentCD = true
   },
 
   /**
@@ -151,6 +151,17 @@ Page({
         // on cancel
       });
       return false;
+    }
+    // 判断发言间隔，防止过度频繁的发言。
+    if (app.globalData.commentCD && app.globalData.commentTime && moment(app.globalData.commentTime).isAfter(moment().subtract(1, 'minutes'))){
+      Dialog.alert({
+        message: '发言过于频繁，请不要刷屏哦 ^_^'
+      }).then(() => {
+        // on close
+      });
+      return false;
+    }else{
+      app.globalData.commentCD = false
     }
     let tmp = {
       popupShow: !_this.data.popupShow,
@@ -342,6 +353,7 @@ function postSuccess(_this, postData) {
     postData: postData,
     commentReq: false
   })
+  app.globalData.commentTime = moment()
 }
 
 function getDBPage(_this, opt) {

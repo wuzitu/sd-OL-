@@ -1,5 +1,16 @@
 <view class="infosBox">
   <!-- <image src='https://i.loli.net/2019/05/05/5ccea22f96659.png' style='width:97%;height:300rpx;margin:0 auto;' class="radius shadow-blur"></image> -->
+  <view class='text-center'>
+    <view class="cu-capsule radius" bindtap="modalcnt1">
+      <view class="cu-tag bg-cyan">
+        <text class="cuIcon-refresharrow"></text>
+      </view>
+      <view class="cu-tag line-cyan">
+        下拉刷新页面
+      </view>
+    </view>
+  </view>
+
   <!-- logo -->
   <view class="bg-img radius {{announcement?'bg-mask':''}}" style="background-image: url('https://i.loli.net/2019/05/05/5ccea22f96659.png');height: 300rpx; width:97%;margin: 20rpx auto;">
     <view class="padding text-white ">
@@ -37,7 +48,7 @@
   <view class="info-title">正在讨论</view>
   <!-- top评论 -->
   <view wx:for="{{commentsList}}" wx:key="">
-    <navigator url="/pages/detail/detail?shareID={{item.ID}}" class="comment-card padding-xl radius shadow-blur bg-img bg-mask" style="background-image: url({{backgroundList[index%backgroundList.length]}});height:200rpx;overflow:hidden;">
+    <navigator url="/pages/detail/detail?shareID={{item.ID}}" class="comment-card padding-xl radius shadow-blur bg-img bg-mask" style="background-image: url({{backgroundList[index%backgroundList.length]}});height:200rpx;overflow:hidden;" bindlongpress='longTap'>
 
 
       <view>
@@ -69,3 +80,5 @@
     <span>我是有底线的！</span>
   </view>
 </view>
+<!-- 弹窗 -->
+<van-dialog id="van-dialog" />

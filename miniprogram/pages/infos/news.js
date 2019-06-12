@@ -1,5 +1,7 @@
 const db = wx.cloud.database()
 const app = getApp()
+import moment from '../../lib/moment'
+
 Page({
 
   /**
@@ -21,6 +23,7 @@ Page({
       .doc(id)
       .get()
       .then(res => {
+        res.data.sTime = moment(res.data.sTime).format('YYYY-MM-DD HH:mm:ss')
         this.setData({
           title: res.data.title,
           sTime: res.data.sTime,

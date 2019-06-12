@@ -1,6 +1,9 @@
 {
   "usingComponents": {
     "van-rate": "/lib/vant-weapp/rate/index",
-    "i-load-more": "/lib/vant-weapp/load-more/index"
-  }
+    "i-load-more": "/lib/vant-weapp/load-more/index",
+    "van-dialog": "/lib/vant-weapp/dialog/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }

@@ -4,7 +4,7 @@
     <text class="text-black text-bold">{{title}}</text>
     <text class="text-black text-lg">{{sTime}}</text>
   </view>
-  <text>{{content}}</text>
+  <text selectable="true">{{content}}</text>
 
 </view>
 <view class='margin-lr text-grey text-xs' style='bottom:10rpx'>from：jianbinguozi.com</view>
