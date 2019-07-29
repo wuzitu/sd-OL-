@@ -26,8 +26,8 @@ exports.main = async(event, context) => {
             tmpList.each((index, news) => {
 
               let str = $($(news).find('span')).text().trim() || '';
-              let sTime = $($(news).find('time')).text().trim() || ''
-              // let sTime = $($(news).find('time')).attr('datetime') ? $($(news).find('time')).attr('datetime').trim() : sDate;
+              let sDate = $($(news).find('time')).text().trim() || ''
+              let sTime = $($(news).find('time')).attr('datetime') ? $($(news).find('time')).attr('datetime').trim() : sDate;
               // let sMoment = $($(news).find('time')).attr('datetime') ? moment($($(news).find('time')).attr('datetime').trim()).format('HH:mm:ss') : '未知时间';
               let href = $($(news).find('a')).attr('href').trim() || ''
               newsList.push({
@@ -47,7 +47,7 @@ exports.main = async(event, context) => {
                   let html = $('.new-bd__inner') || '';
                   var RST = ''
                   getContent(html)
- 
+
                   console.log(RST)
                   // get over
                   // delete element.href
