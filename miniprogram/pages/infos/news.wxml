@@ -17,5 +17,5 @@
     <!-- <span>o(=•ェ•=)m</span> -->
   </view>
 
-  <ad unit-id="adunit-6e7c98314f618cbb"></ad>
+  <ad unit-id="adunit-6e7c98314f618cbb" wx:if="{{showAD_banner}}"></ad>
 </view>

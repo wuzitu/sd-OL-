@@ -2,7 +2,8 @@
   "usingComponents": {
     "van-rate": "/lib/vant-weapp/rate/index",
     "i-load-more": "/lib/vant-weapp/load-more/index",
-    "van-dialog": "/lib/vant-weapp/dialog/index"
+    "van-dialog": "/lib/vant-weapp/dialog/index",
+    "van-notify": "/lib/vant-weapp/notify/index"
   },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"

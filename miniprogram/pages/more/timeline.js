@@ -1,41 +1,17 @@
-const db = wx.cloud.database()
-const app = getApp()
-import utils from '../../utils/utils'
-import moment from '../../lib/moment'
-
+// miniprogram/pages/more/timeline.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: "",
-    sTime: "",
-    content: "",
-    showAD_banner: true
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let _this = this
-    // 检测广告显示
-    utils.showAD_banner(_this)
-    // 查询news
-    let id = options.id
-    let collection = db.collection('news')
-    collection
-      .doc(id)
-      .get()
-      .then(res => {
-        res.data.sTime = moment(res.data.sTime).format('YYYY-MM-DD HH:mm:ss')
-        this.setData({
-          title: res.data.title,
-          sTime: res.data.sTime,
-          content: res.data.content
-        })
-      })
 
   },
 
@@ -45,6 +21,7 @@ Page({
   onReady: function() {
 
   },
+
   /**
    * 生命周期函数--监听页面显示
    */
@@ -85,5 +62,11 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  goHome() {
+    wx.switchTab({
+      url: '/pages/infos/infos'
+    })
   }
 })

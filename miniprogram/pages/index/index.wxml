@@ -13,11 +13,15 @@
     <!-- <view class="index-bd"> -->
     <!-- 每一个卡片 -->
     <view wx:for="{{gundamList}}" wx:key="ID">
-      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" price="GB:{{item.GB_sale}} / MB:{{item.MB_sale}}" thumb="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
+      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" price="GB:{{item.GB_sale}} / MB:{{item.MB_sale}}" thumb="https://sdplayer.club/img/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
         <view slot="tags">
           <van-tag color="{{rankColor[item.rank]}}" plain>{{item.rank}}</van-tag>
         </view>
       </van-card>
+      
+      <view class='ad-card radius shadow-blur ' wx:if="{{index && index==8 && showAD_banner}}">
+        <ad unit-id="adunit-81d9949d134b0e6c"></ad>
+      </view>
     </view>
     <!-- 每个卡片 -->
 
@@ -66,7 +70,9 @@
             <van-checkbox name="AR">AR</van-checkbox>
           </van-col>
           <van-col span="6">
-            <van-checkbox name="AU"><text class='bg-mauve light'>AU</text></van-checkbox>
+            <van-checkbox name="AU">
+              <text class='bg-mauve light'>AU</text>
+            </van-checkbox>
           </van-col>
           <van-col span="6">
             <van-checkbox name="B">B</van-checkbox>

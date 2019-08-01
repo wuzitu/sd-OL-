@@ -7,7 +7,8 @@
     "van-dialog": "/lib/vant-weapp/dialog/index",
     "van-row": "/lib/vant-weapp/row/index",
     "van-col": "/lib/vant-weapp/col/index",
-    "van-icon": "/lib/vant-weapp/icon/index"
+    "van-icon": "/lib/vant-weapp/icon/index",
+    "add-tips": "/components/add-tips/index"
   },
   "navigationBarTitleText": "个人信息"
 }

@@ -1,8 +1,12 @@
-// miniprogram/pages/infos/infos.js
+import Notify from '../../lib/vant-weapp/notify/notify';
 const db = wx.cloud.database()
 const app = getApp()
 import moment from '../../lib/moment'
+import utils from '../../utils/utils'
 import Dialog from '../../lib/vant-weapp/dialog/dialog'
+
+// 在页面中定义激励视频广告
+let videoAd = null
 
 Page({
 
@@ -20,14 +24,43 @@ Page({
       "https://hbimg.huabanimg.com/a2a17648ac2ae8cb30da64a39c71ae1b1251777018a5a-6FE5VG_fw658"
     ],
     loading: true,
-    announcement: ""
+    announcement: "",
+    showAD_banner: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let _this = this
     this.initPageContent()
+
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-41debc9af2440e2f'
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {})
+      videoAd.onClose((res) => {
+        // 用户点击了【关闭广告】按钮
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励
+          Notify({
+            text: `广告消除完毕~`,
+            // selector: '#van-notify',
+            backgroundColor: '#D17BBC'
+          })
+          // banner隐藏
+          utils.hideAD_banner(_this)
+        } else {
+          // 播放中途退出，不下发游戏奖励
+          Notify('播放中途退出，广告没有消除。')
+        }
+      })
+    }
+    // 广告显示
+    utils.showAD_banner(_this)
   },
 
   /**
@@ -119,9 +152,23 @@ Page({
     });
     return false;
   },
-  modalcnt1: function () {
-
+  modalcnt1: function() {
     wx.startPullDownRefresh()
+  },
+  clickVideo: function() {
+    // 用户触发广告后，显示激励视频广告
+    if (videoAd) {
+      videoAd.show().catch(() => {
+        // 失败重试
+        videoAd.load()
+          .then(() => videoAd.show())
+          .catch(err => {
+            wx.showToast({
+              title: '读取视频失败了...',
+            })
+          })
+      })
+    }
   }
 })
 

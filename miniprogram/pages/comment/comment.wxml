@@ -4,7 +4,7 @@
   <van-button type="info" open-type="share" slot="right" size="mini">分享</van-button>
 </van-nav-bar>
 <view class='comment-item'>
-  <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{g_ID}}.png" />
+  <image src="https://sdplayer.club/img/avatar/{{g_ID}}.png" />
   <view class='comment-item-name'>
     <view>{{g_Name}}</view>
     <view style='font-size:20rpx'>{{g_Name_EN}}</view>
@@ -20,7 +20,7 @@
       <block>
         <view class='discuss-head-wrap'>
           <view class='discuss-head'>
-            <image class='discuss-img' src="{{postData.Avatar}}"></image>
+            <image class='discuss-img' src="{{postData.Avatar}}" lazy-load="true"></image>
             <view class='discuss-name-wrap'>
               <view class='discuss-name'>{{postData.Name}}</view>
               <view class='discuss-time'>
@@ -48,7 +48,7 @@
     <block>
       <view class='discuss-head-wrap'>
         <view class='discuss-head'>
-          <image class='discuss-img' src="{{item.Avatar}}"></image>
+          <image class='discuss-img' src="{{item.Avatar}}" lazy-load="true"></image>
           <view class='discuss-name-wrap'>
             <view class='discuss-name'>{{item.Name}}</view>
             <view class='discuss-time'>
@@ -80,8 +80,8 @@
 
 <!-- 广告位 -->
 <view class='margin-sm bg-blue light radius shadow' style='min-height:200rpx;' wx:if="{{!loading}}">
-  <ad unit-id="adunit-446ec7bdce648f0e" wx:if="{{commentsList.length >= 5}}"></ad>
-  <view wx:else class='text-center'>看起来评论并不多，留下你的足迹！</view>
+  <ad unit-id="adunit-446ec7bdce648f0e" wx:if="{{showAD_banner&&commentsList.length >= 5}}"></ad>
+  <view wx:else class='text-center'>请留下你的足迹吧！</view>
 </view>
 <!-- 发布按钮 -->
 <view class="round-click" bindtap='showPopup'>
@@ -92,7 +92,7 @@
 <van-popup bind:close="switchpopup" custom-style="width:100%; padding:10rpx 20rpx" position="top" show="{{popupShow}}">
   <view class='popup-content'>
     <view class='popup-item'>
-      <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{g_ID}}.png" />
+      <image src="https://sdplayer.club/img/avatar/{{g_ID}}.png" lazy-load="true" />
       <view class='comment-item-name' style='font-size:24rpx;margin:0 30rpx;'>
         <view>{{g_Name}}</view>
         <view>{{g_Name_EN}}</view>

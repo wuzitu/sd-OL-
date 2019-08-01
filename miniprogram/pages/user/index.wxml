@@ -24,7 +24,7 @@
     </view>
   </view>
   <view class="footer">
-    <text bindtap='switchpopup' data-type="updateLog">更新日志</text> |
+    <navigator url="/pages/more/timeline" class="text-cyan">更新日志</navigator> |
     <text bindtap='switchpopup' data-type="about">关于</text> |
     <text bindtap='switchpopup' data-type="ad" style="font-size:27rpx;color:#3399FF">精彩推荐</text>
   </view>
@@ -68,3 +68,7 @@
     </van-col>
   </van-row>
 </van-dialog>
+
+<!-- 提示添加到“我的小程序” -->
+<add-tips />
+

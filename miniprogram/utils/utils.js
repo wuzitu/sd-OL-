@@ -67,7 +67,38 @@ const checkCount = (opt) => {
   return true;
 }
 
+const hideAD_banner = (_this) => {
+  app.globalData.ad_detail_banner = moment().format('YYYY-MM-DD');
+  wx.setStorage({
+    key: 'ad_detail_banner',
+    data: moment().format('YYYY-MM-DD'),
+  })
+  _this.setData({
+    showAD_banner: false
+  })
+}
+
+const showAD_banner = (_this) => {
+  _this.setData({
+    showAD_banner: true
+  })
+  return true;
+  // 想要控制关闭banner广告，但是审核不过。
+  app.globalData.ad_detail_banner = app.globalData.ad_detail_banner || "2019-01-01"
+  if (moment().isAfter(moment(app.globalData.ad_detail_banner), 'day')) {
+    _this.setData({
+      showAD_banner: true
+    })
+  } else {
+    _this.setData({
+      showAD_banner: false
+    })
+  }
+}
+
 module.exports = {
   mkCount: mkCount,
-  checkCount: checkCount
+  checkCount: checkCount,
+  hideAD_banner: hideAD_banner,
+  showAD_banner: showAD_banner
 }

@@ -1,6 +1,7 @@
 // miniprogram/pages/comment/comment.js
 import Notify from '../../lib/vant-weapp/notify/notify';
 import moment from '../../lib/moment'
+import utils from '../../utils/utils'
 import Dialog from '../../lib/vant-weapp/dialog/dialog';
 
 const db = wx.cloud.database()
@@ -26,7 +27,8 @@ Page({
     comment_id: '',
     postData: {},
     loading: true,
-    zanMap: {}
+    zanMap: {},
+    showAD_banner: true
   },
 
   /**
@@ -34,6 +36,8 @@ Page({
    */
   onLoad: function(options) {
     let _this = this
+    // 检测广告显示
+    utils.showAD_banner(_this)
     // 判断参数异常
     if (!options || !options.g_ID) {
       Notify('读取数据错误！')
@@ -90,7 +94,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    
+
   },
 
   /**
@@ -153,14 +157,14 @@ Page({
       return false;
     }
     // 判断发言间隔，防止过度频繁的发言。
-    if (app.globalData.commentCD && app.globalData.commentTime && moment(app.globalData.commentTime).isAfter(moment().subtract(1, 'minutes'))){
+    if (app.globalData.commentCD && app.globalData.commentTime && moment(app.globalData.commentTime).isAfter(moment().subtract(1, 'minutes'))) {
       Dialog.alert({
         message: '发言过于频繁，请不要刷屏哦 ^_^'
       }).then(() => {
         // on close
       });
       return false;
-    }else{
+    } else {
       app.globalData.commentCD = false
     }
     let tmp = {

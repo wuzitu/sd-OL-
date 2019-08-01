@@ -45,7 +45,7 @@ Page({
       CR: "#A65600",
       CU: "#A65600",
     },
-
+    showAD_banner:false
   },
   onLoad(options) {
     if (app.globalData.gdFilter && app.globalData.gdFilter.find) {
@@ -55,7 +55,8 @@ Page({
     initFilterData(_this);
     goFilter(_this);
 
-
+    // check广告
+    utils.showAD_banner(_this)
     setTimeout(() => {
       // 在页面onLoad回调事件中创建插屏广告实例
       if (wx.createInterstitialAd) {

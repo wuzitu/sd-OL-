@@ -1,0 +1,102 @@
+<view class="cu-bar bg-white fixed" >
+  <view class="action">
+    <navigator bindtap="goHome">
+      <text class="cuIcon-homefill text-gray"></text> 首页
+    </navigator>
+  </view>
+  <view class="content text-bold">
+    时间线
+  </view>
+  <!-- <view class="action">
+    <text class="cuIcon-cardboardfill text-grey"></text>
+    <text class="cuIcon-recordfill text-red"></text>
+  </view> -->
+</view>
+
+
+<view class="cu-timeline">
+  <view class="action">
+    <text class="cuIcon-titles text-green"></text>
+    <text class="text-xl text-bold">版本日记</text>
+  </view>
+  <view class="cu-time">07-31</view>
+  <view class="cu-item text-cyan light">
+    <view class="content bg-cyan light shadow-blur">
+      <text>1.2.0</text>
+      <view class="p">· 我回来了！增加timeline页面</view>
+      <view class="p">· 更换图片源，优化图片加载速度</view>
+      <view class="p">· 首页添加去广告的小按钮</view>
+      <view class="p">· 数据库还在整理中，感谢大家耐心等待</view>
+    </view>
+  </view>
+
+  <view class="cu-item">
+    <view class="content">
+      <text>1.1.9</text>
+      <view class="p">· 首页新功能：下拉刷新</view>
+      <view class="p">· 优化果子新闻日期显示(方便失忆)</view>
+      <view class="p">· 添加评论间隔，防止无意义刷屏</view>
+      <view class="p">· 开放rank：AU 查询</view>
+    </view>
+  </view>
+
+  <view class="cu-item">
+    <view class="content">
+
+      <text>1.1.8</text>
+      <view class="p">· 数据库扩充，武器数据补完。</view>
+      <view class="p">· 增加4维、rank排序。</view>
+      <view class="p">· 修改技能筛选等bug。</view>
+    </view>
+  </view>
+
+  <view class="cu-item">
+    <view class="content">
+      <text class="headline">1.1.7</text>
+      <view class="p">· 优化流畅度，减少图片加载</view>
+    </view>
+  </view>
+
+  <view class="cu-item">
+    <view class="content">
+      <text class="headline">1.1.6</text>
+      <view class="p">· 新功能：🌮情报同步（每2小时）/简陋扭蛋机按钮;</view>
+      <view class="p">· 修复部分数据错误，扭蛋机错误;</view>
+    </view>
+  </view>
+
+  <view class="cu-item">
+    <view class="content">
+      <text class="headline">1.1.5</text>
+      <view class="p">· 新功能：要塞情报板块-最新最热的资讯在这里;</view>
+      <view class="p">· 机体页优化样式,更易于信息展示;</view>
+      <view class="p">· 小广告由腾讯算法提供。</view>
+    </view>
+  </view>
+
+  <view class="cu-item">
+    <view class="content">
+      <text class="headline">1.1.0</text>
+      <view class="p">· 新功能：评论&点赞, 用户隐私自定义功能;</view>
+      <view class="p">· 新功能：bug反馈功能（位置：关于）;</view>
+      <view class="p">· 新增小广告。</view>
+    </view>
+  </view>
+
+  <view class="cu-item">
+    <view class="content">
+      <text class="headline">1.0.2</text>
+      <view class="p">· 个人信息页调整，添加更新日志</view>
+      <view class="p">· 添加按技能搜索、扭蛋机等信息；</view>
+    </view>
+  </view>
+
+  <view class="cu-item">
+    <view class="content">
+      <text class="headline">1.0.1</text>
+      <view class="p">· 优化显示样式</view>
+      <view class="headline">1.0.0</view>
+      <view class="p">· 移植【SD玩家要塞】至微信小程序。（20190418）</view>
+    </view>
+  </view>
+</view>

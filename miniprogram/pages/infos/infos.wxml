@@ -9,6 +9,14 @@
         下拉刷新页面
       </view>
     </view>
+    <view class="cu-capsule radius" bindtap="clickVideo">
+      <view class="cu-tag bg-orange">
+        <text class="cuIcon-video"></text>
+      </view>
+      <view class="cu-tag line-orange">
+        点击15秒视频，查看最新胜率榜。
+      </view>
+    </view>
   </view>
 
   <!-- logo -->
@@ -52,7 +60,8 @@
 
 
       <view>
-        <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID||'10001 '}}.png" lazy-load="true" />
+        <!-- <image src="cloud://online-07f32f.6f6e-online-07f32f/avatar/{{item.ID||'10001 '}}.png" lazy-load="true" /> -->
+        <image src="https://sdplayer.club/img/avatar/{{item.ID||'10001 '}}.png" lazy-load="true" />
       </view>
       <view class='comment-block '>
 
@@ -65,7 +74,7 @@
       </view>
     </navigator>
     <!-- ad -->
-    <view class='ad-card radius shadow-blur ' wx:if="{{index && index == 7}}">
+    <view class='ad-card radius shadow-blur ' wx:if="{{index && index == 7 && showAD_banner}}">
       <ad unit-id="adunit-e239848b0dbf51c8"></ad>
     </view>
   </view>
@@ -73,7 +82,7 @@
   <!-- 底部loading边 -->
   <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
   <!-- ad -->
-  <view class='ad-card radius shadow '>
+  <view class='ad-card radius shadow ' wx:if="{{showAD_banner}}">
     <ad unit-id="adunit-e239848b0dbf51c8"></ad>
   </view>
   <view class="devide-line" wx:if="{{ !loading }}">
@@ -82,3 +91,6 @@
 </view>
 <!-- 弹窗 -->
 <van-dialog id="van-dialog" />
+
+<!-- 顶部notify -->
+<van-notify id="van-notify" />

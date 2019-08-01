@@ -1,5 +1,6 @@
 import Notify from '../../lib/vant-weapp/notify/notify';
 import Dialog from '../../lib/vant-weapp/dialog/dialog';
+import utils from '../../utils/utils'
 import moment from '../../lib/moment'
 const app = getApp()
 
@@ -161,7 +162,7 @@ Page({
     activeName: ['roboData'],
     skillShow: [false, false, false],
 
-    showAD: true,
+    showAD_banner: true,
     showAvatar: false,
     commentsList: []
   },
@@ -174,12 +175,7 @@ Page({
     // let tmp = wx.getStorageSync("oneGundam")
     let _this = this;
     // 广告显示
-    // app.globalData.ad_detail_banner = app.globalData.ad_detail_banner || "2019-01-01"
-    // if (moment().isAfter(moment(app.globalData.ad_detail_banner), 'day')) {
-    //   this.setData({
-    //     showAD: true
-    //   })
-    // }
+    utils.showAD_banner(_this)
     // share情况下，读取数据库加载页面
     if (options.shareID || options._id) {
       // options.shareID = "10001"
@@ -237,8 +233,6 @@ Page({
       // 读取评论
       load_comment(_this)
     }
-
-
   },
 
   /**
@@ -341,15 +335,6 @@ Page({
     app.aldstat.sendEvent('点击阿拉丁广告', {
       "用户ID": app.globalData.openid || '未登录',
     })
-    // 广告点击一次消失
-    this.setData({
-      showAD: false
-    })
-    app.globalData.ad_detail_banner = moment().format('YYYY-MM-DD');
-    wx.setStorage({
-      key: 'ad_detail_banner',
-      data: moment().format('YYYY-MM-DD'),
-    })
   },
   onImgLoadend(e) {
     this.setData({
@@ -380,16 +365,6 @@ function handleErr(err) {
 
 function updateFever(gundam) {
   let _id = gundam._id
-  // db.collection('todos').doc('todo-identifiant-aleatoire').update({
-  //   // data 传入需要局部更新的数据
-  //   data: {
-  //     // 表示将 done 字段置为 true
-  //     fever: true
-  //   },
-  //   success(res) {
-  //     console.log(res.data)
-  //   }
-  // })
   const _ = db.command
   db.collection('SD_DB').doc(_id).get({
     success(res) {
