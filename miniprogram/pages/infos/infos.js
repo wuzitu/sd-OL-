@@ -46,16 +46,12 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          Notify({
-            text: `广告消除完毕~`,
-            // selector: '#van-notify',
-            backgroundColor: '#D17BBC'
-          })
+          gotoRank()
           // banner隐藏
           utils.hideAD_banner(_this)
         } else {
           // 播放中途退出，不下发游戏奖励
-          Notify('播放中途退出，广告没有消除。')
+          Notify('播放中途退出，跳转失败。')
         }
       })
     }
@@ -166,11 +162,18 @@ Page({
             wx.showToast({
               title: '读取视频失败了...',
             })
+            gotoRank()
           })
       })
     }
   }
 })
+
+function gotoRank(){
+  wx.navigateTo({
+    url: '/pages/infos/rank',
+  })
+}
 
 function getNews(_this) {
   let collection = db.collection('news')

@@ -1,0 +1,68 @@
+<view style="background-color: white">
+  <view class="cu-bar bg-white">
+    <view class="action">
+      <navigator bindtap="goHome">
+        <text class="cuIcon-homefill text-gray"></text> 首页
+      </navigator>
+    </view>
+    <view class="content text-bold">
+      胜率天梯榜
+    </view>
+  </view>
+
+  <view>
+
+  </view>
+
+
+  <van-tabs type="line" sticky animated swipeable>
+    <van-tab title="S">
+      <view class="cu-list grid col-3 margin-top">
+        <view class="cu-item" wx:for="{{rankMap.S1}}" wx:key>
+          <view>
+            <!-- <image src="https://sdplayer.club/img/avatar/{{item.ID||'10001 '}}.png" lazy-load="true" /> -->
+            <view class="text-{{topColor[item.winRank]}} {{topColor[item.winRank]?'text-bold':''}}">{{item.winRank}}名</view>
+            <view class="cu-avatar round lg" style="background-image:url({{item.ID=='xxx'?'../../static/img/def-gundam.png':'https://sdplayer.club/img/avatar/'+item.ID+'.png'}});"></view>
+          </view>
+          <text>{{item.Name}}</text>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="S(倒数)">
+      <view class="cu-list grid col-3 margin-top">
+        <view class="cu-item" wx:for="{{rankMap.S2}}" wx:key>
+          <view>
+            <!-- <image src="https://sdplayer.club/img/avatar/{{item.ID||'10001 '}}.png" lazy-load="true" /> -->
+            <view class="text-{{topColor[item.winRank]}} {{topColor[item.winRank]?'text-bold':''}}">{{item.winRank}}名</view>
+            <view class="cu-avatar round lg" style="background-image:url({{item.ID=='xxx'?'../../static/img/def-gundam.png':'https://sdplayer.club/img/avatar/'+item.ID+'.png'}});"></view>
+          </view>
+          <text>{{item.Name}}</text>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="ABC">
+      <view class="cu-list grid col-3 margin-top">
+        <view class="cu-item" wx:for="{{rankMap.ABC1}}" wx:key>
+          <view>
+            <!-- <image src="https://sdplayer.club/img/avatar/{{item.ID||'10001 '}}.png" lazy-load="true" /> -->
+            <view class="text-{{topColor[item.winRank]}} {{topColor[item.winRank]?'text-bold':''}}">{{item.winRank}}名</view>
+            <view class="cu-avatar round lg" style="background-image:url({{item.ID=='xxx'?'../../static/img/def-gundam.png':'https://sdplayer.club/img/avatar/'+item.ID+'.png'}});"></view>
+          </view>
+          <text>{{item.Name}}</text>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="ABC(倒数)">
+      <view class="cu-list grid col-3 margin-top">
+        <view class="cu-item" wx:for="{{rankMap.ABC2}}" wx:key>
+          <view>
+            <!-- <image src="https://sdplayer.club/img/avatar/{{item.ID||'10001 '}}.png" lazy-load="true" /> -->
+            <view class="text-{{topColor[item.winRank]}} {{topColor[item.winRank]?'text-bold':''}}">{{item.winRank}}名</view>
+            <view class="cu-avatar round lg" style="background-image:url({{item.ID=='xxx'?'../../static/img/def-gundam.png':'https://sdplayer.club/img/avatar/'+item.ID+'.png'}});"></view>
+          </view>
+          <text>{{item.Name}}</text>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>

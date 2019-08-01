@@ -93,12 +93,12 @@
   padding: 10rpx 20rpx;
   border-radius: 12rpx;
   width: 97%;
-  margin: 20rpx auto;
+  margin: 10rpx auto;
   background-size: cover;
   background-position: center;
   position: relative;
   z-index: 1;
-  background-color: rgba(167, 167, 167, 0.404);
+  background-color: rgba(228, 228, 228, 0.651);
   color: white;
   box-sizing: border-box;
 }

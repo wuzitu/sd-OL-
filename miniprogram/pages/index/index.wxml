@@ -19,7 +19,7 @@
         </view>
       </van-card>
       
-      <view class='ad-card radius shadow-blur ' wx:if="{{index && index==8 && showAD_banner}}">
+      <view class='ad-card shadow-blur ' wx:if="{{index && index%20==19 && showAD_banner}}">
         <ad unit-id="adunit-81d9949d134b0e6c"></ad>
       </view>
     </view>

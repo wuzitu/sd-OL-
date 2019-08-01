@@ -14,11 +14,21 @@
 </view>
 
 
-<view class="cu-timeline">
+<view class="cu-timeline margin-top-lg">
   <view class="action">
     <text class="cuIcon-titles text-green"></text>
     <text class="text-xl text-bold">版本日记</text>
   </view>
+
+  <view class="cu-time">08-01</view>
+  <view class="cu-item text-blue light">
+    <view class="content bg-blue light shadow-blur">
+      <text>1.2.1</text>
+      <view class="p">· 新增胜率rank排名页面</view>
+      <view class="p">· 首页视频按钮改为胜率rank入口</view>
+    </view>
+  </view>
+
   <view class="cu-time">07-31</view>
   <view class="cu-item text-cyan light">
     <view class="content bg-cyan light shadow-blur">
