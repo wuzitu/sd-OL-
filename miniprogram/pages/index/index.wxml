@@ -13,13 +13,13 @@
     <!-- <view class="index-bd"> -->
     <!-- 每一个卡片 -->
     <view wx:for="{{gundamList}}" wx:key="ID">
-      <van-card desc="{{ item.landType }} {{item.fightType}}" title="{{item.Name || item.model}}" price="GB:{{item.GB_sale}} / MB:{{item.MB_sale}}" thumb="https://sdplayer.club/img/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
+      <van-card desc="{{item.fightType}} {{item.rating}}" title="{{item.Name || item.model}}" price="四维:{{item.ManMaoVal.D4sum}}" thumb="https://sdplayer.club/img/avatar/{{item.ID}}.png" lazy-load="true" bindtap="goDetail" data-one="{{item}}">
         <view slot="tags">
-          <van-tag color="{{rankColor[item.rank]}}" plain>{{item.rank}}</van-tag>
+          <van-tag color="{{rankColor[showRankMap[item.rank]]}}" plain>{{showRankMap[item.rank]}}</van-tag>
         </view>
       </van-card>
-      
-      <view class='ad-card shadow-blur ' wx:if="{{index && index%20==19 && showAD_banner}}">
+
+      <view class='ad-card shadow-blur ' wx:if="{{index && index%15==14 && showAD_banner}}">
         <ad unit-id="adunit-81d9949d134b0e6c"></ad>
       </view>
     </view>

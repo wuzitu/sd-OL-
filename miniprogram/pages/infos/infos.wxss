@@ -85,7 +85,7 @@ page {
 
 .info-title {
   width: 97%;
-  padding: 30rpx;
+  padding: 20rpx;
 }
 .comment-author{
   height:50rpx;

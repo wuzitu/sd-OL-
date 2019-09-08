@@ -16,12 +16,13 @@ Page({
   data: {
     commentsList: [],
     newsList: [],
+    H24List: [],
     backgroundList: [
-      "https://hbimg.huabanimg.com/b4e6504b42622a99ef283002cc386b52b6ad04622fed2-RQKtS4_fw658",
+      // "https://hbimg.huabanimg.com/b4e6504b42622a99ef283002cc386b52b6ad04622fed2-RQKtS4_fw658",
       "https://hbimg.huabanimg.com/d772a0e61c4b7e24b70f6104952c601adf84ec1b23ead-lc0zMK_fw658",
       "https://hbimg.huabanimg.com/9989a4a46c4519350f645d4e06a92bdb909900722f836-YH8z3U_fw658",
-      "https://hbimg.huabanimg.com/fb3ee7f9c0a038b596318ab806c4d9d9196ee4bbe26e-fERGeR_fw658",
-      "https://hbimg.huabanimg.com/a2a17648ac2ae8cb30da64a39c71ae1b1251777018a5a-6FE5VG_fw658"
+      // "https://hbimg.huabanimg.com/fb3ee7f9c0a038b596318ab806c4d9d9196ee4bbe26e-fERGeR_fw658",
+      // "https://hbimg.huabanimg.com/a2a17648ac2ae8cb30da64a39c71ae1b1251777018a5a-6FE5VG_fw658"
     ],
     loading: true,
     announcement: "",
@@ -71,7 +72,7 @@ Page({
     collection
       .orderBy('day', 'desc')
       // .orderBy('zan', 'desc')
-      .skip(0 * 20).limit(20)
+      .skip(0 * 10).limit(10)
       .get()
       .then(res => {
         _this.setData({
@@ -79,8 +80,9 @@ Page({
           loading: false
         })
       })
+    getHot(_this)
     getNews(_this)
-    getAnnunce(_this)
+    // getAnnunce(_this)
   },
   /**
    * 生命周期函数--监听页面显示
@@ -169,7 +171,7 @@ Page({
   }
 })
 
-function gotoRank(){
+function gotoRank() {
   wx.navigateTo({
     url: '/pages/infos/rank',
   })
@@ -185,6 +187,7 @@ function getNews(_this) {
       sTime: true
     })
     .orderBy('sTime', 'desc')
+    .skip(0 * 10).limit(10)
     // .orderBy('sMoment', 'desc')
     .get()
     .then(res => {
@@ -214,4 +217,47 @@ function getAnnunce(_this) {
         announcement: res.data[0] ? res.data[0].content : ""
       })
     })
+}
+
+function getHot(_this) {
+
+
+  wx.request({
+    url: 'https://test.sdplayer.club:3002/getGundam/h24List', //仅为示例，并非真实的接口地址
+    data: {
+      x: '',
+      y: ''
+    },
+    method: 'POST',
+    header: {
+      'content-type': 'application/json' // 默认值
+    },
+    success(res) {
+      var data = utils.decrypt(res.data)
+      console.log(data)
+      // 错误处理
+      if (!data.body) {
+        return
+      }
+      _this.setData({
+        H24List: data.body.slice(0, 10)
+      })
+
+    }
+  })
+
+}
+
+function decrypt(mi) {
+  const key = crypto.Utf8.parse("1234123412ABCDEF"); //十六位十六进制数作为秘钥
+  const iv = crypto.Utf8.parse('ABCDEF1234123412'); //十六位十六进制数作为秘钥偏移量
+  let encryptedHexStr = crypto.Hex.parse(mi);
+  mi = crypto.Base64.stringify(encryptedHexStr);
+  const v = new crypto.AES().decrypt(mi.toString(), key, {
+    iv: iv,
+    mode: crypto.Mode.CBC,
+    padding: crypto.Padding.Pkcs7
+  });
+  var res = v.toString(crypto.Utf8) ? JSON.parse(v.toString(crypto.Utf8).toString()) : {}
+  return res
 }

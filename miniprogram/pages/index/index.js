@@ -13,7 +13,7 @@ Page({
     scrollTop: 100,
     gundamList: [],
     totalCount: 100,
-    page: 0,
+    page: 1,
     isGet: false,
     loading: true,
     filterShow: false,
@@ -45,7 +45,25 @@ Page({
       CR: "#A65600",
       CU: "#A65600",
     },
-    showAD_banner:false
+    showRankMap: {
+      22: "C",
+      23: "CS",
+      24: "CR",
+      25: "CU",
+      32: "B",
+      33: "BS",
+      34: "BR",
+      35: "BU",
+      42: "A",
+      43: "AS",
+      44: "AR",
+      45: "AU",
+      52: "S",
+      53: "SS",
+      54: "SR",
+      55: "SU"
+    },
+    showAD_banner: false
   },
   onLoad(options) {
     if (app.globalData.gdFilter && app.globalData.gdFilter.find) {
@@ -138,21 +156,7 @@ Page({
       _this.setData({
         gundamList: [],
         loading: true,
-        page: 0
-      })
-      var odb = wx.cloud.database()
-      // 搜索名称，英文名称，id，tag
-      var reg = odb.RegExp({
-        regexp: text,
-        options: 'i',
-      })
-      // 带有空格的模糊搜索
-      if (/\s/.test(text)) {
-        text = text.split(/\s+/)
-        reg = new RegExp(text.join("|"), "i")
-      }
-      _this.setData({
-        searchReg: reg
+        page: 1
       })
 
       // const _ = db.command
@@ -229,7 +233,7 @@ Page({
         });
         // 在适合的场景显示插屏广告
         // 概率1/2
-        if (interstitialAd && _id%2==0) {
+        if (interstitialAd && _id % 2 == 0) {
           interstitialAd.show().catch((err) => {
             console.error(err)
           })
@@ -250,7 +254,7 @@ Page({
 })
 
 
-function goFilter(_this, opt) {
+function goFilter2(_this, opt) {
   // 限制查询次数
   if (!utils.checkCount()) {
     wx.showToast({
@@ -434,6 +438,80 @@ function goFilter(_this, opt) {
 }
 
 
+function goFilter(_this, opt) {
+  // 限制查询次数
+  if (!utils.checkCount()) {
+    wx.showToast({
+      title: '超过200次查询啦',
+    })
+    Notify('今天超过200次查询啦,明天再查吧！');
+    _this.setData({
+      loading: false,
+      isGet: false
+    })
+    return false
+  }
+
+  // 埋点统计查询次数
+  app.aldstat.sendEvent('机体列表查询', {
+    "用户ID": app.globalData.openid || '未登录',
+  })
+
+
+  // 开始查
+  let rank = _this.data.rankFilter.map(x => _this.data.rankMap[x])
+  let postData = {
+    Machine: _this.data.filterMachine && _this.data.filterMachine.length ? _this.data.filterMachine : "",
+    fightType: _this.data.filterfightType,
+    special: _this.data.filterspecial ? [_this.data.filterspecial] : "",
+    landType: _this.data.filterlandType,
+    from: _this.data.filterisfrom,
+    pilot: _this.data.filterpilot,
+    force: _this.data.filterforce,
+    weapon_e: _this.data.filterweapon_e,
+    sortBy: _this.data.filtersortBy_cn,
+    skill: _this.data.filterskill,
+    Rank: rank,
+    page: _this.data.page,
+    pagesize: 15
+  }
+
+  wx.request({
+    url: 'https://test.sdplayer.club:3002/getGundam/FilterSearch',
+    data: postData,
+    method: 'POST',
+    header: {
+      'content-type': 'application/json' // 默认值
+    },
+    success(res) {
+      // 查询成功
+      let resData = utils.decrypt(res.data);
+      console.log(resData)
+      // 错误处理
+      if (!resData.res) {
+        return
+      }
+      // 计数
+      let total = resData.postData.searchNum
+      if (opt != 'isNextPage') {
+        _this.setData({
+          totalCount: total
+        })
+        _this.isloadEnd()
+      }
+      // get成功
+      _this.setData({
+        gundamList: _this.data.gundamList.concat(resData.res),
+        isGet: false,
+        page: _this.data.page + 1
+      })
+      _this.isloadEnd()
+      utils.mkCount('read')
+
+    }
+  })
+}
+
 function initFilterData(_this) {
   let f = cfg.filterMap
   _this.setData({
@@ -446,6 +524,7 @@ function initFilterData(_this) {
     force: f.force,
     weapon_e: f.weapon_e,
     sortBy_cn: f.sortBy_cn,
-    skill: f.skillList
+    skill: f.skillList,
+    rankMap: f.rankMap
   })
 }

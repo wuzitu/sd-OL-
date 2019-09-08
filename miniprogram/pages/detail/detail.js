@@ -174,10 +174,17 @@ Page({
     // let tmp = JSON.parse(options.gundam)
     // let tmp = wx.getStorageSync("oneGundam")
     let _this = this;
+    let req = {
+      ID: ""
+    }
     // 广告显示
     utils.showAD_banner(_this)
     // share情况下，读取数据库加载页面
     if (options.shareID || options._id) {
+      _this.data.gundam.ID = options.shareID || options._id
+      _this.setData({
+        gundam: _this.data.gundam
+      })
       // options.shareID = "10001"
       wx.showLoading({
         title: '加载中',
@@ -188,6 +195,7 @@ Page({
         collection = collection.where({
           ID: options.shareID
         })
+        req.ID = options.shareID
       } else {
         // Notify('抽扭蛋吗？希望能得到你想要的机体!')
         Notify({
@@ -198,27 +206,56 @@ Page({
         collection = collection.where({
           _id: Number(options._id)
         })
+        req.ID = Number(options._id)
       }
-      collection.get({
-        success(res) {
-          if (res.data.length) {
-            if (res.data[0].skill[2] && res.data[0].skill[2].skill_name.match("型必杀")) {
-              res.data[0].skill.length = 2
-            }
-            _this.setData({
-              gundam: res.data[0]
-            })
-            wx.hideLoading()
-            // 读取评论
-            load_comment(_this)
-          } else {
-            handleErr('err')
-          }
+
+      req = utils.encrypt(JSON.stringify(req)).toString();
+      wx.request({
+        url: 'https://test.sdplayer.club:3002/getGundam/findOne', //仅为示例，并非真实的接口地址
+        data: {
+          text: req
         },
-        fail(err) {
-          console.log(err)
+        method: 'POST',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          let resData = utils.decrypt(res.data);
+          console.log(resData)
+          // 错误处理
+          if (!resData.body) {
+            return
+          }
+          // get成功
+          _this.setData({
+            gundam: resData.body
+          })
+          wx.hideLoading()
+          // 读取评论
+          load_comment(_this)
         }
       })
+
+      // collection.get({
+      //   success(res) {
+      //     if (res.data.length) {
+      //       if (res.data[0].skill[2] && res.data[0].skill[2].skill_name.match("型必杀")) {
+      //         res.data[0].skill.length = 2
+      //       }
+      //       _this.setData({
+      //         gundam: res.data[0]
+      //       })
+      //       wx.hideLoading()
+      //       // 读取评论
+      //       load_comment(_this)
+      //     } else {
+      //       handleErr('err')
+      //     }
+      //   },
+      //   fail(err) {
+      //     console.log(err)
+      //   }
+      // })
       return;
     }
 
@@ -387,22 +424,54 @@ function updateFever(gundam) {
 
 // load 评论
 function load_comment(_this) {
+  // setTimeout(() => {
+  //   let collection = db.collection('comments')
+  //   collection
+  //     .where({
+  //       ID: _this.data.gundam.ID
+  //     })
+  //     .orderBy('zan', 'desc')
+  //     .orderBy('day', 'desc')
+  //     .skip(0 * 3).limit(3)
+  //     .get()
+  //     .then(res => {
+  //       _this.setData({
+  //         commentsList: _this.data.commentsList.concat(res.data),
+  //         loading: false
+  //       })
+  //     })
+  // }, 1000)
+
+  // server 版本
   setTimeout(() => {
-    let collection = db.collection('comments')
-    collection
-      .where({
-        ID: _this.data.gundam.ID
-      })
-      .orderBy('zan', 'desc')
-      .orderBy('day', 'desc')
-      .skip(0 * 3).limit(3)
-      .get()
-      .then(res => {
+    let req = utils.encrypt(JSON.stringify({
+      ID: _this.data.gundam.ID,
+      page: 1,
+      pagesize: 3,
+      top: 3
+    })).toString();
+    wx.request({
+      url: 'https://test.sdplayer.club:3002/getGundam/TopComment',
+      data: {
+        text: req
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        let resData = utils.decrypt(res.data);
+        console.log(resData)
+        // 错误处理
+        if (!resData.body) {
+          return
+        }
+        // get成功
         _this.setData({
-          commentsList: _this.data.commentsList.concat(res.data),
+          commentsList: _this.data.commentsList.concat(resData.body),
           loading: false
         })
-      })
+      }
+    })
   }, 1000)
-
 }

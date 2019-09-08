@@ -157,7 +157,7 @@ Page({
       return false;
     }
     // 判断发言间隔，防止过度频繁的发言。
-    if (app.globalData.commentCD && app.globalData.commentTime && moment(app.globalData.commentTime).isAfter(moment().subtract(1, 'minutes'))) {
+    if (app.globalData.commentCD && app.globalData.commentTime && moment(app.globalData.commentTime).isAfter(moment().subtract(20, 'second'))) {
       Dialog.alert({
         message: '发言过于频繁，请不要刷屏哦 ^_^'
       }).then(() => {
@@ -287,6 +287,31 @@ Page({
             })
           })
       }
+
+      let httpData = Object.assign({
+        needUpdateComment: _this.data.needUpdateComment
+      }, postData)
+      if (_this.data.needUpdateComment && _this.data.comment_id) {
+        httpData._id = "08560c9e5d00d8790012c1ab624bb55xxx7"
+        httpData._openid = _this.data._openid
+        httpData._openid = _this.data._openid
+      }
+      wx.request({
+        url: 'https://test.sdplayer.club:3002/getGundam/addComment',
+        data: httpData,
+        method: 'POST',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          let resData = res.data;
+          console.log(resData)
+
+          // 成功
+
+        }
+      })
+
     } catch (error) {
       Notify(error)
     }

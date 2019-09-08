@@ -50,7 +50,9 @@
         <view class='discuss-head'>
           <image class='discuss-img' src="{{item.Avatar}}" lazy-load="true"></image>
           <view class='discuss-name-wrap'>
-            <view class='discuss-name'>{{item.Name}}</view>
+            <view class='discuss-name'>{{item.Name}}
+              <view wx:if="{{item.openid=='oEH945EJ4f3yasQXAzXlhlJ1DHRc'||item.openid=='oEH945MLNlWqiI3JlhNLaCRMuIhs'}}" class="cu-tag line-orange" style="height:30rpx;font-size:22rpx;">王牌机师</view>
+            </view>
             <view class='discuss-time'>
               <van-rate value="{{item.rate}}" readonly="true" name="rate" size="{{ 10 }}" wx:if="{{item.rateEnable}}" />
               <text>{{item.day}}</text>

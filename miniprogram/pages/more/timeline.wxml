@@ -20,6 +20,17 @@
     <text class="text-xl text-bold">版本日记</text>
   </view>
 
+  <view class="cu-time">09-09</view>
+  <view class="cu-item text-mauve light">
+    <view class="content bg-mauve light shadow-blur">
+      <text>1.2.2</text>
+      <view class="p">· 新增列表：24小时热搜</view>
+      <view class="p">· 优化机体加载速度，迁移后台服务器代码，与web版保持一致。如有bug请反馈。</view>
+      <view class="p">· 搜索列表信息小修改</view>
+      <view class="p">· 暗示——看我眼神行事 ( • ̀ω•́ )✧</view>
+    </view>
+  </view>
+
   <view class="cu-time">08-01</view>
   <view class="cu-item text-blue light">
     <view class="content bg-blue light shadow-blur">

@@ -20,7 +20,7 @@
   </view>
 
   <!-- logo -->
-  <view class="bg-img radius {{announcement?'bg-mask':''}}" style="background-image: url('https://i.loli.net/2019/05/05/5ccea22f96659.png');height: 300rpx; width:97%;margin: 20rpx auto;">
+  <view class="bg-img radius {{announcement?'bg-mask':''}}" style="background-image: url('https://i.loli.net/2019/05/05/5ccea22f96659.png');height: 200rpx; width:97%;margin: 20rpx auto;background-position:0 80%">
     <view class="padding text-white ">
 
       <!-- <view class="padding-top-xs">
@@ -38,12 +38,9 @@
       </view>
     </view>
   </view>
-  <view class="info-title">SD情报</view>
+  <!-- <view class="info-title">SD情报</view> -->
   <view class="news-card padding-xl radius shadow-blur text-cut">
-    <!-- <text style='font-weight:bold;font-size:28rpx;'>SD情报</text> -->
-    <!-- <view style='height:240rpx' class='text-cut'>
-      
-    </view> -->
+    <text style='font-weight:bold;font-size:28rpx;'>SD情报</text>
     <scroll-view scroll-y style="height: 260rpx;">
       <view class=' text-cut basis-xl ' wx:if="{{!newsList.length}}">数据读取中，请稍候...</view>
       <navigator wx:for="{{newsList}}" wx:key="" class='text-lg flex justify-between padding-xs radius {{index%2==0?"":"news-content"}}' url='/pages/infos/news?id={{item._id}}'>
@@ -53,6 +50,18 @@
     </scroll-view>
 
   </view>
+
+  <!-- 热搜板块 -->
+  <view class="info-title">24小时热搜</view>
+  <scroll-view scroll-x="true" style="height:60px;width:97%;white-space: nowrap;">
+
+    <navigator wx:for="{{H24List}}" wx:key="" url="/pages/detail/detail?shareID={{item.ID}}" style="display: inline-block;">
+      <!-- <view class="cu-avatar lg round margin-left" style="background-image:url('https://go.sdplayer.club/img/avatar/{{item.ID}}.png');display: inline-block;"> -->
+      <!-- </view> -->
+      <image class="cu-avatar lg round margin-left" src="https://sdplayer.club/img/avatar/{{item.ID||'10001 '}}.png" lazy-load="true"></image>
+    </navigator>
+  </scroll-view>
+
   <view class="info-title">正在讨论</view>
   <!-- top评论 -->
   <view wx:for="{{commentsList}}" wx:key="">
@@ -74,7 +83,7 @@
       </view>
     </navigator>
     <!-- ad -->
-    <view class='ad-card radius shadow-blur ' wx:if="{{index && index == 7 && showAD_banner}}">
+    <view class='ad-card radius shadow-blur ' wx:if="{{index && index == 2 && showAD_banner}}">
       <ad unit-id="adunit-e239848b0dbf51c8"></ad>
     </view>
   </view>
