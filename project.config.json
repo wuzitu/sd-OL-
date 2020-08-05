@@ -19,7 +19,8 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": false
+		"bundle": false,
+		"useCompilerModule": false
 	},
 	"appid": "wx500669dcb1dad2d0",
 	"projectname": "sd-OL--master",
