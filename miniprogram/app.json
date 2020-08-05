@@ -30,8 +30,8 @@
       },
       {
         "pagePath": "pages/index/index",
-        "iconPath": "static/icons/dataicon.png",
-        "selectedIconPath": "static/icons/dataicon-checked.png",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-selected.png",
         "text": "机体数据"
       },
       {

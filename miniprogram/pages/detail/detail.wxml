@@ -376,7 +376,9 @@
 </view>
 <view class='margin'>
   <van-button type="info" plain open-type='feedback'>如发现数据有误，请帮助我们修正(备注机体名称)</van-button>
-  <ad unit-id="adunit-edcbb3995a947ab1" wx:if="{{showAD_banner}}"></ad>
+  <!-- <ad unit-id="adunit-edcbb3995a947ab1" wx:if="{{showAD_banner}}"></ad> -->
+  <ad unit-id="adunit-3dc87908c3561cb5" ad-type="video" ad-theme="white"></ad>
+
   <!-- <view class="xm_banner" style="margin:20rpx;" bindtap='tapAD'> -->
   <!-- 小盟广告质量一般，收益低 -->
   <!-- <xm-ad data-id="{{xmad.ad.banner}}" adData="{{xmad.adData}}" bindadload="adImgLoad" bindclick="appoIntView" bindclose="xmadClose" class="xm_component"></xm-ad>

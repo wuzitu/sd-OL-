@@ -33,7 +33,7 @@ Page({
         this.setData({
           title: res.data.title,
           sTime: res.data.sTime,
-          content: res.data.content
+          content: res.data.content.replace(/\\n/g, "\n")
         })
       })
 

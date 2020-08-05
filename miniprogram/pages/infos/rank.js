@@ -24,7 +24,7 @@ Page({
   onLoad: function(options) {
     let _this = this
     wx.request({
-      url: 'https://api.sdplayer.club:3001/getGundam/winRank',
+      url: 'https://test.sdplayer.club:3002/getGundam/winRank',
       data: {},
       method: "POST",
       success(res) {

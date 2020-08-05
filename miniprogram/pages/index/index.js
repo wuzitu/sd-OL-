@@ -214,7 +214,30 @@ Page({
     }
   },
   Capsule: function(e) {
-    let _id = Math.floor(Math.random() * 768 + 1)
+    let _id = Math.floor(Math.random() * 769 + 1)
+    let gd_id = "";
+    wx.request({
+      url: 'https://test.sdplayer.club:3002/getGundam/FilterSearch',
+      data: {
+        "page": _id,
+        "pagesize": 1,
+        "searchNum": 767
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // 查询成功
+        let resData = utils.decrypt(res.data);
+        // 错误处理
+        if (!resData.res) {
+          return
+        }
+        // 计数
+        gd_id = resData.res[0].ID
+      }
+    })
     // toast
     const toast = Toast.loading({
       duration: 0, // 持续展示 toast
@@ -225,6 +248,7 @@ Page({
     });
 
     let second = 2;
+
     const timer = setInterval(() => {
       second--;
       if (second) {
@@ -241,8 +265,9 @@ Page({
       } else {
         clearInterval(timer);
         Toast.clear();
+        gd_id = gd_id || "10001"
         wx.navigateTo({
-          url: `../detail/detail?_id=${_id}`,
+          url: `../detail/detail?_id=${gd_id}`,
         })
       }
     }, 1000);
@@ -461,6 +486,7 @@ function goFilter(_this, opt) {
   // 开始查
   let rank = _this.data.rankFilter.map(x => _this.data.rankMap[x])
   let postData = {
+    nickname: _this.data.searchVal,
     Machine: _this.data.filterMachine && _this.data.filterMachine.length ? _this.data.filterMachine : "",
     fightType: _this.data.filterfightType,
     special: _this.data.filterspecial ? [_this.data.filterspecial] : "",

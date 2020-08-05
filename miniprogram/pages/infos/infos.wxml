@@ -20,16 +20,8 @@
   </view>
 
   <!-- logo -->
-  <view class="bg-img radius {{announcement?'bg-mask':''}}" style="background-image: url('https://i.loli.net/2019/05/05/5ccea22f96659.png');height: 200rpx; width:97%;margin: 20rpx auto;background-position:0 80%">
+  <view class="bg-img radius {{announcement?'bg-mask':''}}" style="background-image: url('https://i.loli.net/2019/05/05/5ccea22f96659.png');height: 150rpx; width:97%;margin: 20rpx auto;background-position:0 83%">
     <view class="padding text-white ">
-
-      <!-- <view class="padding-top-xs">
-        机体数据库大量扩充&更新
-        新增4维排序功能。
-      </view>
-      <view class="padding-top-xs">
-        欢迎积极反馈错误，有问题及时告知。若数据错误严重，我会回退到上一版本！有意见！点反馈！
-      </view> -->
       <view wx:if="{{announcement}}">
         <view class="padding-right-sm padding-top-xs text-lg">
           要塞公告
@@ -83,7 +75,7 @@
       </view>
     </navigator>
     <!-- ad -->
-    <view class='ad-card radius shadow-blur ' wx:if="{{index && index == 2 && showAD_banner}}">
+    <view class='ad-card radius shadow-blur ' wx:if="{{index && index == 5 && showAD_banner}}">
       <ad unit-id="adunit-e239848b0dbf51c8"></ad>
     </view>
   </view>
@@ -91,11 +83,13 @@
   <!-- 底部loading边 -->
   <i-load-more tip="loading" loading="true" wx:if="{{ loading }}" />
   <!-- ad -->
-  <view class='ad-card radius shadow ' wx:if="{{showAD_banner}}">
-    <ad unit-id="adunit-e239848b0dbf51c8"></ad>
-  </view>
+  
   <view class="devide-line" wx:if="{{ !loading }}">
     <span>我是有底线的！</span>
+  </view>
+  <view class='ad-card radius shadow ' wx:if="{{showAD_banner}}">
+    <!-- <ad unit-id="adunit-e239848b0dbf51c8"></ad> -->
+    <ad unit-id="adunit-244c6c45fb4b2b6b" ad-type="video" ad-theme="white"></ad>
   </view>
 </view>
 <!-- 弹窗 -->

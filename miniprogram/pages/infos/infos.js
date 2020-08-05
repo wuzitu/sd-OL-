@@ -72,7 +72,7 @@ Page({
     collection
       .orderBy('day', 'desc')
       // .orderBy('zan', 'desc')
-      .skip(0 * 10).limit(10)
+      .skip(0 * 15).limit(15)
       .get()
       .then(res => {
         _this.setData({
@@ -82,7 +82,7 @@ Page({
       })
     getHot(_this)
     getNews(_this)
-    // getAnnunce(_this)
+    getAnnunce(_this)
   },
   /**
    * 生命周期函数--监听页面显示

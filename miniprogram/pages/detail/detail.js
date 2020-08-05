@@ -203,9 +203,9 @@ Page({
           // selector: '#van-notify',
           backgroundColor: '#D17BBC'
         })
-        collection = collection.where({
-          _id: Number(options._id)
-        })
+        // collection = collection.where({
+        //   _id: Number(options._id)
+        // })
         req.ID = Number(options._id)
       }
 

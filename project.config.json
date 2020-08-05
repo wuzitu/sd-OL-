@@ -19,11 +19,11 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": true
+		"bundle": false
 	},
 	"appid": "wx500669dcb1dad2d0",
 	"projectname": "sd-OL--master",
-	"libVersion": "2.7.7",
+	"libVersion": "2.8.2",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
@@ -64,9 +64,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "",
 					"scene": null
 				}
 			]
